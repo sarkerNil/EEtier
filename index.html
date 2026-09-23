@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en" class="dark scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EE EDITOR TIERS</title>
+  <link rel="icon" href="EE.png" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            display: ['Outfit', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: '#eef2ff',
+              100: '#e0e7ff',
+              500: '#6366f1',
+              600: '#4f46e5',
+              700: '#4338ca',
+              400: '#818cf8',
+              900: '#1e1b4b',
+            },
+            dark: {
+              bg: '#090a0f',
+              card: 'rgba(18, 20, 29, 0.7)',
+              border: 'rgba(255, 255, 255, 0.08)',
+            }
+          },
+          animation: {
+            'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            'glow': 'glow 3s ease-in-out infinite alternate',
+          },
+          keyframes: {
+            glow: {
+              '0%': { opacity: '0.4', transform: 'scale(1)' },
+              '100%': { opacity: '0.8', transform: 'scale(1.05)' },
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      background-color: #06070a;
+      color: #e2e8f0;
+      overflow-x: hidden;
+    }
+    .glass-card {
+      background: linear-gradient(135deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .glass-card-hover {
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .glass-card-hover:hover {
+      border-color: rgba(99, 102, 241, 0.4);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px -10px rgba(79, 70, 229, 0.3);
+    }
+    .text-gradient {
+      background: linear-gradient(135deg, #ffffff 0%, #a5b4fc 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .text-gradient-purple {
+      background: linear-gradient(135deg, #a855f7 0%, #6366f1 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .text-gradient-gold {
+      background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .glow-bg {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(120px);
+      pointer-events: none;
+      z-index: 0;
+    }
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #06070a;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: rgba(99, 102, 241, 0.5);
+    }
+  </style>
+</head>
+<body class="selection:bg-brand-500 selection:text-white font-sans antialiased relative">
+
+  <div class="glow-bg w-[500px] h-[500px] bg-indigo-600/20 -top-20 -left-20 animate-pulse-slow"></div>
+  <div class="glow-bg w-[600px] h-[600px] bg-purple-600/15 top-[20%] right-[-100px] animate-pulse-slow"></div>
+  <div class="glow-bg w-[400px] h-[400px] bg-blue-600/15 top-[50%] left-[-100px]"></div>
+
+  <header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b border-white/5 bg-black/40 backdrop-blur-md">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      <a href="#home" class="flex items-center gap-3 group">
+        <img src="EE.png" alt="EE Logo" class="h-10 w-auto transition-transform group-hover:scale-105" />
+      </a>
+      <nav class="hidden md:flex items-center gap-1 bg-white/5 border border-white/10 p-1.5 rounded-full backdrop-blur-lg">
+        <a href="#home" class="px-4 py-2 text-sm font-medium rounded-full bg-white/10 text-white transition-colors">Home</a>
+        <a href="#seasons" class="px-4 py-2 text-sm font-medium rounded-full text-zinc-400 hover:text-white hover:bg-white/5 transition-colors">Seasons</a>
+        <a href="#leaderboard" class="px-4 py-2 text-sm font-medium rounded-full text-zinc-400 hover:text-white hover:bg-white/5 transition-colors">Leaderboard</a>
+        <a href="#editors" class="px-4 py-2 text-sm font-medium rounded-full text-zinc-400 hover:text-white hover:bg-white/5 transition-colors">Editors</a>
+        <a href="#awards" class="px-4 py-2 text-sm font-medium rounded-full text-zinc-400 hover:text-white hover:bg-white/5 transition-colors">Awards</a>
+        <a href="#upcoming" class="px-4 py-2 text-sm font-medium rounded-full text-zinc-400 hover:text-white hover:bg-white/5 transition-colors">Upcoming</a>
+      </nav>
+      <a href="https://discord.gg/UHhrNckudE" target="_blank" class="hidden sm:inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold text-white bg-indigo-600 hover:bg-indigo-500 transition-all shadow-lg shadow-indigo-500/20">
+        <svg class="w-4 h-4 fill-current" viewBox="0 0 127.14 96.36"><path d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,0,105.09,105.09,0,0,0,22.77,8.07C2.79,37.8-.82,66.8.18,95.42a105.88,105.88,0,0,0,32.22,16.29,77.7,77.7,0,0,0,6.89-11.11,68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1,105.25,105.25,0,0,0,32.24-16.29C128.8,62,124.6,33.1,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53s5-12.74,11.43-12.74S54,45.91,53.87,53,48.73,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.25,60,73.25,53s5-12.74,11.44-12.74S96.23,45.91,96.1,53,91,65.69,84.69,65.69Z"/></svg>
+        Discord
+      </a>
+    </div>
+  </header>
+
+  <main class="relative z-10 pt-32">
+
+    <section id="home" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-20">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <div class="lg:col-span-7 space-y-8">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-indigo-500/30 bg-indigo-500/10 text-indigo-300 text-xs font-semibold tracking-wide uppercase">
+            <span class="w-2 h-2 rounded-full bg-indigo-400 animate-ping"></span>
+            EDITORS EMPIRE
+          </div>
+          <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight font-display leading-[1.1]">
+            <span class="block text-white">EDITORS EMPIRE</span>
+            <span class="text-gradient">EDITING Tiers</span>
+          </h1>
+          <p class="text-lg text-zinc-400 max-w-2xl leading-relaxed">
+            The living archive of <strong class="text-white font-semibold">EE</strong> — where the community's sharpest editors turn creator moments into unforgettable cuts. Explore every season, leaderboard, award and editor who shaped the bracket.
+          </p>
+          <div class="grid grid-cols-3 gap-4 pt-6 border-t border-white/10">
+            <div>
+              <div class="text-3xl sm:text-4xl font-extrabold text-white font-display">3<span class="text-indigo-400">.</span></div>
+              <div class="text-xs sm:text-sm text-zinc-400 font-medium">Seasons Complete</div>
+            </div>
+            <div>
+              <div class="text-3xl sm:text-4xl font-extrabold text-white font-display">20</div>
+              <div class="text-xs sm:text-sm text-zinc-400 font-medium">Editors Ranked</div>
+            </div>
+            <div>
+              <div class="text-3xl sm:text-4xl font-extrabold text-white font-display">30</div>
+              <div class="text-xs sm:text-sm text-zinc-400 font-medium">Finalist Slots</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="lg:col-span-5">
+          <div class="glass-card glass-card-hover p-6 sm:p-8 rounded-3xl relative overflow-hidden group border border-amber-500/20 bg-gradient-to-b from-amber-500/5 to-transparent">
+            <div class="absolute top-0 right-0 bg-gradient-to-l from-amber-500 to-amber-600 text-black font-bold text-xs px-4 py-1.5 rounded-bl-xl tracking-wide uppercase">
+              Comp 03 · Winner
+            </div>
+            <div class="flex items-center gap-5 mt-4 mb-6">
+              <div class="relative">
+                <img src="https://uec-web.vercel.app/editors/flyxorr.webp" alt="Flayxor" class="w-20 h-20 rounded-2xl object-cover ring-2 ring-amber-500/50 shadow-xl" />
+                <span class="absolute -bottom-2 -right-2 bg-amber-500 text-black text-xs font-black p-1 rounded-md">🏆</span>
+              </div>
+              <div>
+                <div class="text-xs font-semibold text-amber-400 tracking-wider uppercase mb-1">Reigning Champion</div>
+                <h2 class="text-3xl font-extrabold text-white font-display">Flayxor</h2>
+              </div>
+            </div>
+            <div class="grid grid-cols-3 gap-2 py-4 border-y border-white/10 text-center mb-6">
+              <div class="bg-white/5 p-2 rounded-xl">
+                <div class="text-xs text-zinc-400">Title</div>
+                <div class="text-sm font-bold text-amber-300">3× Champion</div>
+              </div>
+              <div class="bg-white/5 p-2 rounded-xl">
+                <div class="text-xs text-zinc-400">Peak</div>
+                <div class="text-sm font-bold text-white">Best Rank #1</div>
+              </div>
+              <div class="bg-white/5 p-2 rounded-xl">
+                <div class="text-xs text-zinc-400">Active</div>
+                <div class="text-sm font-bold text-white">5 compititions idk</div>
+              </div>
+            </div>
+            <button class="w-full py-3.5 px-4 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-black font-bold text-sm rounded-xl transition-all shadow-lg shadow-amber-500/20 flex items-center justify-center gap-2">
+              View Champion Profile
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="seasons" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
+        <div>
+          <span class="text-xs font-bold text-indigo-400 uppercase tracking-widest">Season Archive</span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-white font-display mt-1">Every season, one bracket at a time</h2>
+          <p class="text-zinc-400 mt-2 max-w-xl">One featured creator. A room full of ambitious editors. Choose a season and trace the edits, rankings and rivalries that made it.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-3 border-b border-white/10 pb-4 overflow-x-auto">
+        <button class="px-6 py-2.5 rounded-full text-sm font-bold bg-indigo-600 text-white shadow-lg shadow-indigo-600/30 whitespace-nowrap">Season 03 (Spoke)</button>
+        <button class="px-6 py-2.5 rounded-full text-sm font-semibold bg-white/5 text-zinc-400 hover:text-white hover:bg-white/10 transition-colors whitespace-nowrap">Season 02 (Wemmbu)</button>
+        <button class="px-6 py-2.5 rounded-full text-sm font-semibold bg-white/5 text-zinc-400 hover:text-white hover:bg-white/10 transition-colors whitespace-nowrap">Season 01 (FlameFrags)</button>
+      </div>
+    </section>
+
+    <section id="leaderboard" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div class="mb-8">
+        <span class="text-xs font-bold text-indigo-400 uppercase tracking-widest">Season 03 · Featured Spoke</span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-white font-display mt-1">Season 03 Leaderboard</h2>
+        <p class="text-zinc-400 mt-2">Final standings for the best Spoke editors. Select any editor to open their full competition profile.</p>
+      </div>
+
+      <div class="space-y-4">
+        <div class="glass-card p-6 sm:p-8 rounded-3xl border border-amber-500/30 bg-gradient-to-r from-amber-500/10 via-transparent to-transparent flex flex-col md:flex-row items-center justify-between gap-6">
+          <div class="flex items-center gap-6 w-full md:w-auto">
+            <span class="text-4xl font-black text-amber-400 font-display">#1</span>
+            <img src="https://uec-web.vercel.app/editors/flyxorr.webp" alt="Flayxor" class="w-16 h-16 rounded-2xl object-cover ring-2 ring-amber-500" />
+            <div>
+              <span class="inline-block px-2.5 py-0.5 rounded-md bg-amber-500/20 text-amber-300 text-xs font-bold uppercase mb-1">Season 03 Champion</span>
+              <h3 class="text-2xl font-bold text-white font-display">Flayxor</h3>
+              <p class="text-xs text-zinc-400">Best Spoke Editor</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-3 w-full md:w-auto justify-end">
+            <a href="https://youtube.com/shorts/4cJdgLlk2es" target="_blank" class="px-5 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-semibold text-sm transition-colors flex items-center gap-2">
+              <svg class="w-4 h-4 text-red-500" fill="currentColor" viewBox="0 0 24 24"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>
+              Watch Edit
+            </a>
+            <button class="px-5 py-2.5 rounded-xl bg-amber-500 text-black font-bold text-sm hover:bg-amber-400 transition-colors">
+              View Profile
+            </button>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="glass-card glass-card-hover p-5 rounded-2xl flex items-center justify-between border-slate-400/20">
+            <div class="flex items-center gap-4">
+              <span class="text-xl font-bold text-slate-300 font-display w-6">#2</span>
+              <img src="https://uec-web.vercel.app/editors/jeetism4ever.webp" alt="Jettstream4ever" class="w-12 h-12 rounded-xl object-cover" />
+              <div>
+                <h4 class="font-bold text-white">Jettstream4ever</h4>
+                <span class="text-xs text-zinc-400">Runner Up</span>
+              </div>
+            </div>
+            <a href="https://youtube.com/shorts/UPDuw5-WJvI" target="_blank" class="px-4 py-2 rounded-lg bg-white/5 hover:bg-white/10 text-xs font-semibold text-zinc-300 transition-colors">Watch Edit</a>
+          </div>
+
+          <div class="glass-card glass-card-hover p-5 rounded-2xl flex items-center justify-between border-amber-700/20">
+            <div class="flex items-center gap-4">
+              <span class="text-xl font-bold text-amber-600 font-display w-6">#3</span>
+              <img src="https://uec-web.vercel.app/editors/channeling.webp" alt="Channeling" class="w-12 h-12 rounded-xl object-cover" />
+              <div>
+                <h4 class="font-bold text-white">Channeling / 1to7ae</h4>
+                <span class="text-xs text-zinc-400">3rd Place</span>
+              </div>
+            </div>
+            <a href="https://youtube.com/shorts/j9_noB5EOrA" target="_blank" class="px-4 py-2 rounded-lg bg-white/5 hover:bg-white/10 text-xs font-semibold text-zinc-300 transition-colors">Watch Edit</a>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 pt-2">
+          <div class="glass-card glass-card-hover p-4 rounded-xl flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <span class="text-sm font-bold text-zinc-500 w-5">4</span>
+              <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/voidishere-wuIyk3AaJ2mc1Sxq6Fp7hPns6TMTnE.png" alt="Voidishere" class="w-8 h-8 rounded-lg object-cover" />
+              <span class="text-sm font-semibold text-white">Voidishere</span>
+            </div>
+            <a href="https://youtube.com/shorts/boeIiP-2l7o" target="_blank" class="text-xs text-indigo-400 hover:text-indigo-300 font-medium">Edit ↗</a>
+          </div>
+
+          <div class="glass-card glass-card-hover p-4 rounded-xl flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <span class="text-sm font-bold text-zinc-500 w-5">5</span>
+              <img src="https://uec-web.vercel.app/editors/paceglint.webp" alt="Paceglint" class="w-8 h-8 rounded-lg object-cover" />
+              <span class="text-sm font-semibold text-white">Paceglint</span>
+            </div>
+            <a href="https://youtube.com/shorts/eTT9IPw3meU" target="_blank" class="text-xs text-indigo-400 hover:text-indigo-300 font-medium">Edit ↗</a>
+          </div>
+
+          <div class="glass-card glass-card-hover p-4 rounded-xl flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <span class="text-sm font-bold text-zinc-500 w-5">6</span>
+              <img src="https://uec-web.vercel.app/editors/inferno.webp" alt="Inferno" class="w-8 h-8 rounded-lg object-cover" />
+              <span class="text-sm font-semibold text-white">Inferno</span>
+            </div>
+            <a href="https://youtube.com/shorts/zn6HvcdBKBI" target="_blank" class="text-xs text-indigo-400 hover:text-indigo-300 font-medium">Edit ↗</a>
+          </div>
+
+          <div class="glass-card glass-card-hover p-4 rounded-xl flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <span class="text-sm font-bold text-zinc-500 w-5">7</span>
+              <img src="https://uec-web.vercel.app/editors/denial.jpg" alt="Denial" class="w-8 h-8 rounded-lg object-cover" />
+              <span class="text-sm font-semibold text-white">Denial</span>
+            </div>
+            <a href="https://youtube.com/shorts/ukq7zeh3tKQ" target="_blank" class="text-xs text-indigo-400 hover:text-indigo-300 font-medium">Edit ↗</a>
+          </div>
+
+          <div class="glass-card glass-card-hover p-4 rounded-xl flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <span class="text-sm font-bold text-zinc-500 w-5">8</span>
+              <img src="https://uec-web.vercel.app/editors/wyattmc.webp" alt="WyattMC" class="w-8 h-8 rounded-lg object-cover" />
+              <span class="text-sm font-semibold text-white">WyattMC</span>
+            </div>
+            <a href="https://youtube.com/shorts/H3tomND6jiE" target="_blank" class="text-xs text-indigo-400 hover:text-indigo-300 font-medium">Edit ↗</a>
+          </div>
+
+          <div class="glass-card glass-card-hover p-4 rounded-xl flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <span class="text-sm font-bold text-zinc-500 w-5">9</span>
+              <img src="https://uec-web.vercel.app/editors/vantrex.webp" alt="Vantrex" class="w-8 h-8 rounded-lg object-cover" />
+              <span class="text-sm font-semibold text-white">Vantrex</span>
+            </div>
+            <a href="https://youtube.com/shorts/NmKy308KQTc" target="_blank" class="text-xs text-indigo-400 hover:text-indigo-300 font-medium">Edit ↗</a>
+          </div>
+
+          <div class="glass-card glass-card-hover p-4 rounded-xl flex items-center justify-between sm:col-span-2 lg:col-span-1">
+            <div class="flex items-center gap-3">
+              <span class="text-sm font-bold text-zinc-500 w-5">10</span>
+              <img src="https://uec-web.vercel.app/editors/creo.webp" alt="Creo_EDITS" class="w-8 h-8 rounded-lg object-cover" />
+              <span class="text-sm font-semibold text-white">Creo_EDITS</span>
+            </div>
+            <a href="https://youtube.com/shorts/5PCZHwtmr_Y" target="_blank" class="text-xs text-indigo-400 hover:text-indigo-300 font-medium">Edit ↗</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="editors" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div class="mb-8">
+        <span class="text-xs font-bold text-indigo-400 uppercase tracking-widest">The Roster</span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-white font-display mt-1">Editor profiles</h2>
+        <p class="text-zinc-400 mt-2 max-w-xl">Everyone who has placed in a EE final, ranked by titles then best finish. Open a card for full history and awards.</p>
+      </div>
+
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+        <div class="glass-card glass-card-hover p-4 rounded-2xl text-center group cursor-pointer">
+          <img src="https://uec-web.vercel.app/editors/flyxorr.webp" alt="Flayxor" class="w-16 h-16 rounded-xl mx-auto mb-3 object-cover group-hover:scale-105 transition-transform" />
+          <h4 class="font-bold text-white text-sm">Flayxor</h4>
+          <span class="text-xs text-amber-400 font-medium block mt-0.5">3x Champion</span>
+        </div>
+        <div class="glass-card glass-card-hover p-4 rounded-2xl text-center group cursor-pointer">
+          <img src="https://uec-web.vercel.app/editors/jeetism4ever.webp" alt="Jettstream4ever" class="w-16 h-16 rounded-xl mx-auto mb-3 object-cover group-hover:scale-105 transition-transform" />
+          <h4 class="font-bold text-white text-sm">Jettstream4ever</h4>
+          <span class="text-xs text-zinc-400 font-medium block mt-0.5">Rank #2</span>
+        </div>
+        <div class="glass-card glass-card-hover p-4 rounded-2xl text-center group cursor-pointer">
+          <img src="https://uec-web.vercel.app/editors/channeling.webp" alt="Channeling" class="w-16 h-16 rounded-xl mx-auto mb-3 object-cover group-hover:scale-105 transition-transform" />
+          <h4 class="font-bold text-white text-sm">Channeling</h4>
+          <span class="text-xs text-zinc-400 font-medium block mt-0.5">Rank #3</span>
+        </div>
+        <div class="glass-card glass-card-hover p-4 rounded-2xl text-center group cursor-pointer">
+          <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/voidishere-wuIyk3AaJ2mc1Sxq6Fp7hPns6TMTnE.png" alt="Voidishere" class="w-16 h-16 rounded-xl mx-auto mb-3 object-cover group-hover:scale-105 transition-transform" />
+          <h4 class="font-bold text-white text-sm">Voidishere</h4>
+          <span class="text-xs text-zinc-400 font-medium block mt-0.5">Rank #4</span>
+        </div>
+        <div class="glass-card glass-card-hover p-4 rounded-2xl text-center group cursor-pointer">
+          <img src="https://uec-web.vercel.app/editors/paceglint.webp" alt="Paceglint" class="w-16 h-16 rounded-xl mx-auto mb-3 object-cover group-hover:scale-105 transition-transform" />
+          <h4 class="font-bold text-white text-sm">Paceglint</h4>
+          <span class="text-xs text-zinc-400 font-medium block mt-0.5">Rank #5</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="discord" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div class="glass-card p-8 sm:p-12 rounded-3xl border border-indigo-500/30 bg-gradient-to-br from-indigo-900/20 via-black/40 to-black/80 relative overflow-hidden">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          <div class="lg:col-span-7 space-y-6">
+            <span class="text-xs font-bold text-indigo-400 uppercase tracking-widest">The EE Editing Server</span>
+            <h2 class="text-4xl sm:text-5xl font-black text-white font-display">JOIN US!</h2>
+            <p class="text-zinc-300 text-lg leading-relaxed">
+              Meet people who are interested in Unstable SMP, learn how to edit, find talented editors, chat with the community, join tournaments and win giveaways.
+            </p>
+            <div class="pt-2">
+              <a href="https://discord.gg/UHhrNckudE" target="_blank" class="inline-flex items-center gap-3 px-8 py-4 rounded-2xl text-base font-bold text-white bg-indigo-600 hover:bg-indigo-500 transition-all shadow-xl shadow-indigo-600/30">
+                Join the EE Editing TIERS Discord
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+              </a>
+              <span class="block text-xs text-zinc-500 mt-2 font-mono">discord.gg/UHhrNckudE</span>
+            </div>
+          </div>
+
+          <div class="lg:col-span-5 grid grid-cols-1 gap-4">
+            <div class="glass-card p-4 rounded-2xl flex items-start gap-4">
+              <div class="p-2.5 rounded-xl bg-indigo-500/20 text-indigo-400 font-bold">01</div>
+              <div>
+                <h3 class="font-bold text-white text-sm">Scene packs, ready to cut</h3>
+                <p class="text-xs text-zinc-400 mt-1">Find creator footage, scene packs and edit-ready resources without hunting through dead links.</p>
+              </div>
+            </div>
+            <div class="glass-card p-4 rounded-2xl flex items-start gap-4">
+              <div class="p-2.5 rounded-xl bg-indigo-500/20 text-indigo-400 font-bold">02</div>
+              <div>
+                <h3 class="font-bold text-white text-sm">Learn with other editors</h3>
+                <p class="text-xs text-zinc-400 mt-1">Share works in progress, get feedback, trade workflows and level up your editing together.</p>
+              </div>
+            </div>
+            <div class="glass-card p-4 rounded-2xl flex items-start gap-4">
+              <div class="p-2.5 rounded-xl bg-indigo-500/20 text-indigo-400 font-bold">03</div>
+              <div>
+                <h3 class="font-bold text-white text-sm">Giveaways and creator drops</h3>
+                <p class="text-xs text-zinc-400 mt-1">Get notified when creators post, host giveaways and open new competitions you can participate in and win.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="awards" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div class="mb-8">
+        <span class="text-xs font-bold text-indigo-400 uppercase tracking-widest">Hall of Honors</span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-white font-display mt-1">Season awards</h2>
+        <p class="text-zinc-400 mt-2">The official title handed to each season's champion, plus any bonus prizes on the line.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="glass-card p-6 rounded-2xl border border-white/10 hover:border-amber-500/40 transition-colors">
+          <div class="text-xs font-bold text-zinc-500 uppercase tracking-wider mb-2">Season 01</div>
+          <h3 class="text-xl font-bold text-white font-display mb-1">Best FlameFrags Editor</h3>
+          <span class="inline-block text-xs font-semibold px-2.5 py-1 rounded-md bg-amber-500/10 text-amber-400 mt-3">Title Only</span>
+        </div>
+
+        <div class="glass-card p-6 rounded-2xl border border-white/10 hover:border-amber-500/40 transition-colors">
+          <div class="text-xs font-bold text-zinc-500 uppercase tracking-wider mb-2">Season 02</div>
+          <h3 class="text-xl font-bold text-white font-display mb-1">Best Wemmbu Editor</h3>
+          <span class="inline-block text-xs font-semibold px-2.5 py-1 rounded-md bg-indigo-500/20 text-indigo-300 mt-3">1 Month Discord Nitro</span>
+        </div>
+
+        <div class="glass-card p-6 rounded-2xl border border-white/10 hover:border-amber-500/40 transition-colors">
+          <div class="text-xs font-bold text-zinc-500 uppercase tracking-wider mb-2">Season 03</div>
+          <h3 class="text-xl font-bold text-white font-display mb-1">Best Spoke Editor</h3>
+          <span class="inline-block text-xs font-semibold px-2.5 py-1 rounded-md bg-amber-500/10 text-amber-400 mt-3">Title Only</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="upcoming" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div class="mb-8">
+        <span class="text-xs font-bold text-indigo-400 uppercase tracking-widest">What's Next</span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-white font-display mt-1">The next season</h2>
+      </div>
+
+      <div class="glass-card p-8 sm:p-10 rounded-3xl border border-purple-500/30 bg-gradient-to-r from-purple-900/20 to-indigo-900/20 flex flex-col md:flex-row items-center justify-between gap-8">
+        <div class="space-y-3">
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-500/20 text-purple-300 text-xs font-bold uppercase">
+            <span class="w-2 h-2 rounded-full bg-purple-400 animate-ping"></span> Upcoming
+          </span>
+          <h3 class="text-2xl sm:text-3xl font-extrabold text-white font-display">Season 04 is coming</h3>
+          <p class="text-zinc-300 max-w-xl text-sm leading-relaxed">
+            A new featured creator, a fresh bracket of the community's sharpest editors, and another shot at the crown. The next subject drops soon — keep your timeline clear.
+          </p>
+        </div>
+        <div class="px-6 py-4 rounded-2xl bg-white/5 border border-white/10 text-center whitespace-nowrap">
+          <span class="text-xs text-zinc-400 block mb-1">Featured Creator</span>
+          <span class="text-sm font-bold text-purple-300">To Be Revealed</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="newsroom" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div class="mb-8">
+        <span class="text-xs font-bold text-indigo-400 uppercase tracking-widest">Newsroom</span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-white font-display mt-1">Announcements & live tournament</h2>
+        <p class="text-zinc-400 mt-2">Fresh from the UEC team — the tournament currently on the board plus every announcement we publish for the community.</p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+        <div class="lg:col-span-7">
+          <div class="glass-card p-8 rounded-3xl border border-emerald-500/30 bg-gradient-to-br from-emerald-950/20 to-transparent relative overflow-hidden h-full flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <span class="text-xs font-bold text-emerald-400 uppercase tracking-wider">Current tournament · EE #4</span>
+                <span class="px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-300 text-xs font-bold">OPEN</span>
+              </div>
+              <h3 class="text-2xl font-extrabold text-white font-display mb-2">ParrotX2 Tournament</h3>
+              <p class="text-zinc-300 text-sm mb-6">The fourth EE editing tournament is now live.</p>
+            </div>
+            <div class="pt-6 border-t border-white/10 flex items-center justify-between">
+              <div>
+                <span class="text-xs text-zinc-400 block">Submission deadline</span>
+                <span class="text-sm font-bold text-white">Sep 30, 2026</span>
+              </div>
+              <a href="#" class="px-5 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-black font-bold text-sm transition-colors flex items-center gap-1">
+                View tournament ↗
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="lg:col-span-5">
+          <div class="glass-card p-6 rounded-3xl border border-white/10 space-y-4">
+            <div class="text-xs text-zinc-400 flex items-center gap-2">
+              <span>Sep 20, 2026</span>
+              <span>·</span>
+              <span class="text-indigo-400 font-semibold">EE #4</span>
+            </div>
+            <h4 class="text-lg font-bold text-white font-display">The Launch of the fourth tournament of EE</h4>
+            <p class="text-xs text-zinc-400 leading-relaxed">EE Editing Tournament 4. Find the best Unstable Editor.</p>
+            <a href="#" class="inline-flex items-center gap-1 text-xs font-bold text-indigo-400 hover:text-indigo-300 pt-2">
+              Read more ↗
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="developer" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+      <div class="glass-card p-8 sm:p-12 rounded-3xl border border-indigo-500/20 bg-gradient-to-r from-indigo-950/30 via-slate-900/40 to-black flex flex-col lg:flex-row items-center gap-10">
+        <div class="space-y-6 flex-1">
+          <span class="text-xs font-bold text-indigo-400 uppercase tracking-widest">Built behind the scenes</span>
+          <div>
+            <p class="text-xs text-zinc-400 font-semibold uppercase">Website developer</p>
+            <h2 class="text-4xl font-extrabold text-white font-display mt-1">Made by <span class="text-gradient">PhaseAE</span></h2>
+          </div>
+          <p class="text-zinc-300 text-base leading-relaxed">
+            PhaseAE is a full-stack developer and designer who specializes in building creative systems for communities. He has been working on the EE Editing Tournament website since its inception, ensuring a smooth and engaging experience for all users.
+          </p>
+          <p class="text-xs text-zinc-400">A creative system for the Editors Empire editing community.</p>
+          <div class="flex flex-wrap gap-2 pt-2">
+            <span class="px-3 py-1 rounded-lg bg-white/5 border border-white/10 text-xs text-zinc-300">Design</span>
+            <span class="px-3 py-1 rounded-lg bg-white/5 border border-white/10 text-xs text-zinc-300">Frontend</span>
+            <span class="px-3 py-1 rounded-lg bg-white/5 border border-white/10 text-xs text-zinc-300">EE systems</span>
+          </div>
+        </div>
+
+        <div class="relative text-center">
+          <div class="w-40 h-40 sm:w-48 sm:h-48 rounded-full p-1 bg-gradient-to-tr from-indigo-500 to-purple-500 mx-auto shadow-2xl">
+            <img src="standard.gif" alt="PhaseAE" class="w-full h-full object-cover rounded-full" />
+          </div>
+          <span class="inline-block mt-4 text-xs font-extrabold tracking-widest text-indigo-400 uppercase">PHASEAE</span>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="border-t border-white/10 bg-black/60 py-10 relative z-10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <img src="EE.png" class="h-8 w-auto" />
+        <span class="text-xs text-zinc-500">Editors Community</span>
+      </div>
+      <p class="text-xs text-zinc-500">© EE. All rights reserved.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
