@@ -3,12 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>EE EDITOR TIERS — Official MC Tier System</title>
+  <title>EE EDITOR TIERS — Official Editors Tier</title>
   <link rel="icon" href="EE.png" />
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Outfit:wght@500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Outfit:wght@500;600;700;800;900&display=swap" rel="stylesheet" />
+  
   <script>
     tailwind.config = {
       darkMode: 'class',
@@ -17,811 +18,585 @@
           fontFamily: {
             sans: ['"Plus Jakarta Sans"', 'sans-serif'],
             display: ['Outfit', 'sans-serif'],
-            pixel: ['"Press Start 2P"', 'monospace'],
-          },
-          colors: {
-            mctiers: {
-              bg: '#0d0714',
-              card: '#160c24',
-              cardHover: '#231338',
-              border: 'rgba(255, 255, 255, 0.08)',
-              accent: '#8b2bf9',
-            },
-            tier: {
-              ht1: '#ff4655',
-              lt1: '#ff8a00',
-              ht2: '#eab308',
-              lt2: '#a855f7',
-              ht3: '#3b82f6',
-              lt3: '#10b981',
-              ht4: '#06b6d4',
-              lt4: '#64748b',
-              ht5: '#ec4899',
-            }
-          },
-          animation: {
-            'glow-pulse': 'glowPulse 6s ease-in-out infinite alternate',
-            'float': 'float 5s ease-in-out infinite',
-            'shine': 'shine 2s linear infinite',
-            'ht1-glow': 'ht1GlowPulse 2s ease-in-out infinite alternate',
-          },
-          keyframes: {
-            glowPulse: {
-              '0%': { opacity: '0.15', transform: 'scale(1)' },
-              '100%': { opacity: '0.35', transform: 'scale(1.08)' },
-            },
-            float: {
-              '0%, 100%': { transform: 'translateY(0px)' },
-              '50%': { transform: 'translateY(-6px)' },
-            },
-            shine: {
-              '0%': { transform: 'translateX(-100%)' },
-              '100%': { transform: 'translateX(100%)' },
-            },
-            ht1GlowPulse: {
-              '0%': { boxShadow: '0 0 10px rgba(255, 70, 85, 0.5), inset 0 0 8px rgba(255, 70, 85, 0.3)' },
-              '100%': { boxShadow: '0 0 22px rgba(255, 70, 85, 0.95), inset 0 0 14px rgba(255, 255, 255, 0.5)' }
-            }
           }
         }
       }
     }
   </script>
+
   <style>
     body {
-      background-color: #0b0512;
-      color: #f1f5f9;
-      overflow-x: hidden;
-      background-image: 
-        radial-gradient(circle at 50% 0%, rgba(106, 0, 241, 0.15) 0%, transparent 60%),
-        radial-gradient(circle at 100% 40%, rgba(60, 0, 136, 0.12) 0%, transparent 50%),
-        radial-gradient(circle at 0% 80%, rgba(40, 0, 90, 0.15) 0%, transparent 50%),
-        linear-gradient(to bottom, rgba(255,255,255,0.015) 1px, transparent 1px),
-        linear-gradient(to right, rgba(255,255,255,0.015) 1px, transparent 1px);
-      background-size: 100% 100%, 100% 100%, 100% 100%, 32px 32px, 32px 32px;
+      background: linear-gradient(135deg, #050507 0%, #190b23 50%, #030304 100%);
       background-attachment: fixed;
+      color: #f1f5f9;
     }
 
-    /* Modern Dark Dynamic Glass Styling */
+    /* Black/Dark Gradient Cards */
     .mctiers-card {
-      background: linear-gradient(180deg, rgba(28, 16, 44, 0.75) 0%, rgba(17, 10, 28, 0.85) 100%);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
+      background: linear-gradient(145deg, rgba(18, 18, 22, 0.9) 0%, rgba(8, 8, 10, 0.95) 100%);
+      backdrop-filter: blur(12px);
       border: 1px solid rgba(255, 255, 255, 0.08);
-      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
     }
-
-    .mctiers-card-hover {
-      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    .mctiers-card-hover:hover {
+    .mctiers-card:hover {
       transform: translateY(-2px);
-      border-color: rgba(139, 43, 249, 0.4);
-      background: linear-gradient(180deg, rgba(38, 22, 60, 0.85) 0%, rgba(24, 14, 38, 0.9) 100%);
-      box-shadow: 0 12px 30px -5px rgba(106, 0, 241, 0.25);
+      border-color: rgba(255, 255, 255, 0.2);
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.7);
     }
 
-    /* Rank Pill Ribbons */
-    .rank-pill-1 {
-      background: linear-gradient(135deg, #eab308 0%, #ca8a04 100%);
-      color: #000000;
+    /* Custom Name Text Gradients */
+    .grad-header {
+      background: linear-gradient(135deg, #e2e8f0 0%, #190b23 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
-    .rank-pill-2 {
-      background: linear-gradient(135deg, #cbd5e1 0%, #94a3b8 100%);
-      color: #000000;
+    .grad-twcuber {
+      background: linear-gradient(135deg, #22c55e 0%, #ffffff 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
-    .rank-pill-3 {
-      background: linear-gradient(135deg, #d97706 0%, #b45309 100%);
-      color: #ffffff;
+    .grad-jettstream {
+      background: linear-gradient(135deg, #d2b48c 0%, #c3a048 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
-    .rank-pill-default {
-      background: rgba(255, 255, 255, 0.06);
-      color: #cbd5e1;
-      border: 1px solid rgba(255, 255, 255, 0.1);
+    .grad-syncraft {
+      background: linear-gradient(135deg, #ffffff 0%, #64748b 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .grad-flayxor {
+      background: linear-gradient(135deg, #ef4444 0%, #f97316 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .grad-macelity {
+      background: linear-gradient(135deg, #dbbd63 0%, #db7dac 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
 
-    /* AWESOME GLOWING HT1 BADGES */
-    .badge-ht1 { 
-      background: linear-gradient(135deg, rgba(255,70,85,0.4) 0%, rgba(255,10,40,0.2) 100%);
-      border: 1px solid #ff4655;
-      color: #ffffff; 
-      text-shadow: 0 0 8px rgba(255, 70, 85, 0.9);
-      box-shadow: 0 0 12px rgba(255, 70, 85, 0.6), inset 0 0 6px rgba(255, 255, 255, 0.4);
-      animation: ht1GlowPulse 2s ease-in-out infinite alternate;
-      position: relative;
+    /* Glow Typographic Tier Styles (No Boxes) */
+    .tier-ht1 {
+      color: #ef4444;
+      font-weight: 800;
+      font-family: 'Outfit', sans-serif;
+      filter: drop-shadow(0 0 8px rgba(255, 70, 85, 0.8));
     }
-
-    /* Standard Tier Badges */
-    .badge-lt1 { background: rgba(255,138,0,0.15); border: 1px solid rgba(255,138,0,0.5); color: #ffaa44; }
-    .badge-ht2 { background: rgba(234,179,8,0.15); border: 1px solid rgba(234,179,8,0.5); color: #fde047; }
-    .badge-lt2 { background: rgba(168,85,247,0.15); border: 1px solid rgba(168,85,247,0.5); color: #c084fc; }
-    .badge-ht3 { background: rgba(59,130,246,0.15); border: 1px solid rgba(59,130,246,0.5); color: #60a5fa; }
-    .badge-lt3 { background: rgba(16,185,129,0.15); border: 1px solid rgba(16,185,129,0.5); color: #34d399; }
-    .badge-ht4 { background: rgba(6,182,212,0.15); border: 1px solid rgba(6,182,212,0.5); color: #22d3ee; }
-    .badge-ht5 { background: rgba(236,72,153,0.15); border: 1px solid rgba(236,72,153,0.5); color: #f472b6; }
+    .tier-ht2 {
+      color: #eab308;
+      font-weight: 800;
+      font-family: 'Outfit', sans-serif;
+      filter: drop-shadow(0 0 8px rgba(234, 179, 8, 0.8));
+    }
+    .tier-ht3 {
+      color: #3b82f6;
+      font-weight: 800;
+      font-family: 'Outfit', sans-serif;
+      filter: drop-shadow(0 0 8px rgba(59, 130, 246, 0.8));
+    }
+    .tier-ht4 {
+      color: #06b6d4;
+      font-weight: 800;
+      font-family: 'Outfit', sans-serif;
+      filter: drop-shadow(0 0 8px rgba(6, 182, 212, 0.8));
+    }
 
     /* Category Buttons */
     .cat-btn {
-      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-      background: rgba(255, 255, 255, 0.03);
+      transition: all 0.2s;
+      background: rgba(255, 255, 255, 0.04);
     }
     .cat-btn.active {
-      background: #8b2bf9;
-      border-color: #a259ff;
+      background: #1e293b;
       color: #ffffff;
-      box-shadow: 0 0 15px rgba(139, 43, 249, 0.4);
+      border-color: rgba(255, 255, 255, 0.3);
     }
 
-    /* Modal Backdrop and Modal Styling */
+    /* Modal Styling */
     .modal-backdrop {
       position: fixed;
       inset: 0;
-      background: rgba(5, 2, 10, 0.85);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(8px);
       display: flex;
       align-items: center;
       justify-content: center;
       opacity: 0;
       pointer-events: none;
-      transition: opacity 0.25s ease;
+      transition: opacity 0.2s ease;
       z-index: 1000;
       padding: 16px;
     }
-
     .modal-backdrop.active {
       opacity: 1;
       pointer-events: auto;
     }
-
     .profile-modal {
-      background: linear-gradient(180deg, #180d28 0%, #0d0617 100%);
-      border-radius: 24px;
+      background: linear-gradient(160deg, #121215 0%, #08080a 100%);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 20px;
       width: 100%;
       max-width: 400px;
       padding: 24px;
-      position: relative;
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), 0 0 30px rgba(106, 0, 241, 0.2);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      transform: translateY(20px);
-      transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      transform: translateY(15px);
+      transition: transform 0.2s ease;
     }
-
     .modal-backdrop.active .profile-modal {
       transform: translateY(0);
     }
 
-    .close-btn {
-      position: absolute;
-      top: 16px;
-      right: 16px;
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      color: #94a3b8;
-      font-size: 1.2rem;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all 0.2s;
+    /* Scroll Reveal Animation Styling */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: opacity, transform;
     }
-
-    .close-btn:hover {
-      background: rgba(255, 255, 255, 0.15);
-      color: #ffffff;
-    }
-
-    .position-rank-flag {
-      background: #eab308;
-      color: #000000;
-      font-style: italic;
-      font-weight: 900;
-      font-size: 1.4rem;
-      padding: 10px 18px;
-      clip-path: polygon(0 0, 100% 0, 82% 100%, 0% 100%);
-      padding-right: 26px;
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     ::-webkit-scrollbar { width: 6px; }
-    ::-webkit-scrollbar-track { background: #0b0512; }
+    ::-webkit-scrollbar-track { background: #050507; }
     ::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.15); border-radius: 3px; }
-    ::-webkit-scrollbar-thumb:hover { background: #8b2bf9; }
+    ::-webkit-scrollbar-thumb:hover { background: #475569; }
   </style>
 </head>
-<body class="selection:bg-[#8b2bf9] selection:text-white font-sans antialiased text-slate-100">
+<body class="selection:bg-slate-700 selection:text-white font-sans antialiased text-slate-100">
 
-  <!-- Ambient Dark Background Subtle Glows -->
-  <div class="fixed top-0 left-1/3 w-[600px] h-[600px] bg-[#6a00f1]/15 rounded-full filter blur-[160px] pointer-events-none animate-glow-pulse"></div>
-  <div class="fixed bottom-10 right-10 w-[500px] h-[500px] bg-[#8b2bf9]/10 rounded-full filter blur-[150px] pointer-events-none animate-glow-pulse" style="animation-delay: 2s;"></div>
-
-  <!-- TOP HEADER / NAV -->
-  <header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b border-white/10 bg-[#0b0512]/90 backdrop-blur-xl">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-      <a href="#home" class="flex items-center gap-3.5 group">
-        <img src="EE.png" alt="EE Logo" class="h-10 w-auto transition-transform group-hover:scale-105" />
-        <div class="flex flex-col">
-          <div class="flex items-center gap-2">
-            <span class="font-display font-black text-white tracking-wide text-lg">TIER RANKINGS</span>
-            <span class="bg-[#8b2bf9] text-white font-pixel text-[8px] font-black px-1.5 py-0.5 rounded">EE</span>
-          </div>
-          <span class="text-[10px] text-slate-400 font-mono tracking-tight">OFFICIAL MC EDITOR RANKINGS</span>
-        </div>
+  <!-- TOP HEADER -->
+  <header class="fixed top-0 left-0 right-0 z-50 border-b border-white/10 bg-[#050507]/90 backdrop-blur-md">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <a href="#home" class="flex items-center gap-3">
+        <img src="EE.png" alt="EE Logo" class="h-8 w-auto" />
+        <span class="font-display font-black text-lg tracking-wide grad-header">EE Tiers</span>
       </a>
       
-      <!-- Nav Links -->
-      <nav class="hidden md:flex items-center gap-1 bg-white/[0.03] border border-white/10 p-1.5 rounded-2xl backdrop-blur-lg">
-        <a href="#home" class="px-4 py-2 text-xs font-bold rounded-xl text-white hover:bg-white/10 transition-all">Overview</a>
-        <a href="#rankings" class="px-4 py-2 text-xs font-bold rounded-xl text-slate-400 hover:text-white hover:bg-white/10 transition-all">Rankings</a>
-        <a href="#tierlist" class="px-4 py-2 text-xs font-bold rounded-xl text-slate-400 hover:text-white hover:bg-white/10 transition-all">Tier Breakdown</a>
-        <a href="#seasons" class="px-4 py-2 text-xs font-bold rounded-xl text-slate-400 hover:text-white hover:bg-white/10 transition-all">Seasons</a>
-        <a href="#newsroom" class="px-4 py-2 text-xs font-bold rounded-xl text-slate-400 hover:text-white hover:bg-white/10 transition-all">Tournament</a>
+      <nav class="hidden md:flex items-center gap-2">
+        <a href="#home" class="px-3 py-1.5 text-xs font-semibold text-slate-300 hover:text-white transition-colors">Overview</a>
+        <a href="#rankings" class="px-3 py-1.5 text-xs font-semibold text-slate-300 hover:text-white transition-colors">Rankings</a>
+        <a href="#tierlist" class="px-3 py-1.5 text-xs font-semibold text-slate-300 hover:text-white transition-colors">Tier Breakdown</a>
+        <a href="#seasons" class="px-3 py-1.5 text-xs font-semibold text-slate-300 hover:text-white transition-colors">Community</a>
       </nav>
 
-      <a href="https://dc.gg/editorsempire" target="_blank" class="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-xl text-xs font-bold text-white bg-[#8b2bf9] hover:bg-[#9d44ff] transition-all shadow-lg shadow-[#8b2bf9]/20 active:scale-95">
-        <svg class="w-4 h-4 fill-current" viewBox="0 0 127.14 96.36"><path d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,0,105.09,105.09,0,0,0,22.77,8.07C2.79,37.8-.82,66.8.18,95.42a105.88,105.88,0,0,0,32.22,16.29,77.7,77.7,0,0,0,6.89-11.11,68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1,105.25,105.25,0,0,0,32.24-16.29C128.8,62,124.6,33.1,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53s5-12.74,11.43-12.74S54,45.91,53.87,53,48.73,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.25,60,73.25,53s5-12.74,11.44-12.74S96.23,45.91,96.1,53,91,65.69,84.69,65.69Z"/></svg>
+      <a href="https://dc.gg/editorsempire" target="_blank" class="px-4 py-2 rounded-lg text-xs font-bold text-white bg-slate-800 border border-slate-600 hover:bg-slate-700 transition-all">
         Discord
       </a>
     </div>
   </header>
 
-  <main class="relative z-10 pt-28">
+  <main class="relative z-10 pt-24">
 
-    <!-- HERO / APEX CARD -->
-    <section id="home" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12">
+    <!-- HERO SECTION -->
+    <section id="home" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 reveal">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-        <div class="lg:col-span-7 space-y-6">
-          <div class="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-lg border border-[#8b2bf9]/30 bg-[#8b2bf9]/10 text-purple-300 text-xs font-mono font-bold tracking-wider uppercase backdrop-blur-md">
-            <span class="w-2 h-2 rounded-full bg-[#8b2bf9] animate-pulse"></span>
-            EE EDITING TIER SYSTEM
-          </div>
-          
-          <h1 class="text-4xl sm:text-6xl font-black tracking-tight font-display leading-[1.05]">
-            <span class="block text-white">EDITORS EMPIRE</span>
-            <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#a259ff] via-purple-300 to-white">TIER RANKINGS</span>
+        <div class="lg:col-span-7 space-y-4">
+          <span class="inline-block px-3 py-1 rounded-md bg-white/5 text-slate-300 text-xs font-bold tracking-wide uppercase border border-white/10">
+            EE Tiers
+          </span>
+          <h1 class="text-4xl sm:text-5xl font-extrabold font-display leading-tight">
+            <span class="grad-header">EE Tiers</span> Rankings
           </h1>
-
-          <p class="text-sm sm:text-base text-slate-400 max-w-2xl leading-relaxed">
-            The definitive Minecraft editor tiering archive. Modeled strictly after competitive EE structures (Sync, Effect, Motion, Visual Quality, Creativity, Cleanliness, Texts, Transition), tracking points and tier badges across all EE seasons.
+          <p class="text-sm sm:text-base text-slate-400 max-w-xl">
+            Official leaderboard tracking Minecraft video editor tiers, evaluations, and overall competitive scores.
           </p>
 
-          <div class="grid grid-cols-3 gap-3 pt-2">
-            <div class="mctiers-card p-4 rounded-xl border border-white/5">
-              <div class="text-2xl font-extrabold text-red-500 drop-shadow-[0_0_8px_rgba(255,70,85,0.8)] font-display">HT1</div>
-              <div class="text-[11px] text-slate-400 font-mono mt-0.5">Highest Rank</div>
+          <div class="grid grid-cols-3 gap-3 pt-4">
+            <div class="mctiers-card p-4 rounded-xl">
+              <div class="tier-ht1 text-xl">HT1</div>
+              <div class="text-xs text-slate-400 mt-1">Top Tier</div>
             </div>
-            <div class="mctiers-card p-4 rounded-xl border border-white/5">
-              <div class="text-2xl font-extrabold text-white font-display">4800 pts</div>
-              <div class="text-[11px] text-slate-400 font-mono mt-0.5">Peak Points</div>
+            <div class="mctiers-card p-4 rounded-xl">
+              <div class="text-2xl font-bold text-white font-display">4800</div>
+              <div class="text-xs text-slate-400 mt-1">Peak Points</div>
             </div>
-            <div class="mctiers-card p-4 rounded-xl border border-white/5">
-              <div class="text-2xl font-extrabold text-white font-display">12</div>
-              <div class="text-[11px] text-slate-400 font-mono mt-0.5">Ranked Editors</div>
+            <div class="mctiers-card p-4 rounded-xl">
+              <div class="text-2xl font-bold text-white font-display">12</div>
+              <div class="text-xs text-slate-400 mt-1">Ranked Editors</div>
             </div>
           </div>
         </div>
 
         <!-- #1 RANKED EDITOR CARD -->
-        <div class="lg:col-span-5">
-          <div class="mctiers-card p-6 sm:p-7 rounded-2xl relative overflow-hidden border border-amber-500/30 shadow-2xl animate-float cursor-pointer" onclick="openProfile('TW Cuberz', 'Ht1 Rank', 'Pakistan', '1.', '4800', 'twcuber.png', '', [
-            { name: 'Sync', badge: 'HT1', class: 'badge-ht1' },
-            { name: 'Effect', badge: 'HT1', class: 'badge-ht1' },
-            { name: 'Motion', badge: 'HT1', class: 'badge-ht1' },
-            { name: 'VQ', badge: 'HT1', class: 'badge-ht1' },
-            { name: 'Creativity', badge: 'HT1', class: 'badge-ht1' }
-          ])">
-            <div class="absolute -top-12 -right-12 w-40 h-40 bg-amber-500/10 rounded-full blur-2xl pointer-events-none"></div>
-            
+        <div class="lg:col-span-5 reveal">
+          <div class="mctiers-card p-6 rounded-2xl border border-amber-500/30 cursor-pointer" onclick="openProfile('TW Cuberz', 'Ht1 Rank', 'Pakistan', '1.', '4800', 'twcuber.png', '', [
+            { name: 'Sync', badge: 'HT1', class: 'tier-ht1' },
+            { name: 'Effect', badge: 'HT1', class: 'tier-ht1' },
+            { name: 'Motion', badge: 'HT1', class: 'tier-ht1' },
+            { name: 'VQ', badge: 'HT1', class: 'tier-ht1' },
+            { name: 'Creativity', badge: 'HT1', class: 'tier-ht1' }
+          ], 'grad-twcuber')">
             <div class="flex items-center justify-between mb-4">
-              <span class="badge-ht1 px-3 py-1 rounded text-xs font-extrabold font-mono tracking-wider uppercase">TIER HT1 APEX</span>
-              <span class="text-xs font-bold text-amber-400 font-mono flex items-center gap-1.5">
-                👑 #1 GRANDMASTER
-              </span>
+              <span class="text-xs uppercase tracking-wider text-slate-400">Ranked #1</span>
+              <span class="text-xs font-bold text-amber-400">👑 #1 Overall</span>
             </div>
 
-            <div class="flex items-center gap-5 my-4">
-              <div class="relative">
-                <img src="twcuber.png" alt="TW Cuberz Avatar" class="w-20 h-20 rounded-2xl object-cover shadow-xl ring-2 ring-amber-400/80" />
-                <span class="absolute -bottom-2 -right-2 bg-amber-400 text-black font-pixel text-[8px] font-black px-1.5 py-0.5 rounded border border-black">#1</span>
-              </div>
+            <div class="flex items-center gap-4 my-2">
+              <img src="twcuber.png" alt="TW Cuberz" class="w-16 h-16 rounded-xl object-cover ring-2 ring-amber-400/60" />
               <div>
-                <h2 class="text-3xl font-black text-white font-display tracking-wide">TW Cuberz</h2>
-                <p class="text-xs text-slate-400 font-mono mt-0.5">Editing Grandmaster (4800 points)</p>
+                <h2 class="text-2xl font-bold font-display grad-twcuber">TW Cuberz</h2>
+                <p class="text-xs text-slate-400 mt-0.5">4800 Points • Pakistan</p>
               </div>
             </div>
 
-            <!-- Tier Icons Strip -->
-            <div class="bg-black/40 p-3 rounded-xl border border-white/5 my-4 flex items-center justify-between gap-1 overflow-x-auto text-xs font-mono">
-              <div class="flex flex-col items-center">
-                <span class="text-[10px] text-slate-400">Sync</span>
-                <span class="badge-ht1 px-1.5 py-0.5 rounded text-[10px] font-bold mt-1">HT1</span>
-              </div>
-              <div class="flex flex-col items-center">
-                <span class="text-[10px] text-slate-400">Effect</span>
-                <span class="badge-ht1 px-1.5 py-0.5 rounded text-[10px] font-bold mt-1">HT1</span>
-              </div>
-              <div class="flex flex-col items-center">
-                <span class="text-[10px] text-slate-400">Motion</span>
-                <span class="badge-ht1 px-1.5 py-0.5 rounded text-[10px] font-bold mt-1">HT1</span>
-              </div>
-              <div class="flex flex-col items-center">
-                <span class="text-[10px] text-slate-400">VQ</span>
-                <span class="badge-ht1 px-1.5 py-0.5 rounded text-[10px] font-bold mt-1">HT1</span>
-              </div>
-              <div class="flex flex-col items-center">
-                <span class="text-[10px] text-slate-400">Creativity</span>
-                <span class="badge-ht1 px-1.5 py-0.5 rounded text-[10px] font-bold mt-1">HT1</span>
-              </div>
+            <div class="bg-black/60 p-3 rounded-xl border border-white/5 my-4 flex justify-between text-xs">
+              <div class="text-center"><span class="block text-[10px] text-slate-400">Sync</span><span class="tier-ht1">HT1</span></div>
+              <div class="text-center"><span class="block text-[10px] text-slate-400">Effect</span><span class="tier-ht1">HT1</span></div>
+              <div class="text-center"><span class="block text-[10px] text-slate-400">Motion</span><span class="tier-ht1">HT1</span></div>
+              <div class="text-center"><span class="block text-[10px] text-slate-400">VQ</span><span class="tier-ht1">HT1</span></div>
+              <div class="text-center"><span class="block text-[10px] text-slate-400">Creativity</span><span class="tier-ht1">HT1</span></div>
             </div>
 
-            <div class="w-full py-3 px-4 bg-[#8b2bf9] text-white font-bold text-xs uppercase tracking-wider rounded-xl transition-all shadow-lg flex items-center justify-center gap-2 hover:bg-[#9d44ff]">
-              <span>Top Ranked Editor — View Profile</span>
+            <div class="w-full py-2.5 bg-slate-800 hover:bg-slate-700 border border-slate-600 text-white font-bold text-xs rounded-lg text-center transition-colors">
+              View Profile
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- EE RANKINGS TABLE -->
-    <section id="rankings" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <!-- EE RANKINGS TABLE SECTION -->
+    <section id="rankings" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
       
       <!-- Category Tabs -->
-      <div class="mb-8 overflow-x-auto pb-2">
-        <div class="flex items-center gap-2 min-w-max border-b border-white/10 pb-4">
-          <button onclick="filterCategory('overall')" id="cat-overall" class="cat-btn active px-4 py-2 rounded-xl text-xs font-bold border border-white/10 flex items-center gap-2">
-            🏆 Overall
-          </button>
-          <button onclick="filterCategory('sync')" id="cat-sync" class="cat-btn px-4 py-2 rounded-xl text-xs font-bold border border-white/10 text-slate-400 hover:text-white flex items-center gap-2">
-            ⚡ Sync
-          </button>
-          <button onclick="filterCategory('effect')" id="cat-effect" class="cat-btn px-4 py-2 rounded-xl text-xs font-bold border border-white/10 text-slate-400 hover:text-white flex items-center gap-2">
-            ✨ Effect
-          </button>
-          <button onclick="filterCategory('motion')" id="cat-motion" class="cat-btn px-4 py-2 rounded-xl text-xs font-bold border border-white/10 text-slate-400 hover:text-white flex items-center gap-2">
-            🌀 Motion
-          </button>
-          <button onclick="filterCategory('visual')" id="cat-visual" class="cat-btn px-4 py-2 rounded-xl text-xs font-bold border border-white/10 text-slate-400 hover:text-white flex items-center gap-2">
-            👁️ Visual Quality
-          </button>
-          <button onclick="filterCategory('creativity')" id="cat-creativity" class="cat-btn px-4 py-2 rounded-xl text-xs font-bold border border-white/10 text-slate-400 hover:text-white flex items-center gap-2">
-            💡 Creativity
-          </button>
-          <button onclick="filterCategory('cleanliness')" id="cat-cleanliness" class="cat-btn px-4 py-2 rounded-xl text-xs font-bold border border-white/10 text-slate-400 hover:text-white flex items-center gap-2">
-            🧹 Cleanliness
-          </button>
-          <button onclick="filterCategory('texts')" id="cat-texts" class="cat-btn px-4 py-2 rounded-xl text-xs font-bold border border-white/10 text-slate-400 hover:text-white flex items-center gap-2">
-            🔤 Texts
-          </button>
-          <button onclick="filterCategory('transition')" id="cat-transition" class="cat-btn px-4 py-2 rounded-xl text-xs font-bold border border-white/10 text-slate-400 hover:text-white flex items-center gap-2">
-            🎬 Transition
-          </button>
+      <div class="mb-6 overflow-x-auto pb-2 reveal">
+        <div class="flex items-center gap-2 min-w-max border-b border-white/10 pb-3">
+          <button onclick="filterCategory('overall')" id="cat-overall" class="cat-btn active px-3.5 py-1.5 rounded-lg text-xs font-bold border border-white/10">Overall</button>
+          <button onclick="filterCategory('sync')" id="cat-sync" class="cat-btn px-3.5 py-1.5 rounded-lg text-xs font-bold border border-white/10 text-slate-400">Sync</button>
+          <button onclick="filterCategory('effect')" id="cat-effect" class="cat-btn px-3.5 py-1.5 rounded-lg text-xs font-bold border border-white/10 text-slate-400">Effect</button>
+          <button onclick="filterCategory('motion')" id="cat-motion" class="cat-btn px-3.5 py-1.5 rounded-lg text-xs font-bold border border-white/10 text-slate-400">Motion</button>
+          <button onclick="filterCategory('visual')" id="cat-visual" class="cat-btn px-3.5 py-1.5 rounded-lg text-xs font-bold border border-white/10 text-slate-400">Visual Quality</button>
+          <button onclick="filterCategory('creativity')" id="cat-creativity" class="cat-btn px-3.5 py-1.5 rounded-lg text-xs font-bold border border-white/10 text-slate-400">Creativity</button>
+          <button onclick="filterCategory('cleanliness')" id="cat-cleanliness" class="cat-btn px-3.5 py-1.5 rounded-lg text-xs font-bold border border-white/10 text-slate-400">Cleanliness</button>
+          <button onclick="filterCategory('texts')" id="cat-texts" class="cat-btn px-3.5 py-1.5 rounded-lg text-xs font-bold border border-white/10 text-slate-400">Texts</button>
+          <button onclick="filterCategory('transition')" id="cat-transition" class="cat-btn px-3.5 py-1.5 rounded-lg text-xs font-bold border border-white/10 text-slate-400">Transition</button>
         </div>
       </div>
 
-      <!-- Main EE Table Header -->
-      <div class="hidden md:grid grid-cols-12 px-6 py-3 text-xs font-mono font-bold text-slate-400 uppercase tracking-wider mb-2">
+      <!-- Table Header -->
+      <div class="hidden md:grid grid-cols-12 px-5 py-2 text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">
         <div class="col-span-1 text-center">#</div>
-        <div class="col-span-4">Player / Editor</div>
+        <div class="col-span-4">Editor</div>
         <div class="col-span-2 text-center">Region</div>
-        <div class="col-span-5 text-right">Category Tiers</div>
+        <div class="col-span-5 text-right">Tiers</div>
       </div>
 
-      <!-- EE RANKING CARDS LIST -->
+      <!-- RANKING CARDS LIST -->
       <div class="space-y-3" id="rankings-list">
 
-        <!-- RANK #1: TW Cuberz -->
-        <div class="mctiers-card mctiers-card-hover p-4 sm:p-5 rounded-2xl border-l-4 border-l-amber-400 cursor-pointer" onclick="openProfile('TW Cuberz', 'Ht1 Rank', 'Pakistan', '1.', '4800', 'twcuber.png', '', [
-          { name: 'Sync', badge: 'HT1', class: 'badge-ht1' },
-          { name: 'Effect', badge: 'HT1', class: 'badge-ht1' },
-          { name: 'Motion', badge: 'HT1', class: 'badge-ht1' },
-          { name: 'VQ', badge: 'HT1', class: 'badge-ht1' },
-          { name: 'Creativity', badge: 'HT1', class: 'badge-ht1' }
-        ])">
-          <div class="grid grid-cols-1 md:grid-cols-12 items-center gap-4">
-            <div class="md:col-span-1 flex items-center justify-center">
-              <span class="rank-pill-1 font-pixel text-xs px-2.5 py-1 rounded-md font-bold">1.</span>
-            </div>
-            
-            <div class="md:col-span-4 flex items-center gap-4">
-              <img src="twcuber.png" alt="TW Cuberz" class="w-12 h-12 rounded-xl object-cover ring-2 ring-amber-400/50" />
+        <!-- RANK #1 -->
+        <div class="mctiers-card p-4 rounded-xl border-l-4 border-l-amber-400 cursor-pointer reveal" onclick="openProfile('TW Cuberz', 'Ht1 Rank', 'Pakistan', '1.', '4800', 'twcuber.png', '', [
+          { name: 'Sync', badge: 'HT1', class: 'tier-ht1' },
+          { name: 'Effect', badge: 'HT1', class: 'tier-ht1' },
+          { name: 'Motion', badge: 'HT1', class: 'tier-ht1' },
+          { name: 'VQ', badge: 'HT1', class: 'tier-ht1' },
+          { name: 'Creativity', badge: 'HT1', class: 'tier-ht1' }
+        ], 'grad-twcuber')">
+          <div class="grid grid-cols-1 md:grid-cols-12 items-center gap-3">
+            <div class="md:col-span-1 text-center font-bold text-amber-400">1</div>
+            <div class="md:col-span-4 flex items-center gap-3">
+              <img src="twcuber.png" alt="TW Cuberz" class="w-10 h-10 rounded-lg object-cover" />
               <div>
-                <h3 class="text-lg font-black text-white font-display tracking-wide">TW Cuberz</h3>
-                <p class="text-xs text-amber-400 font-mono">Ht1 Rank <span class="text-slate-400">(4800 points)</span></p>
+                <h3 class="font-bold text-sm grad-twcuber">TW Cuberz</h3>
+                <p class="text-xs text-slate-400">4800 pts</p>
               </div>
             </div>
-
-            <div class="md:col-span-2 flex justify-start md:justify-center">
-              <span class="px-2.5 py-1 rounded bg-emerald-500/15 text-emerald-400 font-mono font-bold text-xs border border-emerald-500/30">Pakistan</span>
-            </div>
-
-            <div class="md:col-span-5 flex items-center justify-end gap-1.5 flex-wrap font-mono text-xs">
-              <span class="badge-ht1 px-2 py-1 rounded font-bold" title="Sync">Sync: HT1</span>
-              <span class="badge-ht1 px-2 py-1 rounded font-bold" title="Effect">Effect: HT1</span>
-              <span class="badge-ht1 px-2 py-1 rounded font-bold" title="Motion">Motion: HT1</span>
-              <span class="badge-ht1 px-2 py-1 rounded font-bold" title="Visual Quality">VQ: HT1</span>
-              <span class="badge-ht1 px-2 py-1 rounded font-bold" title="Creativity">Creativity: HT1</span>
+            <div class="md:col-span-2 text-left md:text-center text-xs text-slate-300">Pakistan</div>
+            <div class="md:col-span-5 flex items-center justify-end gap-3 text-xs">
+              <span>Sync: <strong class="tier-ht1">HT1</strong></span>
+              <span>Effect: <strong class="tier-ht1">HT1</strong></span>
+              <span>Motion: <strong class="tier-ht1">HT1</strong></span>
+              <span>VQ: <strong class="tier-ht1">HT1</strong></span>
             </div>
           </div>
         </div>
 
-        <!-- RANK #2: Jettstream -->
-        <div class="mctiers-card mctiers-card-hover p-4 sm:p-5 rounded-2xl border-l-4 border-l-amber-400 cursor-pointer" onclick="openProfile('Jettstream', 'Ht1 Rank', 'Europe', '2.', '4800', 'jetstream.png', '', [
-          { name: 'Sync', badge: 'HT1', class: 'badge-ht1' },
-          { name: 'Effect', badge: 'HT1', class: 'badge-ht1' },
-          { name: 'Motion', badge: 'HT1', class: 'badge-ht1' },
-          { name: 'VQ', badge: 'HT1', class: 'badge-ht1' },
-          { name: 'Creativity', badge: 'HT1', class: 'badge-ht1' }
-        ])">
-          <div class="grid grid-cols-1 md:grid-cols-12 items-center gap-4">
-            <div class="md:col-span-1 flex items-center justify-center">
-              <span class="rank-pill-1 font-pixel text-xs px-2.5 py-1 rounded-md font-bold">2.</span>
-            </div>
-            
-            <div class="md:col-span-4 flex items-center gap-4">
-              <img src="jetstream.png" alt="Jettstream" class="w-12 h-12 rounded-xl object-cover ring-2 ring-amber-400/50" />
+        <!-- RANK #2 -->
+        <div class="mctiers-card p-4 rounded-xl border-l-4 border-l-amber-400 cursor-pointer reveal" onclick="openProfile('Jettstream', 'Ht1 Rank', 'Europe', '2.', '4800', 'jetstream.png', '', [
+          { name: 'Sync', badge: 'HT1', class: 'tier-ht1' },
+          { name: 'Effect', badge: 'HT1', class: 'tier-ht1' },
+          { name: 'Motion', badge: 'HT1', class: 'tier-ht1' },
+          { name: 'VQ', badge: 'HT1', class: 'tier-ht1' },
+          { name: 'Creativity', badge: 'HT1', class: 'tier-ht1' }
+        ], 'grad-jettstream')">
+          <div class="grid grid-cols-1 md:grid-cols-12 items-center gap-3">
+            <div class="md:col-span-1 text-center font-bold text-amber-400">2</div>
+            <div class="md:col-span-4 flex items-center gap-3">
+              <img src="jetstream.png" alt="Jettstream" class="w-10 h-10 rounded-lg object-cover" />
               <div>
-                <h3 class="text-lg font-black text-white font-display tracking-wide">Jettstream</h3>
-                <p class="text-xs text-amber-400 font-mono">Ht1 Rank <span class="text-slate-400">(4800 points)</span></p>
+                <h3 class="font-bold text-sm grad-jettstream">Jettstream</h3>
+                <p class="text-xs text-slate-400">4800 pts</p>
               </div>
             </div>
-
-            <div class="md:col-span-2 flex justify-start md:justify-center">
-              <span class="px-2.5 py-1 rounded bg-blue-500/15 text-blue-400 font-mono font-bold text-xs border border-blue-500/30">Europe</span>
-            </div>
-
-            <div class="md:col-span-5 flex items-center justify-end gap-1.5 flex-wrap font-mono text-xs">
-              <span class="badge-ht1 px-2 py-1 rounded font-bold" title="Sync">Sync: HT1</span>
-              <span class="badge-ht1 px-2 py-1 rounded font-bold" title="Effect">Effect: HT1</span>
-              <span class="badge-ht1 px-2 py-1 rounded font-bold" title="Motion">Motion: HT1</span>
-              <span class="badge-ht1 px-2 py-1 rounded font-bold" title="Visual Quality">VQ: HT1</span>
-              <span class="badge-ht1 px-2 py-1 rounded font-bold" title="Creativity">Creativity: HT1</span>
+            <div class="md:col-span-2 text-left md:text-center text-xs text-slate-300">Europe</div>
+            <div class="md:col-span-5 flex items-center justify-end gap-3 text-xs">
+              <span>Sync: <strong class="tier-ht1">HT1</strong></span>
+              <span>Effect: <strong class="tier-ht1">HT1</strong></span>
+              <span>Motion: <strong class="tier-ht1">HT1</strong></span>
+              <span>VQ: <strong class="tier-ht1">HT1</strong></span>
             </div>
           </div>
         </div>
 
-        <!-- RANK #3: Syncraft -->
-        <div class="mctiers-card mctiers-card-hover p-4 sm:p-5 rounded-2xl border-l-4 border-l-slate-300 cursor-pointer" onclick="openProfile('Syncraft', 'Ht1 Rank', 'Nepal', '3.', '4300', 'sync.png', '', [
-          { name: 'Sync', badge: 'HT1', class: 'badge-ht1' },
-          { name: 'Effect', badge: 'HT1', class: 'badge-ht1' },
-          { name: 'Motion', badge: 'HT1', class: 'badge-ht1' },
-          { name: 'VQ', badge: 'HT1', class: 'badge-ht1' },
-          { name: 'Creativity', badge: 'HT2', class: 'badge-ht2' }
-        ])">
-          <div class="grid grid-cols-1 md:grid-cols-12 items-center gap-4">
-            <div class="md:col-span-1 flex items-center justify-center">
-              <span class="rank-pill-2 font-pixel text-xs px-2.5 py-1 rounded-md font-bold">3.</span>
-            </div>
-            
-            <div class="md:col-span-4 flex items-center gap-4">
-              <img src="sync.png" alt="Syncraft" class="w-12 h-12 rounded-xl object-cover ring-2 ring-slate-300/50" />
+        <!-- RANK #3 -->
+        <div class="mctiers-card p-4 rounded-xl border-l-4 border-l-slate-300 cursor-pointer reveal" onclick="openProfile('Syncraft', 'Ht1 Rank', 'Nepal', '3.', '4300', 'sync.png', '', [
+          { name: 'Sync', badge: 'HT1', class: 'tier-ht1' },
+          { name: 'Effect', badge: 'HT1', class: 'tier-ht1' },
+          { name: 'Motion', badge: 'HT1', class: 'tier-ht1' },
+          { name: 'VQ', badge: 'HT1', class: 'tier-ht1' },
+          { name: 'Creativity', badge: 'HT2', class: 'tier-ht2' }
+        ], 'grad-syncraft')">
+          <div class="grid grid-cols-1 md:grid-cols-12 items-center gap-3">
+            <div class="md:col-span-1 text-center font-bold text-slate-300">3</div>
+            <div class="md:col-span-4 flex items-center gap-3">
+              <img src="sync.png" alt="Syncraft" class="w-10 h-10 rounded-lg object-cover" />
               <div>
-                <h3 class="text-lg font-black text-white font-display tracking-wide">Syncraft</h3>
-                <p class="text-xs text-slate-300 font-mono">Ht1 Rank <span class="text-slate-400">(4300 points)</span></p>
+                <h3 class="font-bold text-sm grad-syncraft">Syncraft</h3>
+                <p class="text-xs text-slate-400">4300 pts</p>
               </div>
             </div>
-
-            <div class="md:col-span-2 flex justify-start md:justify-center">
-              <span class="px-2.5 py-1 rounded bg-emerald-500/15 text-emerald-400 font-mono font-bold text-xs border border-emerald-500/30">Nepal</span>
-            </div>
-
-            <div class="md:col-span-5 flex items-center justify-end gap-1.5 flex-wrap font-mono text-xs">
-              <span class="badge-ht1 px-2 py-1 rounded font-bold" title="Sync">Sync: HT1</span>
-              <span class="badge-ht1 px-2 py-1 rounded font-bold" title="Effect">Effect: HT1</span>
-              <span class="badge-ht1 px-2 py-1 rounded font-bold" title="Motion">Motion: HT1</span>
-              <span class="badge-ht1 px-2 py-1 rounded font-bold" title="Visual Quality">VQ: HT1</span>
-              <span class="badge-ht2 px-2 py-1 rounded font-bold" title="Creativity">Creativity: HT2</span>
+            <div class="md:col-span-2 text-left md:text-center text-xs text-slate-300">Nepal</div>
+            <div class="md:col-span-5 flex items-center justify-end gap-3 text-xs">
+              <span>Sync: <strong class="tier-ht1">HT1</strong></span>
+              <span>Effect: <strong class="tier-ht1">HT1</strong></span>
+              <span>Motion: <strong class="tier-ht1">HT1</strong></span>
+              <span>Creativity: <strong class="tier-ht2">HT2</strong></span>
             </div>
           </div>
         </div>
 
-        <!-- RANK #4: Flayxor -->
-        <div class="mctiers-card mctiers-card-hover p-4 sm:p-5 rounded-2xl border-l-4 border-l-amber-600 cursor-pointer" onclick="openProfile('Flayxor', 'Ht2 Rank', 'Indian', '4.', '4200', 'flayxor.webp', '', [
-          { name: 'Sync', badge: 'HT1', class: 'badge-ht1' },
-          { name: 'Effect', badge: 'HT1', class: 'badge-ht1' },
-          { name: 'Motion', badge: 'HT2', class: 'badge-ht2' },
-          { name: 'VQ', badge: 'HT2', class: 'badge-ht2' },
-          { name: 'Creativity', badge: 'HT2', class: 'badge-ht2' }
-        ])">
-          <div class="grid grid-cols-1 md:grid-cols-12 items-center gap-4">
-            <div class="md:col-span-1 flex items-center justify-center">
-              <span class="rank-pill-3 font-pixel text-xs px-2.5 py-1 rounded-md font-bold">4.</span>
-            </div>
-            
-            <div class="md:col-span-4 flex items-center gap-4">
-              <img src="flayxor.webp" alt="Flayxor" class="w-12 h-12 rounded-xl object-cover ring-2 ring-amber-600/50" />
+        <!-- RANK #4 -->
+        <div class="mctiers-card p-4 rounded-xl border-l-4 border-l-amber-600 cursor-pointer reveal" onclick="openProfile('Flayxor', 'Ht2 Rank', 'Indian', '4.', '4200', 'flayxor.webp', '', [
+          { name: 'Sync', badge: 'HT1', class: 'tier-ht1' },
+          { name: 'Effect', badge: 'HT1', class: 'tier-ht1' },
+          { name: 'Motion', badge: 'HT2', class: 'tier-ht2' },
+          { name: 'VQ', badge: 'HT2', class: 'tier-ht2' }
+        ], 'grad-flayxor')">
+          <div class="grid grid-cols-1 md:grid-cols-12 items-center gap-3">
+            <div class="md:col-span-1 text-center font-bold text-amber-600">4</div>
+            <div class="md:col-span-4 flex items-center gap-3">
+              <img src="flayxor.webp" alt="Flayxor" class="w-10 h-10 rounded-lg object-cover" />
               <div>
-                <h3 class="text-lg font-black text-white font-display tracking-wide">Flayxor</h3>
-                <p class="text-xs text-amber-500 font-mono">Ht2 Rank <span class="text-slate-400">(4200 points)</span></p>
+                <h3 class="font-bold text-sm grad-flayxor">Flayxor</h3>
+                <p class="text-xs text-slate-400">4200 pts</p>
               </div>
             </div>
-
-            <div class="md:col-span-2 flex justify-start md:justify-center">
-              <span class="px-2.5 py-1 rounded bg-orange-500/15 text-orange-400 font-mono font-bold text-xs border border-orange-500/30">Indian</span>
-            </div>
-
-            <div class="md:col-span-5 flex items-center justify-end gap-1.5 flex-wrap font-mono text-xs">
-              <span class="badge-ht1 px-2 py-1 rounded font-bold" title="Sync">Sync: HT1</span>
-              <span class="badge-ht1 px-2 py-1 rounded font-bold" title="Effect">Effect: HT1</span>
-              <span class="badge-ht2 px-2 py-1 rounded font-bold" title="Motion">Motion: HT2</span>
-              <span class="badge-ht2 px-2 py-1 rounded font-bold" title="Visual Quality">VQ: HT2</span>
-              <span class="badge-ht2 px-2 py-1 rounded font-bold" title="Creativity">Creativity: HT2</span>
+            <div class="md:col-span-2 text-left md:text-center text-xs text-slate-300">India</div>
+            <div class="md:col-span-5 flex items-center justify-end gap-3 text-xs">
+              <span>Sync: <strong class="tier-ht1">HT1</strong></span>
+              <span>Effect: <strong class="tier-ht1">HT1</strong></span>
+              <span>Motion: <strong class="tier-ht2">HT2</strong></span>
+              <span>VQ: <strong class="tier-ht2">HT2</strong></span>
             </div>
           </div>
         </div>
 
-        <!-- RANK #5: Maceility -->
-        <div class="mctiers-card mctiers-card-hover p-4 sm:p-5 rounded-2xl border-l-4 border-l-yellow-400 cursor-pointer" onclick="openProfile('Maceility', 'Ht2 Rank', 'Usa', '5.', '4100', 'macelity.png', 'https://youtube.com/@maceility?si=cpY5KRr4DcRxCydJ', [
-          { name: 'Sync', badge: 'HT3', class: 'badge-ht3' },
-          { name: 'Effect', badge: 'HT1', class: 'badge-ht1' },
-          { name: 'Motion', badge: 'HT1', class: 'badge-ht1' },
-          { name: 'VQ', badge: 'HT1', class: 'badge-ht1' }
-        ])">
-          <div class="grid grid-cols-1 md:grid-cols-12 items-center gap-4">
-            <div class="md:col-span-1 flex items-center justify-center">
-              <span class="rank-pill-default font-pixel text-xs px-2.5 py-1 rounded-md font-bold">5.</span>
-            </div>
-            
-            <div class="md:col-span-4 flex items-center gap-4">
-              <img src="macelity.png" alt="Maceility" class="w-12 h-12 rounded-xl object-cover ring-2 ring-yellow-500/50" />
+        <!-- RANK #5 -->
+        <div class="mctiers-card p-4 rounded-xl border-l-4 border-l-slate-500 cursor-pointer reveal" onclick="openProfile('Maceility', 'Ht2 Rank', 'USA', '5.', '4100', 'macelity.png', 'https://youtube.com/@maceility', [
+          { name: 'Sync', badge: 'HT3', class: 'tier-ht3' },
+          { name: 'Effect', badge: 'HT1', class: 'tier-ht1' },
+          { name: 'Motion', badge: 'HT1', class: 'tier-ht1' },
+          { name: 'VQ', badge: 'HT1', class: 'tier-ht1' }
+        ], 'grad-macelity')">
+          <div class="grid grid-cols-1 md:grid-cols-12 items-center gap-3">
+            <div class="md:col-span-1 text-center font-bold text-slate-400">5</div>
+            <div class="md:col-span-4 flex items-center gap-3">
+              <img src="macelity.png" alt="Maceility" class="w-10 h-10 rounded-lg object-cover" />
               <div>
-                <h3 class="text-lg font-black text-white font-display tracking-wide">Maceility</h3>
-                <p class="text-xs text-yellow-400 font-mono">Ht2 Rank <span class="text-slate-400">(4100 points)</span></p>
+                <h3 class="font-bold text-sm grad-macelity">Maceility</h3>
+                <p class="text-xs text-slate-400">4100 pts</p>
               </div>
             </div>
-
-            <div class="md:col-span-2 flex justify-start md:justify-center">
-              <span class="px-2.5 py-1 rounded bg-red-500/15 text-red-400 font-mono font-bold text-xs border border-red-500/30">Usa</span>
-            </div>
-
-            <div class="md:col-span-5 flex items-center justify-end gap-1.5 flex-wrap font-mono text-xs">
-              <span class="badge-ht3 px-2 py-1 rounded font-bold" title="Sync">Sync: HT3</span>
-              <span class="badge-ht1 px-2 py-1 rounded font-bold" title="Effect">Effect: HT1</span>
-              <span class="badge-ht1 px-2 py-1 rounded font-bold" title="Motion">Motion: HT1</span>
-              <span class="badge-ht1 px-2 py-1 rounded font-bold" title="Visual Quality">VQ: HT1</span>
-              <a href="https://youtube.com/@maceility?si=cpY5KRr4DcRxCydJ" target="_blank" onclick="event.stopPropagation()" class="ml-2 px-3 py-1 rounded bg-white/10 hover:bg-[#8b2bf9] text-white font-bold text-xs transition-colors">Edit ↗</a>
+            <div class="md:col-span-2 text-left md:text-center text-xs text-slate-300">USA</div>
+            <div class="md:col-span-5 flex items-center justify-end gap-3 text-xs">
+              <span>Sync: <strong class="tier-ht3">HT3</strong></span>
+              <span>Effect: <strong class="tier-ht1">HT1</strong></span>
+              <span>Motion: <strong class="tier-ht1">HT1</strong></span>
+              <a href="https://youtube.com/@maceility" target="_blank" onclick="event.stopPropagation()" class="px-2 py-0.5 rounded bg-white/10 hover:bg-slate-700 transition-colors">YT ↗</a>
             </div>
           </div>
         </div>
 
-        <!-- RANK #6: Azur Mc -->
-        <div class="mctiers-card mctiers-card-hover p-4 sm:p-5 rounded-2xl border-l-4 border-l-yellow-400 cursor-pointer" onclick="openProfile('Azur Mc', 'Ht2 Rank', 'N/A', '6.', '4100', 'azur.png', 'https://youtube.com/@azur_mc?si=KvoO9ghhrA1EKscD', [
-          { name: 'Sync', badge: 'HT2', class: 'badge-ht2' },
-          { name: 'Effect', badge: 'HT1', class: 'badge-ht1' },
-          { name: 'Motion', badge: 'HT2', class: 'badge-ht2' },
-          { name: 'VQ', badge: 'HT1', class: 'badge-ht1' }
+        <!-- RANK #6 -->
+        <div class="mctiers-card p-4 rounded-xl cursor-pointer reveal" onclick="openProfile('Azur Mc', 'Ht2 Rank', 'N/A', '6.', '4100', 'azur.png', 'https://youtube.com/@azur_mc', [
+          { name: 'Sync', badge: 'HT2', class: 'tier-ht2' },
+          { name: 'Effect', badge: 'HT1', class: 'tier-ht1' },
+          { name: 'Motion', badge: 'HT2', class: 'tier-ht2' },
+          { name: 'VQ', badge: 'HT1', class: 'tier-ht1' }
         ])">
-          <div class="grid grid-cols-1 md:grid-cols-12 items-center gap-4">
-            <div class="md:col-span-1 flex items-center justify-center">
-              <span class="rank-pill-default font-pixel text-xs px-2.5 py-1 rounded-md font-bold">6.</span>
-            </div>
-            
-            <div class="md:col-span-4 flex items-center gap-4">
-              <img src="azur.png" alt="Azur Mc" class="w-12 h-12 rounded-xl object-cover ring-2 ring-yellow-500/50" />
+          <div class="grid grid-cols-1 md:grid-cols-12 items-center gap-3">
+            <div class="md:col-span-1 text-center font-bold text-slate-400">6</div>
+            <div class="md:col-span-4 flex items-center gap-3">
+              <img src="azur.png" alt="Azur Mc" class="w-10 h-10 rounded-lg object-cover" />
               <div>
-                <h3 class="text-lg font-black text-white font-display tracking-wide">Azur Mc</h3>
-                <p class="text-xs text-yellow-400 font-mono">Ht2 Rank <span class="text-slate-400">(4100 points)</span></p>
+                <h3 class="font-bold text-white text-sm">Azur Mc</h3>
+                <p class="text-xs text-slate-400">4100 pts</p>
               </div>
             </div>
-
-            <div class="md:col-span-2 flex justify-start md:justify-center">
-              <span class="px-2.5 py-1 rounded bg-slate-500/15 text-slate-300 font-mono font-bold text-xs border border-slate-500/30">N/A</span>
-            </div>
-
-            <div class="md:col-span-5 flex items-center justify-end gap-1.5 flex-wrap font-mono text-xs">
-              <span class="badge-ht2 px-2 py-1 rounded font-bold" title="Sync">Sync: HT2</span>
-              <span class="badge-ht1 px-2 py-1 rounded font-bold" title="Effect">Effect: HT1</span>
-              <span class="badge-ht2 px-2 py-1 rounded font-bold" title="Motion">Motion: HT2</span>
-              <span class="badge-ht1 px-2 py-1 rounded font-bold" title="Visual Quality">VQ: HT1</span>
-              <a href="https://youtube.com/@azur_mc?si=KvoO9ghhrA1EKscD" target="_blank" onclick="event.stopPropagation()" class="ml-2 px-3 py-1 rounded bg-white/10 hover:bg-[#8b2bf9] text-white font-bold text-xs transition-colors">Edit ↗</a>
+            <div class="md:col-span-2 text-left md:text-center text-xs text-slate-300">N/A</div>
+            <div class="md:col-span-5 flex items-center justify-end gap-3 text-xs">
+              <span>Sync: <strong class="tier-ht2">HT2</strong></span>
+              <span>Effect: <strong class="tier-ht1">HT1</strong></span>
+              <span>Motion: <strong class="tier-ht2">HT2</strong></span>
+              <a href="https://youtube.com/@azur_mc" target="_blank" onclick="event.stopPropagation()" class="px-2 py-0.5 rounded bg-white/10 hover:bg-slate-700 transition-colors">YT ↗</a>
             </div>
           </div>
         </div>
 
-        <!-- RANK #7: Voidishere -->
-        <div class="mctiers-card mctiers-card-hover p-4 sm:p-5 rounded-2xl border-l-4 border-l-yellow-400 cursor-pointer" onclick="openProfile('Voidishere', 'Ht2 Rank', 'Usa', '7.', '3800', 'voidishere.png', 'https://youtube.com/@voidishere7?si=jFIINfC92f4nMiA8', [
-          { name: 'Sync', badge: 'HT1', class: 'badge-ht1' },
-          { name: 'Effect', badge: 'HT1', class: 'badge-ht1' },
-          { name: 'Motion', badge: 'HT2', class: 'badge-ht2' },
-          { name: 'VQ', badge: 'HT1', class: 'badge-ht1' }
+        <!-- RANK #7 -->
+        <div class="mctiers-card p-4 rounded-xl cursor-pointer reveal" onclick="openProfile('Voidishere', 'Ht2 Rank', 'USA', '7.', '3800', 'voidishere.png', 'https://youtube.com/@voidishere7', [
+          { name: 'Sync', badge: 'HT1', class: 'tier-ht1' },
+          { name: 'Effect', badge: 'HT1', class: 'tier-ht1' },
+          { name: 'Motion', badge: 'HT2', class: 'tier-ht2' },
+          { name: 'VQ', badge: 'HT1', class: 'tier-ht1' }
         ])">
-          <div class="grid grid-cols-1 md:grid-cols-12 items-center gap-4">
-            <div class="md:col-span-1 flex items-center justify-center">
-              <span class="rank-pill-default font-pixel text-xs px-2.5 py-1 rounded-md font-bold">7.</span>
-            </div>
-            
-            <div class="md:col-span-4 flex items-center gap-4">
-              <img src="voidishere.png" alt="Voidishere" class="w-12 h-12 rounded-xl object-cover ring-2 ring-yellow-500/50" />
+          <div class="grid grid-cols-1 md:grid-cols-12 items-center gap-3">
+            <div class="md:col-span-1 text-center font-bold text-slate-400">7</div>
+            <div class="md:col-span-4 flex items-center gap-3">
+              <img src="voidishere.png" alt="Voidishere" class="w-10 h-10 rounded-lg object-cover" />
               <div>
-                <h3 class="text-lg font-black text-white font-display tracking-wide">Voidishere</h3>
-                <p class="text-xs text-yellow-400 font-mono">Ht2 Rank <span class="text-slate-400">(3800 points)</span></p>
+                <h3 class="font-bold text-white text-sm">Voidishere</h3>
+                <p class="text-xs text-slate-400">3800 pts</p>
               </div>
             </div>
-
-            <div class="md:col-span-2 flex justify-start md:justify-center">
-              <span class="px-2.5 py-1 rounded bg-red-500/15 text-red-400 font-mono font-bold text-xs border border-red-500/30">Usa</span>
-            </div>
-
-            <div class="md:col-span-5 flex items-center justify-end gap-1.5 flex-wrap font-mono text-xs">
-              <span class="badge-ht1 px-2 py-1 rounded font-bold" title="Sync">Sync: HT1</span>
-              <span class="badge-ht1 px-2 py-1 rounded font-bold" title="Effect">Effect: HT1</span>
-              <span class="badge-ht2 px-2 py-1 rounded font-bold" title="Motion">Motion: HT2</span>
-              <span class="badge-ht1 px-2 py-1 rounded font-bold" title="Visual Quality">VQ: HT1</span>
-              <a href="https://youtube.com/@voidishere7?si=jFIINfC92f4nMiA8" target="_blank" onclick="event.stopPropagation()" class="ml-2 px-3 py-1 rounded bg-white/10 hover:bg-[#8b2bf9] text-white font-bold text-xs transition-colors">Edit ↗</a>
+            <div class="md:col-span-2 text-left md:text-center text-xs text-slate-300">USA</div>
+            <div class="md:col-span-5 flex items-center justify-end gap-3 text-xs">
+              <span>Sync: <strong class="tier-ht1">HT1</strong></span>
+              <span>Effect: <strong class="tier-ht1">HT1</strong></span>
+              <span>Motion: <strong class="tier-ht2">HT2</strong></span>
+              <a href="https://youtube.com/@voidishere7" target="_blank" onclick="event.stopPropagation()" class="px-2 py-0.5 rounded bg-white/10 hover:bg-slate-700 transition-colors">YT ↗</a>
             </div>
           </div>
         </div>
 
-        <!-- RANK #8: Inferno -->
-        <div class="mctiers-card mctiers-card-hover p-4 sm:p-5 rounded-2xl border-l-4 border-l-yellow-400 cursor-pointer" onclick="openProfile('Inferno', 'Ht2 Rank', 'Vietnam', '8.', '3700', 'inferno.png', 'https://youtube.com/@infernoeditz_am?si=g5MKtcHALJgBif4_', [
-          { name: 'Sync', badge: 'HT2', class: 'badge-ht2' },
-          { name: 'Effect', badge: 'HT1', class: 'badge-ht1' },
-          { name: 'Motion', badge: 'HT2', class: 'badge-ht2' },
-          { name: 'VQ', badge: 'HT2', class: 'badge-ht2' }
+        <!-- RANK #8 -->
+        <div class="mctiers-card p-4 rounded-xl cursor-pointer reveal" onclick="openProfile('Inferno', 'Ht2 Rank', 'Vietnam', '8.', '3700', 'inferno.png', 'https://youtube.com/@infernoeditz_am', [
+          { name: 'Sync', badge: 'HT2', class: 'tier-ht2' },
+          { name: 'Effect', badge: 'HT1', class: 'tier-ht1' },
+          { name: 'Motion', badge: 'HT2', class: 'tier-ht2' },
+          { name: 'VQ', badge: 'HT2', class: 'tier-ht2' }
         ])">
-          <div class="grid grid-cols-1 md:grid-cols-12 items-center gap-4">
-            <div class="md:col-span-1 flex items-center justify-center">
-              <span class="rank-pill-default font-pixel text-xs px-2.5 py-1 rounded-md font-bold">8.</span>
-            </div>
-            
-            <div class="md:col-span-4 flex items-center gap-4">
-              <img src="inferno.png" alt="Inferno" class="w-12 h-12 rounded-xl object-cover ring-2 ring-yellow-500/50" />
+          <div class="grid grid-cols-1 md:grid-cols-12 items-center gap-3">
+            <div class="md:col-span-1 text-center font-bold text-slate-400">8</div>
+            <div class="md:col-span-4 flex items-center gap-3">
+              <img src="inferno.png" alt="Inferno" class="w-10 h-10 rounded-lg object-cover" />
               <div>
-                <h3 class="text-lg font-black text-white font-display tracking-wide">Inferno</h3>
-                <p class="text-xs text-yellow-400 font-mono">Ht2 Rank <span class="text-slate-400">(3700 points)</span></p>
+                <h3 class="font-bold text-white text-sm">Inferno</h3>
+                <p class="text-xs text-slate-400">3700 pts</p>
               </div>
             </div>
-
-            <div class="md:col-span-2 flex justify-start md:justify-center">
-              <span class="px-2.5 py-1 rounded bg-red-500/15 text-red-400 font-mono font-bold text-xs border border-red-500/30">Vietnam</span>
-            </div>
-
-            <div class="md:col-span-5 flex items-center justify-end gap-1.5 flex-wrap font-mono text-xs">
-              <span class="badge-ht2 px-2 py-1 rounded font-bold" title="Sync">Sync: HT2</span>
-              <span class="badge-ht1 px-2 py-1 rounded font-bold" title="Effect">Effect: HT1</span>
-              <span class="badge-ht2 px-2 py-1 rounded font-bold" title="Motion">Motion: HT2</span>
-              <span class="badge-ht2 px-2 py-1 rounded font-bold" title="Visual Quality">VQ: HT2</span>
-              <a href="https://youtube.com/@infernoeditz_am?si=g5MKtcHALJgBif4_" target="_blank" onclick="event.stopPropagation()" class="ml-2 px-3 py-1 rounded bg-white/10 hover:bg-[#8b2bf9] text-white font-bold text-xs transition-colors">Edit ↗</a>
+            <div class="md:col-span-2 text-left md:text-center text-xs text-slate-300">Vietnam</div>
+            <div class="md:col-span-5 flex items-center justify-end gap-3 text-xs">
+              <span>Sync: <strong class="tier-ht2">HT2</strong></span>
+              <span>Effect: <strong class="tier-ht1">HT1</strong></span>
+              <span>Motion: <strong class="tier-ht2">HT2</strong></span>
+              <a href="https://youtube.com/@infernoeditz_am" target="_blank" onclick="event.stopPropagation()" class="px-2 py-0.5 rounded bg-white/10 hover:bg-slate-700 transition-colors">YT ↗</a>
             </div>
           </div>
         </div>
 
-        <!-- RANK #9: Static -->
-        <div class="mctiers-card mctiers-card-hover p-4 sm:p-5 rounded-2xl border-l-4 border-l-blue-400 cursor-pointer" onclick="openProfile('Static', 'Ht3 Rank', 'Indian', '9.', '3400', 'static.png', 'https://youtube.com/@notstaticyt?si=TnYjJ9Loli8NbAZp', [
-          { name: 'Sync', badge: 'HT2', class: 'badge-ht2' },
-          { name: 'Effect', badge: 'HT2', class: 'badge-ht2' },
-          { name: 'Motion', badge: 'HT3', class: 'badge-ht3' },
-          { name: 'VQ', badge: 'HT2', class: 'badge-ht2' }
+        <!-- RANK #9 -->
+        <div class="mctiers-card p-4 rounded-xl cursor-pointer reveal" onclick="openProfile('Static', 'Ht3 Rank', 'India', '9.', '3400', 'static.png', 'https://youtube.com/@notstaticyt', [
+          { name: 'Sync', badge: 'HT2', class: 'tier-ht2' },
+          { name: 'Effect', badge: 'HT2', class: 'tier-ht2' },
+          { name: 'Motion', badge: 'HT3', class: 'tier-ht3' },
+          { name: 'VQ', badge: 'HT2', class: 'tier-ht2' }
         ])">
-          <div class="grid grid-cols-1 md:grid-cols-12 items-center gap-4">
-            <div class="md:col-span-1 flex items-center justify-center">
-              <span class="rank-pill-default font-pixel text-xs px-2.5 py-1 rounded-md font-bold">9.</span>
-            </div>
-            
-            <div class="md:col-span-4 flex items-center gap-4">
-              <img src="static.png" alt="Static" class="w-12 h-12 rounded-xl object-cover ring-2 ring-blue-500/50" />
+          <div class="grid grid-cols-1 md:grid-cols-12 items-center gap-3">
+            <div class="md:col-span-1 text-center font-bold text-slate-400">9</div>
+            <div class="md:col-span-4 flex items-center gap-3">
+              <img src="static.png" alt="Static" class="w-10 h-10 rounded-lg object-cover" />
               <div>
-                <h3 class="text-lg font-black text-white font-display tracking-wide">Static</h3>
-                <p class="text-xs text-blue-400 font-mono">Ht3 Rank <span class="text-slate-400">(3400 points)</span></p>
+                <h3 class="font-bold text-white text-sm">Static</h3>
+                <p class="text-xs text-slate-400">3400 pts</p>
               </div>
             </div>
-
-            <div class="md:col-span-2 flex justify-start md:justify-center">
-              <span class="px-2.5 py-1 rounded bg-orange-500/15 text-orange-400 font-mono font-bold text-xs border border-orange-500/30">Indian</span>
-            </div>
-
-            <div class="md:col-span-5 flex items-center justify-end gap-1.5 flex-wrap font-mono text-xs">
-              <span class="badge-ht2 px-2 py-1 rounded font-bold" title="Sync">Sync: HT2</span>
-              <span class="badge-ht2 px-2 py-1 rounded font-bold" title="Effect">Effect: HT2</span>
-              <span class="badge-ht3 px-2 py-1 rounded font-bold" title="Motion">Motion: HT3</span>
-              <span class="badge-ht2 px-2 py-1 rounded font-bold" title="Visual Quality">VQ: HT2</span>
-              <a href="https://youtube.com/@notstaticyt?si=TnYjJ9Loli8NbAZp" target="_blank" onclick="event.stopPropagation()" class="ml-2 px-3 py-1 rounded bg-white/10 hover:bg-[#8b2bf9] text-white font-bold text-xs transition-colors">Edit ↗</a>
+            <div class="md:col-span-2 text-left md:text-center text-xs text-slate-300">India</div>
+            <div class="md:col-span-5 flex items-center justify-end gap-3 text-xs">
+              <span>Sync: <strong class="tier-ht2">HT2</strong></span>
+              <span>Effect: <strong class="tier-ht2">HT2</strong></span>
+              <span>Motion: <strong class="tier-ht3">HT3</strong></span>
+              <a href="https://youtube.com/@notstaticyt" target="_blank" onclick="event.stopPropagation()" class="px-2 py-0.5 rounded bg-white/10 hover:bg-slate-700 transition-colors">YT ↗</a>
             </div>
           </div>
         </div>
 
-        <!-- RANK #10: Ahmad -->
-        <div class="mctiers-card mctiers-card-hover p-4 sm:p-5 rounded-2xl border-l-4 border-l-yellow-400 cursor-pointer" onclick="openProfile('Ahmad', 'Ht2 Rank', 'Pakistan', '10.', '3400', 'ahmad.png', '', [
-          { name: 'Sync', badge: 'HT1', class: 'badge-ht1' },
-          { name: 'Effect', badge: 'HT2', class: 'badge-ht2' },
-          { name: 'Motion', badge: 'HT2', class: 'badge-ht2' },
-          { name: 'VQ', badge: 'HT3', class: 'badge-ht3' }
+        <!-- RANK #10 -->
+        <div class="mctiers-card p-4 rounded-xl cursor-pointer reveal" onclick="openProfile('Ahmad', 'Ht2 Rank', 'Pakistan', '10.', '3400', 'ahmad.png', '', [
+          { name: 'Sync', badge: 'HT1', class: 'tier-ht1' },
+          { name: 'Effect', badge: 'HT2', class: 'tier-ht2' },
+          { name: 'Motion', badge: 'HT2', class: 'tier-ht2' },
+          { name: 'VQ', badge: 'HT3', class: 'tier-ht3' }
         ])">
-          <div class="grid grid-cols-1 md:grid-cols-12 items-center gap-4">
-            <div class="md:col-span-1 flex items-center justify-center">
-              <span class="rank-pill-default font-pixel text-xs px-2.5 py-1 rounded-md font-bold">10.</span>
-            </div>
-            
-            <div class="md:col-span-4 flex items-center gap-4">
-              <img src="ahmad.png" alt="Ahmad" class="w-12 h-12 rounded-xl object-cover ring-2 ring-yellow-500/50" />
+          <div class="grid grid-cols-1 md:grid-cols-12 items-center gap-3">
+            <div class="md:col-span-1 text-center font-bold text-slate-400">10</div>
+            <div class="md:col-span-4 flex items-center gap-3">
+              <img src="ahmad.png" alt="Ahmad" class="w-10 h-10 rounded-lg object-cover" />
               <div>
-                <h3 class="text-lg font-black text-white font-display tracking-wide">Ahmad</h3>
-                <p class="text-xs text-yellow-400 font-mono">Ht2 Rank <span class="text-slate-400">(3400 points)</span></p>
+                <h3 class="font-bold text-white text-sm">Ahmad</h3>
+                <p class="text-xs text-slate-400">3400 pts</p>
               </div>
             </div>
-
-            <div class="md:col-span-2 flex justify-start md:justify-center">
-              <span class="px-2.5 py-1 rounded bg-emerald-500/15 text-emerald-400 font-mono font-bold text-xs border border-emerald-500/30">Pakistan</span>
-            </div>
-
-            <div class="md:col-span-5 flex items-center justify-end gap-1.5 flex-wrap font-mono text-xs">
-              <span class="badge-ht1 px-2 py-1 rounded font-bold" title="Sync">Sync: HT1</span>
-              <span class="badge-ht2 px-2 py-1 rounded font-bold" title="Effect">Effect: HT2</span>
-              <span class="badge-ht2 px-2 py-1 rounded font-bold" title="Motion">Motion: HT2</span>
-              <span class="badge-ht3 px-2 py-1 rounded font-bold" title="Visual Quality">VQ: HT3</span>
+            <div class="md:col-span-2 text-left md:text-center text-xs text-slate-300">Pakistan</div>
+            <div class="md:col-span-5 flex items-center justify-end gap-3 text-xs">
+              <span>Sync: <strong class="tier-ht1">HT1</strong></span>
+              <span>Effect: <strong class="tier-ht2">HT2</strong></span>
+              <span>Motion: <strong class="tier-ht2">HT2</strong></span>
+              <span>VQ: <strong class="tier-ht3">HT3</strong></span>
             </div>
           </div>
         </div>
 
-        <!-- RANK #11: Levander -->
-        <div class="mctiers-card mctiers-card-hover p-4 sm:p-5 rounded-2xl border-l-4 border-l-blue-400 cursor-pointer" onclick="openProfile('Levander', 'Ht3 Rank', 'Pak', '11.', '2800', 'levander.jpg', 'https://youtube.com/@levanderop?si=SSEgEvtJAHP7v8IH', [
-          { name: 'Sync', badge: 'HT2', class: 'badge-ht2' },
-          { name: 'Effect', badge: 'HT3', class: 'badge-ht3' },
-          { name: 'Motion', badge: 'HT3', class: 'badge-ht3' },
-          { name: 'VQ', badge: 'HT2', class: 'badge-ht2' }
+        <!-- RANK #11 -->
+        <div class="mctiers-card p-4 rounded-xl cursor-pointer reveal" onclick="openProfile('Levander', 'Ht3 Rank', 'Pakistan', '11.', '2800', 'levander.jpg', 'https://youtube.com/@levanderop', [
+          { name: 'Sync', badge: 'HT2', class: 'tier-ht2' },
+          { name: 'Effect', badge: 'HT3', class: 'tier-ht3' },
+          { name: 'Motion', badge: 'HT3', class: 'tier-ht3' },
+          { name: 'VQ', badge: 'HT2', class: 'tier-ht2' }
         ])">
-          <div class="grid grid-cols-1 md:grid-cols-12 items-center gap-4">
-            <div class="md:col-span-1 flex items-center justify-center">
-              <span class="rank-pill-default font-pixel text-xs px-2.5 py-1 rounded-md font-bold">11.</span>
-            </div>
-            
-            <div class="md:col-span-4 flex items-center gap-4">
-              <img src="levander.jpg" alt="Levander" class="w-12 h-12 rounded-xl object-cover ring-2 ring-blue-500/50" />
+          <div class="grid grid-cols-1 md:grid-cols-12 items-center gap-3">
+            <div class="md:col-span-1 text-center font-bold text-slate-400">11</div>
+            <div class="md:col-span-4 flex items-center gap-3">
+              <img src="levander.jpg" alt="Levander" class="w-10 h-10 rounded-lg object-cover" />
               <div>
-                <h3 class="text-lg font-black text-white font-display tracking-wide">Levander</h3>
-                <p class="text-xs text-blue-400 font-mono">Ht3 Rank <span class="text-slate-400">(2800 points)</span></p>
+                <h3 class="font-bold text-white text-sm">Levander</h3>
+                <p class="text-xs text-slate-400">2800 pts</p>
               </div>
             </div>
-
-            <div class="md:col-span-2 flex justify-start md:justify-center">
-              <span class="px-2.5 py-1 rounded bg-emerald-500/15 text-emerald-400 font-mono font-bold text-xs border border-emerald-500/30">Pak</span>
-            </div>
-
-            <div class="md:col-span-5 flex items-center justify-end gap-1.5 flex-wrap font-mono text-xs">
-              <span class="badge-ht2 px-2 py-1 rounded font-bold" title="Sync">Sync: HT2</span>
-              <span class="badge-ht3 px-2 py-1 rounded font-bold" title="Effect">Effect: HT3</span>
-              <span class="badge-ht3 px-2 py-1 rounded font-bold" title="Motion">Motion: HT3</span>
-              <span class="badge-ht2 px-2 py-1 rounded font-bold" title="Visual Quality">VQ: HT2</span>
-              <a href="https://youtube.com/@levanderop?si=SSEgEvtJAHP7v8IH" target="_blank" onclick="event.stopPropagation()" class="ml-2 px-3 py-1 rounded bg-white/10 hover:bg-[#8b2bf9] text-white font-bold text-xs transition-colors">Edit ↗</a>
+            <div class="md:col-span-2 text-left md:text-center text-xs text-slate-300">Pakistan</div>
+            <div class="md:col-span-5 flex items-center justify-end gap-3 text-xs">
+              <span>Sync: <strong class="tier-ht2">HT2</strong></span>
+              <span>Effect: <strong class="tier-ht3">HT3</strong></span>
+              <span>Motion: <strong class="tier-ht3">HT3</strong></span>
+              <a href="https://youtube.com/@levanderop" target="_blank" onclick="event.stopPropagation()" class="px-2 py-0.5 rounded bg-white/10 hover:bg-slate-700 transition-colors">YT ↗</a>
             </div>
           </div>
         </div>
 
-        <!-- RANK #12: Max -->
-        <div class="mctiers-card mctiers-card-hover p-4 sm:p-5 rounded-2xl border-l-4 border-l-blue-400 cursor-pointer" onclick="openProfile('Max', 'Ht3 Rank', 'Indian', '12.', '2700', 'maxedit.jpg', 'https://youtube.com/@maxeditz-999?si=dNzzYkArmcFr1OeQ', [
-          { name: 'Sync', badge: 'HT3', class: 'badge-ht3' },
-          { name: 'Effect', badge: 'HT3', class: 'badge-ht3' },
-          { name: 'Motion', badge: 'HT4', class: 'badge-ht4' },
-          { name: 'VQ', badge: 'HT2', class: 'badge-ht2' }
+        <!-- RANK #12 -->
+        <div class="mctiers-card p-4 rounded-xl cursor-pointer reveal" onclick="openProfile('Max', 'Ht3 Rank', 'India', '12.', '2700', 'maxedit.jpg', 'https://youtube.com/@maxeditz-999', [
+          { name: 'Sync', badge: 'HT3', class: 'tier-ht3' },
+          { name: 'Effect', badge: 'HT3', class: 'tier-ht3' },
+          { name: 'Motion', badge: 'HT4', class: 'tier-ht4' },
+          { name: 'VQ', badge: 'HT2', class: 'tier-ht2' }
         ])">
-          <div class="grid grid-cols-1 md:grid-cols-12 items-center gap-4">
-            <div class="md:col-span-1 flex items-center justify-center">
-              <span class="rank-pill-default font-pixel text-xs px-2.5 py-1 rounded-md font-bold">12.</span>
-            </div>
-            
-            <div class="md:col-span-4 flex items-center gap-4">
-              <img src="maxedit.jpg" alt="Max" class="w-12 h-12 rounded-xl object-cover ring-2 ring-blue-500/50" />
+          <div class="grid grid-cols-1 md:grid-cols-12 items-center gap-3">
+            <div class="md:col-span-1 text-center font-bold text-slate-400">12</div>
+            <div class="md:col-span-4 flex items-center gap-3">
+              <img src="maxedit.jpg" alt="Max" class="w-10 h-10 rounded-lg object-cover" />
               <div>
-                <h3 class="text-lg font-black text-white font-display tracking-wide">Max</h3>
-                <p class="text-xs text-blue-400 font-mono">Ht3 Rank <span class="text-slate-400">(2700 points)</span></p>
+                <h3 class="font-bold text-white text-sm">Max</h3>
+                <p class="text-xs text-slate-400">2700 pts</p>
               </div>
             </div>
-
-            <div class="md:col-span-2 flex justify-start md:justify-center">
-              <span class="px-2.5 py-1 rounded bg-orange-500/15 text-orange-400 font-mono font-bold text-xs border border-orange-500/30">Indian</span>
-            </div>
-
-            <div class="md:col-span-5 flex items-center justify-end gap-1.5 flex-wrap font-mono text-xs">
-              <span class="badge-ht3 px-2 py-1 rounded font-bold" title="Sync">Sync: HT3</span>
-              <span class="badge-ht3 px-2 py-1 rounded font-bold" title="Effect">Effect: HT3</span>
-              <span class="badge-ht4 px-2 py-1 rounded font-bold" title="Motion">Motion: HT4</span>
-              <span class="badge-ht2 px-2 py-1 rounded font-bold" title="Visual Quality">VQ: HT2</span>
-              <a href="https://youtube.com/@maxeditz-999?si=dNzzYkArmcFr1OeQ" target="_blank" onclick="event.stopPropagation()" class="ml-2 px-3 py-1 rounded bg-white/10 hover:bg-[#8b2bf9] text-white font-bold text-xs transition-colors">Edit ↗</a>
+            <div class="md:col-span-2 text-left md:text-center text-xs text-slate-300">India</div>
+            <div class="md:col-span-5 flex items-center justify-end gap-3 text-xs">
+              <span>Sync: <strong class="tier-ht3">HT3</strong></span>
+              <span>Effect: <strong class="tier-ht3">HT3</strong></span>
+              <span>Motion: <strong class="tier-ht4">HT4</strong></span>
+              <a href="https://youtube.com/@maxeditz-999" target="_blank" onclick="event.stopPropagation()" class="px-2 py-0.5 rounded bg-white/10 hover:bg-slate-700 transition-colors">YT ↗</a>
             </div>
           </div>
         </div>
@@ -829,154 +604,108 @@
       </div>
     </section>
 
-    <!-- EE CATEGORY BREAKDOWN -->
-    <section id="tierlist" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-t border-white/10">
-      <div class="mb-8">
-        <span class="text-xs font-bold text-slate-400 uppercase tracking-widest font-mono">Tier Breakdown</span>
-        <h2 class="text-3xl sm:text-4xl font-black text-white font-display mt-1">Official Tier Definitions</h2>
+    <!-- TIER DEFINITIONS -->
+    <section id="tierlist" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 border-t border-white/10">
+      <div class="mb-6 reveal">
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-white font-display">Tier Breakdown</h2>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div class="mctiers-card p-6 rounded-2xl border border-red-500/20 shadow-[0_0_20px_rgba(255,70,85,0.15)]">
-          <div class="flex items-center justify-between mb-3">
-            <span class="badge-ht1 px-2.5 py-1 rounded text-xs font-bold font-mono">HT1 / LT1</span>
-            <span class="text-xs font-mono text-amber-400">Grandmaster / Master</span>
-          </div>
-          <h3 class="text-xl font-bold text-white font-display mb-2">Tier 1 Apex</h3>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+        <div class="mctiers-card p-5 rounded-xl reveal">
+          <div class="tier-ht1 text-sm mb-2">HT1 / LT1</div>
+          <h3 class="text-lg font-bold text-white mb-1">Tier 1</h3>
           <p class="text-xs text-slate-400 leading-relaxed">
-            Reserved for elite editors demonstrating frame-perfect audio sync, pristine motion graphics, cinematic visual quality, and immaculate execution.
+            Highest tier. Requires frame-perfect sync, immaculate effects, and pristine visual fidelity.
           </p>
         </div>
 
-        <div class="mctiers-card p-6 rounded-2xl border border-yellow-500/20">
-          <div class="flex items-center justify-between mb-3">
-            <span class="badge-ht2 px-2.5 py-1 rounded text-xs font-bold font-mono">HT2 / LT2</span>
-            <span class="text-xs font-mono text-purple-300">Expert Tier</span>
-          </div>
-          <h3 class="text-xl font-bold text-white font-display mb-2">Tier 2 Masters</h3>
+        <div class="mctiers-card p-5 rounded-xl reveal">
+          <div class="tier-ht2 text-sm mb-2">HT2 / LT2</div>
+          <h3 class="text-lg font-bold text-white mb-1">Tier 2</h3>
           <p class="text-xs text-slate-400 leading-relaxed">
-            Top placement contenders with high dynamic range, clean velocity sync, polished color grading, and strong scene transition flow.
+            High tier. Strong velocity, smooth transitions, and solid overall composition.
           </p>
         </div>
 
-        <div class="mctiers-card p-6 rounded-2xl border border-blue-500/20">
-          <div class="flex items-center justify-between mb-3">
-            <span class="badge-ht3 px-2.5 py-1 rounded text-xs font-bold font-mono">HT3 / LT3</span>
-            <span class="text-xs font-mono text-emerald-400">Contender Tier</span>
-          </div>
-          <h3 class="text-xl font-bold text-white font-display mb-2">Tier 3 Ranked</h3>
+        <div class="mctiers-card p-5 rounded-xl reveal">
+          <div class="tier-ht3 text-sm mb-2">HT3 / LT3</div>
+          <h3 class="text-lg font-bold text-white mb-1">Tier 3</h3>
           <p class="text-xs text-slate-400 leading-relaxed">
-            Promising editors in the EE system with solid fundamentals, consistent beat sync, and growing creative storytelling abilities.
+            Competitive tier. Demonstrates proper keyframing, clean flow, and good beat alignment.
           </p>
         </div>
       </div>
     </section>
 
-    <!-- SEASONS & DISCORD -->
-    <section id="seasons" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-t border-white/10">
-      <div class="mctiers-card p-8 rounded-3xl border border-white/10 relative overflow-hidden">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-          <div class="lg:col-span-8 space-y-4">
-            <span class="text-xs font-bold text-slate-400 uppercase tracking-widest font-mono">EE Tournament Community</span>
-            <h2 class="text-3xl sm:text-5xl font-black text-white font-display">JOIN THE DISCORD TIER LIST</h2>
-            <p class="text-slate-400 text-sm leading-relaxed max-w-xl">
-              Get access to scene packs, submit edits for official EE evaluation, compete in bracket tournaments, and chat with top MC editors.
-            </p>
-            <div class="pt-2">
-              <a href="https://dc.gg/editorsempire" target="_blank" class="inline-flex items-center gap-3 px-6 py-3.5 rounded-xl text-xs font-extrabold text-white bg-[#8b2bf9] hover:bg-[#9d44ff] transition-all shadow-xl shadow-[#8b2bf9]/20">
-                Join Editors Empire Discord
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
-              </a>
-            </div>
-          </div>
-
-          <div class="lg:col-span-4 bg-black/40 p-5 rounded-2xl border border-white/5 space-y-3 font-mono text-xs">
-            <div class="flex items-center justify-between border-b border-white/5 pb-2">
-              <span class="text-slate-400">Active Competitions</span>
-              <span class="text-emerald-400 font-bold">EE #4 OPEN</span>
-            </div>
-            <div class="flex items-center justify-between border-b border-white/5 pb-2">
-              <span class="text-slate-400">Featured Creator</span>
-              <span class="text-white font-bold">Unstable SMP</span>
-            </div>
-            <div class="flex items-center justify-between">
-              <span class="text-slate-400">Submission End</span>
-              <span class="text-purple-300 font-bold">Sep 30, 2026</span>
-            </div>
-          </div>
+    <!-- COMMUNITY & DISCORD -->
+    <section id="seasons" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 border-t border-white/10">
+      <div class="mctiers-card p-6 sm:p-8 rounded-2xl flex flex-col md:flex-row items-center justify-between gap-6 reveal">
+        <div class="space-y-2">
+          <h2 class="text-2xl sm:text-3xl font-bold text-white font-display">Join Editors Empire</h2>
+          <p class="text-slate-400 text-sm max-w-lg">
+            Submit your edits for evaluation, download raw footage, and participate in tournaments.
+          </p>
         </div>
+        <a href="https://dc.gg/editorsempire" target="_blank" class="px-6 py-3 rounded-xl text-xs font-bold text-white bg-slate-800 border border-slate-600 hover:bg-slate-700 transition-all whitespace-nowrap">
+          Join Discord
+        </a>
       </div>
     </section>
 
-    <!-- DEVELOPER & FOOTER -->
-    <section id="newsroom" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 border-t border-white/10">
-      <div class="flex flex-col sm:flex-row items-center justify-between gap-6">
-        <div class="flex items-center gap-4">
-          <img src="standard.gif" alt="PhaseAE" class="w-12 h-12 rounded-full ring-2 ring-[#8b2bf9] object-cover" />
-          <div>
-            <span class="text-[10px] text-slate-400 font-mono uppercase block">Developer & System Creator</span>
-            <h4 class="text-base font-extrabold text-white">Made by PhaseAE</h4>
-          </div>
-        </div>
-
-        <div class="text-xs text-slate-400 font-mono text-center sm:text-right">
-          Official EE Leaderboard
-        </div>
+    <!-- FOOTER -->
+    <footer id="newsroom" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400 reveal">
+      <div class="flex items-center gap-3">
+        <img src="standard.gif" alt="PhaseAE" class="w-8 h-8 rounded-full object-cover" />
+        <span>Created by <strong>PhaseAE</strong></span>
       </div>
-    </section>
+      <div>© EE Tiers</div>
+    </footer>
 
   </main>
 
   <!-- PROFILE MODAL POPUP -->
   <div class="modal-backdrop" id="profileModal" onclick="closeProfileOnBackdrop(event)">
-    <div class="profile-modal">
-      <button class="close-btn" onclick="closeProfile()">✕</button>
+    <div class="profile-modal text-center relative">
+      <button class="absolute top-4 right-4 text-slate-400 hover:text-white" onclick="closeProfile()">✕</button>
 
-      <div class="relative mt-2 mb-3">
-        <img id="modalAvatar" src="" alt="Avatar" class="w-20 h-20 rounded-2xl object-cover shadow-xl ring-2 ring-white/20" />
-      </div>
+      <img id="modalAvatar" src="" alt="Avatar" class="w-16 h-16 rounded-xl object-cover mx-auto mb-3" />
+      <h2 id="modalName" class="text-xl font-bold font-display text-white">TW Cuberz</h2>
 
-      <h2 id="modalName" class="text-2xl font-extrabold font-display text-white mb-2">TW Cuberz</h2>
-
-      <div class="bg-amber-500/15 text-amber-400 text-xs font-bold px-4 py-1.5 rounded-full border border-amber-500/30 flex items-center gap-1.5 mb-2">
-        <span>❖</span>
+      <div class="inline-block bg-white/10 border border-white/15 text-slate-200 text-xs font-bold px-3 py-1 rounded-full my-2">
         <span id="modalBadge">Ht1 Rank</span>
       </div>
 
-      <div id="modalRegion" class="text-slate-400 text-sm font-semibold mb-4">Pakistan</div>
+      <div id="modalRegion" class="text-slate-400 text-xs mb-4">Pakistan</div>
 
-      <a id="modalEditLink" href="#" target="_blank" class="hidden bg-white/5 hover:bg-[#8b2bf9] text-white text-xs px-3.5 py-1.5 rounded-lg border border-white/10 flex items-center gap-1.5 mb-6 transition-colors">
-        <span>Watch Edit</span> ↗
+      <a id="modalEditLink" href="#" target="_blank" class="hidden text-xs bg-white/10 hover:bg-slate-700 text-white px-3 py-1.5 rounded-md inline-block mb-4 transition-colors">
+        Watch Edit ↗
       </a>
 
-      <div class="w-full text-left text-[10px] font-extrabold text-slate-400 tracking-wider mb-2 uppercase font-mono">POSITION</div>
-      <div class="w-full bg-black/40 border border-white/10 rounded-xl flex items-center overflow-hidden mb-6">
-        <div id="modalRank" class="position-rank-flag">1.</div>
-        <div class="flex items-center gap-2 pl-3 text-base font-extrabold text-white">
-          <span>🏆 OVERALL</span>
-          <span id="modalPoints" class="text-slate-400 text-xs font-normal">(4800 points)</span>
-        </div>
+      <div class="text-left text-[10px] font-bold text-slate-400 tracking-wider mb-1 uppercase">POSITION</div>
+      <div class="bg-black/60 border border-white/10 rounded-lg p-2.5 flex items-center justify-between mb-4 text-sm font-bold text-white">
+        <span>OVERALL</span>
+        <span id="modalRank" class="text-amber-400">1.</span>
+        <span id="modalPoints" class="text-slate-400 text-xs">(4800 points)</span>
       </div>
 
-      <div class="w-full text-left text-[10px] font-extrabold text-slate-400 tracking-wider mb-2 uppercase font-mono">CATEGORY TIERS</div>
-      <div id="modalTiers" class="w-full bg-black/40 border border-white/10 rounded-xl p-3 flex flex-wrap gap-2 justify-center font-mono text-xs">
-        <!-- Tier badges injected dynamically -->
+      <div class="text-left text-[10px] font-bold text-slate-400 tracking-wider mb-1 uppercase">CATEGORY TIERS</div>
+      <div id="modalTiers" class="bg-black/60 border border-white/10 rounded-lg p-3 flex flex-wrap gap-3 justify-center text-xs">
       </div>
     </div>
   </div>
 
-  <footer class="border-t border-white/10 bg-[#07030c] py-8 relative z-10 text-center">
-    <p class="text-xs text-slate-400 font-mono">© Editors Empire Tier System. All rights reserved.</p>
-  </footer>
-
-  <!-- SCRIPT FOR MODALS AND INTERACTIVITY -->
+  <!-- INTERACTIVITY & SCROLL REVEAL SCRIPT -->
   <script>
-    function openProfile(name, badge, region, rank, points, avatarSrc, editUrl, tiers) {
-      document.getElementById('modalName').innerText = name;
+    // Modal Functions
+    function openProfile(name, badge, region, rank, points, avatarSrc, editUrl, tiers, customGradClass) {
+      const nameEl = document.getElementById('modalName');
+      nameEl.innerText = name;
+      nameEl.className = 'text-xl font-bold font-display ' + (customGradClass || 'text-white');
+      
       document.getElementById('modalBadge').innerText = badge;
       document.getElementById('modalRegion').innerText = region;
       document.getElementById('modalRank').innerText = rank;
-      document.getElementById('modalPoints').innerText = `(${points} points)`;
+      document.getElementById('modalPoints').innerText = `(${points} pts)`;
       document.getElementById('modalAvatar').src = avatarSrc;
 
       const linkBtn = document.getElementById('modalEditLink');
@@ -991,8 +720,7 @@
       tiersBox.innerHTML = '';
       tiers.forEach(t => {
         const badgeSpan = document.createElement('span');
-        badgeSpan.className = `${t.class} px-2 py-1 rounded font-bold`;
-        badgeSpan.innerText = `${t.name}: ${t.badge}`;
+        badgeSpan.innerHTML = `${t.name}: <strong class="${t.class}">${t.badge}</strong>`;
         tiersBox.appendChild(badgeSpan);
       });
 
@@ -1021,6 +749,21 @@
         activeBtn.classList.remove('text-slate-400');
       }
     }
+
+    // Scroll Reveal Observer
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+        }
+      });
+    }, {
+      threshold: 0.1
+    });
+
+    document.querySelectorAll('.reveal').forEach((element) => {
+      revealObserver.observe(element);
+    });
   </script>
 
 </body>
