@@ -61,6 +61,11 @@
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
     }
+    .grad-denial {
+        background: linear-gradient(135deg, #ef4444 0%, #ffffff 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
     .grad-carrot {
         background: linear-gradient(135deg, rgb(200, 255, 0) 0%, #ffffff 100%);
         -webkit-background-clip: text;
@@ -225,11 +230,11 @@
               <div class="text-xs text-slate-400 mt-1">Top Tier</div>
             </div>
             <div class="mctiers-card p-4 rounded-xl">
-              <div class="text-2xl font-bold text-white font-display">4800</div>
+              <div class="text-2xl font-bold text-white font-display">5000</div>
               <div class="text-xs text-slate-400 mt-1">Peak Points</div>
             </div>
             <div class="mctiers-card p-4 rounded-xl">
-              <div class="text-2xl font-bold text-white font-display">12</div>
+              <div class="text-2xl font-bold text-white font-display">13</div>
               <div class="text-xs text-slate-400 mt-1">Ranked Editors</div>
             </div>
           </div>
@@ -237,7 +242,7 @@
 
         <!-- #1 RANKED EDITOR CARD -->
         <div class="lg:col-span-5 reveal">
-          <div class="mctiers-card p-6 rounded-2xl border border-lime-500/30 cursor-pointer" onclick="openProfile('Gireen', 'Ht1+ Rank', 'India', '1.', '4800', 'gireen.jpg', '', [
+          <div class="mctiers-card p-6 rounded-2xl border border-lime-500/30 cursor-pointer" onclick="openProfile('Gireen', 'Ht1+ Rank', 'India', '1.', '5000', 'gireen.jpg', 'https://youtube.com/@notgireen', [
             { name: 'Sync', badge: 'HT1+', class: 'tier-ht1' },
             { name: 'Effect', badge: 'HT1+', class: 'tier-ht1' },
             { name: 'Motion', badge: 'HT1+', class: 'tier-ht1' },
@@ -253,7 +258,7 @@
               <img src="gireen.jpg" alt="Gireen" class="w-16 h-16 rounded-xl object-cover ring-2 ring-lime-400/60" />
               <div>
                 <h2 class="text-2xl font-bold font-display grad-gireen">Gireen</h2>
-                <p class="text-xs text-slate-400 mt-0.5">5000 Points • Indian</p>
+                <p class="text-xs text-slate-400 mt-0.5">5000 Points • India</p>
               </div>
             </div>
 
@@ -303,7 +308,7 @@
       <div class="space-y-3" id="rankings-list">
 
         <!-- RANK #1 -->
-        <div class="mctiers-card p-4 rounded-xl border-l-4 border-l-lime-400 cursor-pointer reveal" onclick="openProfile('Gireen', 'Ht1 Rank', 'Pakistan', '1.', '5000', 'gireen.jpg', '', [
+        <div class="mctiers-card p-4 rounded-xl border-l-4 border-l-lime-400 cursor-pointer reveal" onclick="openProfile('Gireen', 'Ht1+ Rank', 'India', '1.', '5000', 'gireen.jpg', 'https://youtube.com/@notgireen', [
           { name: 'Sync', badge: 'HT1+', class: 'tier-ht1' },
           { name: 'Effect', badge: 'HT1+', class: 'tier-ht1' },
           { name: 'Motion', badge: 'HT1+', class: 'tier-ht1' },
@@ -319,7 +324,7 @@
                 <p class="text-xs text-slate-400">5000 pts</p>
               </div>
             </div>
-            <div class="md:col-span-2 text-left md:text-center text-xs text-slate-300">india</div>
+            <div class="md:col-span-2 text-left md:text-center text-xs text-slate-300">India</div>
             <div class="md:col-span-5 flex items-center justify-end gap-3 text-xs">
               <span>Sync: <strong class="tier-ht1">HT1+</strong></span>
               <span>Effect: <strong class="tier-ht1">HT1+</strong></span>
@@ -331,7 +336,35 @@
         </div>
 
         <!-- RANK #2 -->
-        <div class="mctiers-card p-4 rounded-xl border-l-4 border-l-lime-400 cursor-pointer reveal" onclick="openProfile('Carrot', 'Ht1 Rank', 'Unknown', '2.', '4900', 'carrot.jpeg', '', [
+        <div class="mctiers-card p-4 rounded-xl border-l-4 border-l-red-500 cursor-pointer reveal" onclick="openProfile('Denial', 'Ht1 Rank', 'Unknown', '2.', '4950', 'denial.jpg', 'https://www.youtube.com/@In_Denial_', [
+          { name: 'Sync', badge: 'HT1+', class: 'tier-ht1' },
+          { name: 'Effect', badge: 'HT1+', class: 'tier-ht1' },
+          { name: 'Motion', badge: 'HT1', class: 'tier-ht1' },
+          { name: 'VQ', badge: 'HT1+', class: 'tier-ht1' },
+          { name: 'Creativity', badge: 'HT1', class: 'tier-ht1' }
+        ], 'grad-denial')">
+          <div class="grid grid-cols-1 md:grid-cols-12 items-center gap-3">
+            <div class="md:col-span-1 text-center font-bold text-red-500">2</div>
+            <div class="md:col-span-4 flex items-center gap-3">
+              <img src="denial.jpg" alt="Denial" class="w-10 h-10 rounded-lg object-cover" />
+              <div>
+                <h3 class="font-bold text-sm grad-denial">Denial</h3>
+                <p class="text-xs text-slate-400">4950 pts</p>
+              </div>
+            </div>
+            <div class="md:col-span-2 text-left md:text-center text-xs text-slate-300">Unknown</div>
+            <div class="md:col-span-5 flex items-center justify-end gap-3 text-xs">
+              <span>Sync: <strong class="tier-ht1">HT1+</strong></span>
+              <span>Effect: <strong class="tier-ht1">HT1+</strong></span>
+              <span>Motion: <strong class="tier-ht1">HT1</strong></span>
+              <span>VQ: <strong class="tier-ht1">HT1+</strong></span>
+              <a href="https://www.youtube.com/@In_Denial_" target="_blank" onclick="event.stopPropagation()" class="px-2 py-0.5 rounded bg-white/10 hover:bg-slate-700 transition-colors">YT ↗</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- RANK #3 -->
+        <div class="mctiers-card p-4 rounded-xl border-l-4 border-l-lime-400 cursor-pointer reveal" onclick="openProfile('Carrot', 'Ht1 Rank', 'Unknown', '3.', '4900', 'carrot.jpeg', 'https://tiktok.com/@carrotz.ae', [
           { name: 'Sync', badge: 'HT1+', class: 'tier-ht1' },
           { name: 'Effect', badge: 'HT1', class: 'tier-ht1' },
           { name: 'Motion', badge: 'HT1+', class: 'tier-ht1' },
@@ -339,7 +372,7 @@
           { name: 'Creativity', badge: 'HT1', class: 'tier-ht1' }
         ], 'grad-carrot')">
           <div class="grid grid-cols-1 md:grid-cols-12 items-center gap-3">
-            <div class="md:col-span-1 text-center font-bold text-lime-400">2</div>
+            <div class="md:col-span-1 text-center font-bold text-lime-400">3</div>
             <div class="md:col-span-4 flex items-center gap-3">
               <img src="carrot.jpeg" alt="Carrot" class="w-10 h-10 rounded-lg object-cover" />
               <div>
@@ -358,7 +391,8 @@
           </div>
         </div>
 
-        <div class="mctiers-card p-4 rounded-xl border-l-4 border-l-green-400 cursor-pointer reveal" onclick="openProfile('TW Cuberz', 'Ht1 Rank', 'Pakistan', '3.', '4800', 'twcuber.png', '', [
+        <!-- RANK #4 -->
+        <div class="mctiers-card p-4 rounded-xl border-l-4 border-l-green-400 cursor-pointer reveal" onclick="openProfile('TW Cuberz', 'Ht1 Rank', 'Pakistan', '4.', '4800', 'twcuber.png', 'https://youtube.com/@twcuber', [
           { name: 'Sync', badge: 'HT1', class: 'tier-ht1' },
           { name: 'Effect', badge: 'HT1', class: 'tier-ht1' },
           { name: 'Motion', badge: 'HT1', class: 'tier-ht1' },
@@ -366,7 +400,7 @@
           { name: 'Creativity', badge: 'HT1', class: 'tier-ht1' }
         ], 'grad-twcuber')">
           <div class="grid grid-cols-1 md:grid-cols-12 items-center gap-3">
-            <div class="md:col-span-1 text-center font-bold text-green-400">3</div>
+            <div class="md:col-span-1 text-center font-bold text-green-400">4</div>
             <div class="md:col-span-4 flex items-center gap-3">
               <img src="twcuber.png" alt="TW Cuberz" class="w-10 h-10 rounded-lg object-cover" />
               <div>
@@ -385,8 +419,8 @@
           </div>
         </div>
 
-        <!-- RANK #2 -->
-        <div class="mctiers-card p-4 rounded-xl border-l-4 border-l-orange-400 cursor-pointer reveal" onclick="openProfile('Jettstream', 'Ht1 Rank', 'Europe', '4.', '4800', 'jetstream.png', '', [
+        <!-- RANK #5 -->
+        <div class="mctiers-card p-4 rounded-xl border-l-4 border-l-orange-400 cursor-pointer reveal" onclick="openProfile('Jettstream', 'Ht1 Rank', 'Europe', '5.', '4800', 'jetstream.png', 'https://youtube.com/@jettstream', [
           { name: 'Sync', badge: 'HT1', class: 'tier-ht1' },
           { name: 'Effect', badge: 'HT1', class: 'tier-ht1' },
           { name: 'Motion', badge: 'HT1', class: 'tier-ht1' },
@@ -394,7 +428,7 @@
           { name: 'Creativity', badge: 'HT1', class: 'tier-ht1' }
         ], 'grad-jettstream')">
           <div class="grid grid-cols-1 md:grid-cols-12 items-center gap-3">
-            <div class="md:col-span-1 text-center font-bold text-green-400">4</div>
+            <div class="md:col-span-1 text-center font-bold text-green-400">5</div>
             <div class="md:col-span-4 flex items-center gap-3">
               <img src="jetstream.png" alt="Jettstream" class="w-10 h-10 rounded-lg object-cover" />
               <div>
@@ -413,8 +447,8 @@
           </div>
         </div>
 
-        <!-- RANK #3 -->
-        <div class="mctiers-card p-4 rounded-xl border-l-4 border-l-slate-300 cursor-pointer reveal" onclick="openProfile('Syncraft', 'Ht1 Rank', 'Nepal', '5.', '4300', 'sync.png', '', [
+        <!-- RANK #6 -->
+        <div class="mctiers-card p-4 rounded-xl border-l-4 border-l-slate-300 cursor-pointer reveal" onclick="openProfile('Syncraft', 'Ht1 Rank', 'Nepal', '6.', '4300', 'sync.png', 'https://youtube.com/@syncraft', [
           { name: 'Sync', badge: 'HT1', class: 'tier-ht1' },
           { name: 'Effect', badge: 'HT1', class: 'tier-ht1' },
           { name: 'Motion', badge: 'HT1', class: 'tier-ht1' },
@@ -422,7 +456,7 @@
           { name: 'Creativity', badge: 'HT2', class: 'tier-ht2' }
         ], 'grad-syncraft')">
           <div class="grid grid-cols-1 md:grid-cols-12 items-center gap-3">
-            <div class="md:col-span-1 text-center font-bold text-slate-300">5</div>
+            <div class="md:col-span-1 text-center font-bold text-slate-300">6</div>
             <div class="md:col-span-4 flex items-center gap-3">
               <img src="sync.png" alt="Syncraft" class="w-10 h-10 rounded-lg object-cover" />
               <div>
@@ -441,15 +475,15 @@
           </div>
         </div>
 
-        <!-- RANK #4 -->
-        <div class="mctiers-card p-4 rounded-xl border-l-4 border-l-amber-600 cursor-pointer reveal" onclick="openProfile('Flayxor', 'Ht2 Rank', 'Indian', '6.', '4200', 'flayxor.webp', '', [
+        <!-- RANK #7 -->
+        <div class="mctiers-card p-4 rounded-xl border-l-4 border-l-amber-600 cursor-pointer reveal" onclick="openProfile('Flayxor', 'Ht2 Rank', 'India', '7.', '4200', 'flayxor.webp', 'https://youtube.com/@flayxor', [
           { name: 'Sync', badge: 'HT1', class: 'tier-ht1' },
           { name: 'Effect', badge: 'HT1', class: 'tier-ht1' },
           { name: 'Motion', badge: 'HT2', class: 'tier-ht2' },
           { name: 'VQ', badge: 'HT2', class: 'tier-ht2' }
         ], 'grad-flayxor')">
           <div class="grid grid-cols-1 md:grid-cols-12 items-center gap-3">
-            <div class="md:col-span-1 text-center font-bold text-amber-600">6</div>
+            <div class="md:col-span-1 text-center font-bold text-amber-600">7</div>
             <div class="md:col-span-4 flex items-center gap-3">
               <img src="flayxor.webp" alt="Flayxor" class="w-10 h-10 rounded-lg object-cover" />
               <div>
@@ -468,15 +502,15 @@
           </div>
         </div>
 
-        <!-- RANK #5 -->
-        <div class="mctiers-card p-4 rounded-xl border-l-4 border-l-yellow-500 cursor-pointer reveal" onclick="openProfile('Maceility', 'Ht2 Rank', 'USA', '7.', '4100', 'macelity.png', 'https://youtube.com/@maceility', [
+        <!-- RANK #8 -->
+        <div class="mctiers-card p-4 rounded-xl border-l-4 border-l-yellow-500 cursor-pointer reveal" onclick="openProfile('Maceility', 'Ht2 Rank', 'USA', '8.', '4100', 'macelity.png', 'https://youtube.com/@maceility', [
           { name: 'Sync', badge: 'HT3', class: 'tier-ht3' },
           { name: 'Effect', badge: 'HT1', class: 'tier-ht1' },
           { name: 'Motion', badge: 'HT1', class: 'tier-ht1' },
           { name: 'VQ', badge: 'HT1', class: 'tier-ht1' }
         ], 'grad-macelity')">
           <div class="grid grid-cols-1 md:grid-cols-12 items-center gap-3">
-            <div class="md:col-span-1 text-center font-bold text-yellow-500">7</div>
+            <div class="md:col-span-1 text-center font-bold text-yellow-500">8</div>
             <div class="md:col-span-4 flex items-center gap-3">
               <img src="macelity.png" alt="Maceility" class="w-10 h-10 rounded-lg object-cover" />
               <div>
@@ -494,15 +528,15 @@
           </div>
         </div>
 
-        <!-- RANK #6 -->
-        <div class="mctiers-card p-4 rounded-xl cursor-pointer reveal" onclick="openProfile('Azur Mc', 'Ht2 Rank', 'N/A', '8.', '4100', 'azur.png', 'https://youtube.com/@azur_mc', [
+        <!-- RANK #9 -->
+        <div class="mctiers-card p-4 rounded-xl cursor-pointer reveal" onclick="openProfile('Azur Mc', 'Ht2 Rank', 'N/A', '9.', '4100', 'azur.png', 'https://youtube.com/@azur_mc', [
           { name: 'Sync', badge: 'HT2', class: 'tier-ht2' },
           { name: 'Effect', badge: 'HT1', class: 'tier-ht1' },
           { name: 'Motion', badge: 'HT2', class: 'tier-ht2' },
           { name: 'VQ', badge: 'HT1', class: 'tier-ht1' }
         ])">
           <div class="grid grid-cols-1 md:grid-cols-12 items-center gap-3">
-            <div class="md:col-span-1 text-center font-bold text-slate-400">8</div>
+            <div class="md:col-span-1 text-center font-bold text-slate-400">9</div>
             <div class="md:col-span-4 flex items-center gap-3">
               <img src="azur.png" alt="Azur Mc" class="w-10 h-10 rounded-lg object-cover" />
               <div>
@@ -520,15 +554,15 @@
           </div>
         </div>
 
-        <!-- RANK #7 -->
-        <div class="mctiers-card p-4 rounded-xl cursor-pointer reveal" onclick="openProfile('Voidishere', 'Ht2 Rank', 'USA', '9.', '3800', 'voidishere.png', 'https://youtube.com/@voidishere7', [
+        <!-- RANK #10 -->
+        <div class="mctiers-card p-4 rounded-xl cursor-pointer reveal" onclick="openProfile('Voidishere', 'Ht2 Rank', 'USA', '10.', '3800', 'voidishere.png', 'https://youtube.com/@voidishere7', [
           { name: 'Sync', badge: 'HT1', class: 'tier-ht1' },
           { name: 'Effect', badge: 'HT1', class: 'tier-ht1' },
           { name: 'Motion', badge: 'HT2', class: 'tier-ht2' },
           { name: 'VQ', badge: 'HT1', class: 'tier-ht1' }
         ])">
           <div class="grid grid-cols-1 md:grid-cols-12 items-center gap-3">
-            <div class="md:col-span-1 text-center font-bold text-slate-400">9</div>
+            <div class="md:col-span-1 text-center font-bold text-slate-400">10</div>
             <div class="md:col-span-4 flex items-center gap-3">
               <img src="voidishere.png" alt="Voidishere" class="w-10 h-10 rounded-lg object-cover" />
               <div>
@@ -546,15 +580,15 @@
           </div>
         </div>
 
-        <!-- RANK #8 -->
-        <div class="mctiers-card p-4 rounded-xl cursor-pointer reveal" onclick="openProfile('Inferno', 'Ht2 Rank', 'Vietnam', '10.', '3700', 'inferno.png', 'https://youtube.com/@infernoeditz_am', [
+        <!-- RANK #11 -->
+        <div class="mctiers-card p-4 rounded-xl cursor-pointer reveal" onclick="openProfile('Inferno', 'Ht2 Rank', 'Vietnam', '11.', '3700', 'inferno.png', 'https://youtube.com/@infernoeditz_am', [
           { name: 'Sync', badge: 'HT2', class: 'tier-ht2' },
           { name: 'Effect', badge: 'HT1', class: 'tier-ht1' },
           { name: 'Motion', badge: 'HT2', class: 'tier-ht2' },
           { name: 'VQ', badge: 'HT2', class: 'tier-ht2' }
         ])">
           <div class="grid grid-cols-1 md:grid-cols-12 items-center gap-3">
-            <div class="md:col-span-1 text-center font-bold text-slate-400">10</div>
+            <div class="md:col-span-1 text-center font-bold text-slate-400">11</div>
             <div class="md:col-span-4 flex items-center gap-3">
               <img src="inferno.png" alt="Inferno" class="w-10 h-10 rounded-lg object-cover" />
               <div>
@@ -572,15 +606,15 @@
           </div>
         </div>
 
-        <!-- RANK #9 -->
-        <div class="mctiers-card p-4 rounded-xl cursor-pointer reveal" onclick="openProfile('Static', 'Ht3 Rank', 'India', '11.', '3400', 'static.png', 'https://youtube.com/@notstaticyt', [
+        <!-- RANK #12 -->
+        <div class="mctiers-card p-4 rounded-xl cursor-pointer reveal" onclick="openProfile('Static', 'Ht3 Rank', 'India', '12.', '3400', 'static.png', 'https://youtube.com/@notstaticyt', [
           { name: 'Sync', badge: 'HT2', class: 'tier-ht2' },
           { name: 'Effect', badge: 'HT2', class: 'tier-ht2' },
           { name: 'Motion', badge: 'HT3', class: 'tier-ht3' },
           { name: 'VQ', badge: 'HT2', class: 'tier-ht2' }
         ])">
           <div class="grid grid-cols-1 md:grid-cols-12 items-center gap-3">
-            <div class="md:col-span-1 text-center font-bold text-slate-400">11</div>
+            <div class="md:col-span-1 text-center font-bold text-slate-400">12</div>
             <div class="md:col-span-4 flex items-center gap-3">
               <img src="static.png" alt="Static" class="w-10 h-10 rounded-lg object-cover" />
               <div>
@@ -598,15 +632,15 @@
           </div>
         </div>
 
-        <!-- RANK #10 -->
-        <div class="mctiers-card p-4 rounded-xl cursor-pointer reveal" onclick="openProfile('Ahmad', 'Ht2 Rank', 'Pakistan', '12.', '3400', 'ahmad.png', '', [
+        <!-- RANK #13 -->
+        <div class="mctiers-card p-4 rounded-xl cursor-pointer reveal" onclick="openProfile('Ahmad', 'Ht2 Rank', 'Pakistan', '13.', '3400', 'ahmad.png', '', [
           { name: 'Sync', badge: 'HT1', class: 'tier-ht1' },
           { name: 'Effect', badge: 'HT2', class: 'tier-ht2' },
           { name: 'Motion', badge: 'HT2', class: 'tier-ht2' },
           { name: 'VQ', badge: 'HT3', class: 'tier-ht3' }
         ])">
           <div class="grid grid-cols-1 md:grid-cols-12 items-center gap-3">
-            <div class="md:col-span-1 text-center font-bold text-slate-400">12</div>
+            <div class="md:col-span-1 text-center font-bold text-slate-400">13</div>
             <div class="md:col-span-4 flex items-center gap-3">
               <img src="ahmad.png" alt="Ahmad" class="w-10 h-10 rounded-lg object-cover" />
               <div>
@@ -624,15 +658,15 @@
           </div>
         </div>
 
-        <!-- RANK #11 -->
-        <div class="mctiers-card p-4 rounded-xl cursor-pointer reveal" onclick="openProfile('Levander', 'Ht3 Rank', 'Pakistan', '13.', '2800', 'levander.jpg', 'https://youtube.com/@levanderop', [
+        <!-- RANK #14 -->
+        <div class="mctiers-card p-4 rounded-xl cursor-pointer reveal" onclick="openProfile('Levander', 'Ht3 Rank', 'Pakistan', '14.', '2800', 'levander.jpg', 'https://youtube.com/@levanderop', [
           { name: 'Sync', badge: 'HT2', class: 'tier-ht2' },
           { name: 'Effect', badge: 'HT3', class: 'tier-ht3' },
           { name: 'Motion', badge: 'HT3', class: 'tier-ht3' },
           { name: 'VQ', badge: 'HT2', class: 'tier-ht2' }
         ])">
           <div class="grid grid-cols-1 md:grid-cols-12 items-center gap-3">
-            <div class="md:col-span-1 text-center font-bold text-slate-400">13</div>
+            <div class="md:col-span-1 text-center font-bold text-slate-400">14</div>
             <div class="md:col-span-4 flex items-center gap-3">
               <img src="levander.jpg" alt="Levander" class="w-10 h-10 rounded-lg object-cover" />
               <div>
@@ -650,15 +684,15 @@
           </div>
         </div>
 
-        <!-- RANK #12 -->
-        <div class="mctiers-card p-4 rounded-xl cursor-pointer reveal" onclick="openProfile('Max', 'Ht3 Rank', 'India', '14.', '2700', 'maxedit.jpg', 'https://youtube.com/@maxeditz-999', [
+        <!-- RANK #15 -->
+        <div class="mctiers-card p-4 rounded-xl cursor-pointer reveal" onclick="openProfile('Max', 'Ht3 Rank', 'India', '15.', '2700', 'maxedit.jpg', 'https://youtube.com/@maxeditz-999', [
           { name: 'Sync', badge: 'HT3', class: 'tier-ht3' },
           { name: 'Effect', badge: 'HT3', class: 'tier-ht3' },
           { name: 'Motion', badge: 'HT4', class: 'tier-ht4' },
           { name: 'VQ', badge: 'HT2', class: 'tier-ht2' }
         ])">
           <div class="grid grid-cols-1 md:grid-cols-12 items-center gap-3">
-            <div class="md:col-span-1 text-center font-bold text-slate-400">14</div>
+            <div class="md:col-span-1 text-center font-bold text-slate-400">15</div>
             <div class="md:col-span-4 flex items-center gap-3">
               <img src="maxedit.jpg" alt="Max" class="w-10 h-10 rounded-lg object-cover" />
               <div>
