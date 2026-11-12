@@ -12,10 +12,10 @@
   <meta property="og:title" content="EE Tier Rankings" />
   <meta property="og:description" content="Official website for EE Tier Rankings" />
   <meta property="og:url" content="https://eetiers.vercel.app" />
-  <meta property="og:image" content="https://eetiers.vercel.app/ee.png" />
   <meta property="og:image" content="https://eetiers.vercel.app/EE.png" />
   <meta property="og:type" content="website" />
-  <meta name="theme-color" content="#f1f5f9" />
+  <meta name="theme-color" content="#050507" />
+
   <script>
     tailwind.config = {
       darkMode: 'class',
@@ -31,23 +31,77 @@
   </script>
 
   <style>
+    /* ==========================================================================
+       CSS CUSTOM PROPERTIES (DESIGN & TIER TOKENS)
+       ========================================================================== */
+    :root {
+      --bg-gradient: linear-gradient(135deg, #050507 0%, #190b23 50%, #030304 100%);
+      --card-bg: linear-gradient(145deg, rgba(18, 18, 22, 0.9) 0%, rgba(8, 8, 10, 0.95) 100%);
+      --card-border: rgba(255, 255, 255, 0.08);
+      --card-border-hover: rgba(255, 255, 255, 0.2);
+
+      /* Tier Color Tokens */
+      --color-ht1: #ef4444;
+      --glow-ht1: rgba(255, 70, 85, 0.8);
+
+      --color-ht2: #eab308;
+      --glow-ht2: rgba(234, 179, 8, 0.8);
+
+      --color-ht3: #3b82f6;
+      --glow-ht3: rgba(59, 130, 246, 0.8);
+
+      --color-ht4: #06b6d4;
+      --glow-ht4: rgba(6, 182, 212, 0.8);
+
+      --color-ht5: #8b5cf6;
+      --glow-ht5: rgba(139, 92, 246, 0.8);
+
+      --color-lt1: #f97316;
+      --glow-lt1: rgba(249, 115, 22, 0.8);
+
+      --color-lt2: #a855f7;
+      --glow-lt2: rgba(168, 85, 247, 0.8);
+
+      --color-lt3: #10b981;
+      --glow-lt3: rgba(16, 185, 129, 0.8);
+
+      --color-lt4: #38bdf8;
+      --glow-lt4: rgba(56, 189, 248, 0.8);
+
+      --color-lt5: #64748b;
+      --glow-lt5: rgba(100, 116, 139, 0.8);
+
+      /* Rank Accent Tokens */
+      --rank-1-color: #a3e635;
+      --rank-2-color: #ef4444;
+      --rank-3-color: #f97316;
+      --rank-top-color: #eab308;
+      --rank-default-color: #94a3b8;
+    }
+
     body {
-      background: linear-gradient(135deg, #050507 0%, #190b23 50%, #030304 100%);
+      background: var(--bg-gradient);
       background-attachment: fixed;
       color: #f1f5f9;
     }
 
     /* Black/Dark Gradient Cards */
     .mctiers-card {
-      background: linear-gradient(145deg, rgba(18, 18, 22, 0.9) 0%, rgba(8, 8, 10, 0.95) 100%);
+      background: var(--card-bg);
       backdrop-filter: blur(12px);
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--card-border);
       transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
     }
     .mctiers-card:hover {
       transform: translateY(-2px);
-      border-color: rgba(255, 255, 255, 0.2);
+      border-color: var(--card-border-hover);
       box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.7);
+    }
+
+    /* Dynamic Rank Card Accent Border */
+    .rank-card-accent {
+      border-left-width: 4px;
+      border-left-color: var(--accent-color, transparent);
     }
 
     /* Custom Name Text Gradients */
@@ -57,19 +111,19 @@
       -webkit-text-fill-color: transparent;
     }
     .grad-gireen {
-        background: linear-gradient(135deg, #3bc522 0%, #ffffff 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
+      background: linear-gradient(135deg, #3bc522 0%, #ffffff 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
     .grad-denial {
-        background: linear-gradient(135deg, #ef4444 0%, #ffffff 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
+      background: linear-gradient(135deg, #ef4444 0%, #ffffff 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
     .grad-carrot {
-        background: linear-gradient(135deg, rgb(200, 255, 0) 0%, #ffffff 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
+      background: linear-gradient(135deg, rgb(200, 255, 0) 0%, #ffffff 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
     .grad-twcuber {
       background: linear-gradient(135deg, #22c55e 0%, #ffffff 100%);
@@ -97,61 +151,21 @@
       -webkit-text-fill-color: transparent;
     }
 
-    /* Glow Typographic Tier Styles (No Boxes) */
-    .tier-ht1 {
-      color: #ef4444;
+    /* Variable-Driven Glow Typographic Tier Styles */
+    .tier-badge {
       font-weight: 800;
       font-family: 'Outfit', sans-serif;
-      filter: drop-shadow(0 0 8px rgba(255, 70, 85, 0.8));
     }
-    .tier-ht2 {
-      color: #eab308;
-      font-weight: 800;
-      font-family: 'Outfit', sans-serif;
-      filter: drop-shadow(0 0 8px rgba(234, 179, 8, 0.8));
-    }
-    .tier-ht3 {
-      color: #3b82f6;
-      font-weight: 800;
-      font-family: 'Outfit', sans-serif;
-      filter: drop-shadow(0 0 8px rgba(59, 130, 246, 0.8));
-    }
-    .tier-ht4 {
-      color: #06b6d4;
-      font-weight: 800;
-      font-family: 'Outfit', sans-serif;
-      filter: drop-shadow(0 0 8px rgba(6, 182, 212, 0.8));
-    }
-    .tier-lt1 {
-      color: #f97316;
-      font-weight: 800;
-      font-family: 'Outfit', sans-serif;
-      filter: drop-shadow(0 0 8px rgba(249, 115, 22, 0.8));
-    }
-    .tier-lt2 {
-      color: #a855f7;
-      font-weight: 800;
-      font-family: 'Outfit', sans-serif;
-      filter: drop-shadow(0 0 8px rgba(168, 85, 247, 0.8));
-    }
-    .tier-lt3 {
-      color: #10b981;
-      font-weight: 800;
-      font-family: 'Outfit', sans-serif;
-      filter: drop-shadow(0 0 8px rgba(16, 185, 129, 0.8));
-    }
-    .tier-lt4 {
-      color: #38bdf8;
-      font-weight: 800;
-      font-family: 'Outfit', sans-serif;
-      filter: drop-shadow(0 0 8px rgba(56, 189, 248, 0.8));
-    }
-    .tier-lt5 {
-      color: #64748b;
-      font-weight: 800;
-      font-family: 'Outfit', sans-serif;
-      filter: drop-shadow(0 0 8px rgba(100, 116, 139, 0.8));
-    }
+    .tier-ht1 { color: var(--color-ht1); filter: drop-shadow(0 0 8px var(--glow-ht1)); }
+    .tier-ht2 { color: var(--color-ht2); filter: drop-shadow(0 0 8px var(--glow-ht2)); }
+    .tier-ht3 { color: var(--color-ht3); filter: drop-shadow(0 0 8px var(--glow-ht3)); }
+    .tier-ht4 { color: var(--color-ht4); filter: drop-shadow(0 0 8px var(--glow-ht4)); }
+    .tier-ht5 { color: var(--color-ht5); filter: drop-shadow(0 0 8px var(--glow-ht5)); }
+    .tier-lt1 { color: var(--color-lt1); filter: drop-shadow(0 0 8px var(--glow-lt1)); }
+    .tier-lt2 { color: var(--color-lt2); filter: drop-shadow(0 0 8px var(--glow-lt2)); }
+    .tier-lt3 { color: var(--color-lt3); filter: drop-shadow(0 0 8px var(--glow-lt3)); }
+    .tier-lt4 { color: var(--color-lt4); filter: drop-shadow(0 0 8px var(--glow-lt4)); }
+    .tier-lt5 { color: var(--color-lt5); filter: drop-shadow(0 0 8px var(--glow-lt5)); }
 
     /* Category Buttons */
     .cat-btn {
@@ -188,7 +202,7 @@
       border: 1px solid rgba(255, 255, 255, 0.12);
       border-radius: 20px;
       width: 100%;
-      max-width: 400px;
+      max-width: 420px;
       padding: 24px;
       transform: translateY(15px);
       transition: transform 0.2s ease;
@@ -200,8 +214,8 @@
     /* Scroll Reveal Animation Styling */
     .reveal {
       opacity: 0;
-      transform: translateY(24px);
-      transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      transform: translateY(20px);
+      transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
       will-change: opacity, transform;
     }
     .reveal.active {
@@ -209,7 +223,7 @@
       transform: translateY(0);
     }
 
-    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
     ::-webkit-scrollbar-track { background: #050507; }
     ::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.15); border-radius: 3px; }
     ::-webkit-scrollbar-thumb:hover { background: #475569; }
@@ -221,7 +235,7 @@
   <header class="fixed top-0 left-0 right-0 z-50 border-b border-white/10 bg-[#050507]/90 backdrop-blur-md">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
       <a href="#home" class="flex items-center gap-3">
-        <img src="EE.png" alt="EE Logo" class="h-8 w-auto" />
+        <img src="EE.png" onerror="this.src='https://placehold.co/32x32/1e293b/f8fafc?text=EE'" alt="EE Logo" class="h-8 w-auto rounded" />
         <span class="font-display font-black text-lg tracking-wide grad-header">EE Tiers</span>
       </a>
       
@@ -232,7 +246,7 @@
         <a href="#seasons" class="px-3 py-1.5 text-xs font-semibold text-slate-300 hover:text-white transition-colors">Community</a>
       </nav>
 
-      <a href="https://dc.gg/editorsempire" target="_blank" class="px-4 py-2 rounded-lg text-xs font-bold text-white bg-slate-800 border border-slate-600 hover:bg-slate-700 transition-all">
+      <a href="https://dc.gg/editorsempire" target="_blank" rel="noopener noreferrer" class="px-4 py-2 rounded-lg text-xs font-bold text-white bg-slate-800 border border-slate-600 hover:bg-slate-700 transition-all">
         Discord
       </a>
     </div>
@@ -254,56 +268,26 @@
             Official leaderboard tracking Minecraft video editor tiers, evaluations, and overall competitive scores.
           </p>
 
+          <!-- Dynamic Stats Grid -->
           <div class="grid grid-cols-3 gap-3 pt-4">
             <div class="mctiers-card p-4 rounded-xl">
-              <div class="tier-ht1 text-xl">HT1</div>
+              <div id="stat-top-tier" class="tier-badge tier-ht1 text-xl">HT1+</div>
               <div class="text-xs text-slate-400 mt-1">Top Tier</div>
             </div>
             <div class="mctiers-card p-4 rounded-xl">
-              <div class="text-2xl font-bold text-white font-display">5000</div>
+              <div id="stat-peak-points" class="text-2xl font-bold text-white font-display">0</div>
               <div class="text-xs text-slate-400 mt-1">Peak Points</div>
             </div>
             <div class="mctiers-card p-4 rounded-xl">
-              <div class="text-2xl font-bold text-white font-display">19</div>
+              <div id="stat-ranked-count" class="text-2xl font-bold text-white font-display">0</div>
               <div class="text-xs text-slate-400 mt-1">Ranked Editors</div>
             </div>
           </div>
         </div>
 
-        <!-- #1 RANKED EDITOR CARD -->
-        <div class="lg:col-span-5 reveal">
-          <div class="mctiers-card p-6 rounded-2xl border border-lime-500/30 cursor-pointer" onclick="openProfile('Gireen', 'Ht1+ Rank', 'India', '1.', '5000', 'gireen.jpg', 'https://youtube.com/@notgireen', [
-            { name: 'Sync', badge: 'HT1+', class: 'tier-ht1' },
-            { name: 'Effect', badge: 'HT1+', class: 'tier-ht1' },
-            { name: 'Motion', badge: 'HT1+', class: 'tier-ht1' },
-            { name: 'VQ', badge: 'HT1+', class: 'tier-ht1' },
-            { name: 'Creativity', badge: 'HT1+', class: 'tier-ht1' }
-          ], 'grad-gireen')">
-            <div class="flex items-center justify-between mb-4">
-              <span class="text-xs uppercase tracking-wider text-slate-400">Ranked #1</span>
-              <span class="text-xs font-bold text-lime-400">👑 #1 Overall</span>
-            </div>
-
-            <div class="flex items-center gap-4 my-2">
-              <img src="gireen.jpg" alt="Gireen" class="w-16 h-16 rounded-xl object-cover ring-2 ring-lime-400/60" />
-              <div>
-                <h2 class="text-2xl font-bold font-display grad-gireen">Gireen</h2>
-                <p class="text-xs text-slate-400 mt-0.5">5000 Points • India</p>
-              </div>
-            </div>
-
-            <div class="bg-black/60 p-3 rounded-xl border border-white/5 my-4 flex justify-between text-xs">
-              <div class="text-center"><span class="block text-[10px] text-slate-400">Sync</span><span class="tier-ht1">HT1+</span></div>
-              <div class="text-center"><span class="block text-[10px] text-slate-400">Effect</span><span class="tier-ht1">HT1+</span></div>
-              <div class="text-center"><span class="block text-[10px] text-slate-400">Motion</span><span class="tier-ht1">HT1+</span></div>
-              <div class="text-center"><span class="block text-[10px] text-slate-400">VQ</span><span class="tier-ht1">HT1+</span></div>
-              <div class="text-center"><span class="block text-[10px] text-slate-400">Creativity</span><span class="tier-ht1">HT1+</span></div>
-            </div>
-
-            <div class="w-full py-2.5 bg-slate-800 hover:bg-slate-700 border border-slate-600 text-white font-bold text-xs rounded-lg text-center transition-colors">
-              View Profile
-            </div>
-          </div>
+        <!-- DYNAMIC #1 RANKED EDITOR HERO CARD -->
+        <div id="hero-rank1-container" class="lg:col-span-5 reveal">
+          <!-- Populated dynamically from the #1 sorted editor -->
         </div>
       </div>
     </section>
@@ -311,18 +295,22 @@
     <!-- EE RANKINGS TABLE SECTION -->
     <section id="rankings" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
       
-      <!-- Category Tabs -->
-      <div class="mb-6 overflow-x-auto pb-2 reveal">
-        <div class="flex items-center gap-2 min-w-max border-b border-white/10 pb-3">
-          <button onclick="filterCategory('overall')" id="cat-overall" class="cat-btn active px-3.5 py-1.5 rounded-lg text-xs font-bold border border-white/10">Overall</button>
-          <button onclick="filterCategory('sync')" id="cat-sync" class="cat-btn px-3.5 py-1.5 rounded-lg text-xs font-bold border border-white/10 text-slate-400">Sync</button>
-          <button onclick="filterCategory('effect')" id="cat-effect" class="cat-btn px-3.5 py-1.5 rounded-lg text-xs font-bold border border-white/10 text-slate-400">Effect</button>
-          <button onclick="filterCategory('motion')" id="cat-motion" class="cat-btn px-3.5 py-1.5 rounded-lg text-xs font-bold border border-white/10 text-slate-400">Motion</button>
-          <button onclick="filterCategory('visual')" id="cat-visual" class="cat-btn px-3.5 py-1.5 rounded-lg text-xs font-bold border border-white/10 text-slate-400">Visual Quality</button>
-          <button onclick="filterCategory('creativity')" id="cat-creativity" class="cat-btn px-3.5 py-1.5 rounded-lg text-xs font-bold border border-white/10 text-slate-400">Creativity</button>
-          <button onclick="filterCategory('cleanliness')" id="cat-cleanliness" class="cat-btn px-3.5 py-1.5 rounded-lg text-xs font-bold border border-white/10 text-slate-400">Cleanliness</button>
-          <button onclick="filterCategory('texts')" id="cat-texts" class="cat-btn px-3.5 py-1.5 rounded-lg text-xs font-bold border border-white/10 text-slate-400">Texts</button>
-          <button onclick="filterCategory('transition')" id="cat-transition" class="cat-btn px-3.5 py-1.5 rounded-lg text-xs font-bold border border-white/10 text-slate-400">Transition</button>
+      <!-- Category Tabs & Search Filter -->
+      <div class="mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-white/10 pb-3 reveal">
+        <div class="overflow-x-auto pb-1">
+          <div id="category-tabs" class="flex items-center gap-2 min-w-max">
+            <!-- Category buttons injected dynamically -->
+          </div>
+        </div>
+
+        <div class="relative w-full sm:w-64">
+          <input 
+            type="text" 
+            id="search-input" 
+            placeholder="Search editor or region..." 
+            oninput="handleSearch(this.value)"
+            class="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-1.5 text-xs text-white placeholder-slate-400 focus:outline-none focus:border-white/30 transition-colors"
+          />
         </div>
       </div>
 
@@ -331,538 +319,12 @@
         <div class="col-span-1 text-center">#</div>
         <div class="col-span-4">Editor</div>
         <div class="col-span-2 text-center">Region</div>
-        <div class="col-span-5 text-right">Tiers</div>
+        <div id="table-tiers-header" class="col-span-5 text-right">Tiers</div>
       </div>
 
-      <!-- RANKING CARDS LIST -->
+      <!-- DYNAMIC RANKING CARDS LIST -->
       <div class="space-y-3" id="rankings-list">
-
-        <!-- RANK #1 -->
-        <div class="mctiers-card p-4 rounded-xl border-l-4 border-l-lime-400 cursor-pointer reveal" onclick="openProfile('Gireen', 'Ht1+ Rank', 'India', '1.', '5000', 'gireen.jpg', 'https://youtube.com/@notgireen', [
-          { name: 'Sync', badge: 'HT1+', class: 'tier-ht1' },
-          { name: 'Effect', badge: 'HT1+', class: 'tier-ht1' },
-          { name: 'Motion', badge: 'HT1+', class: 'tier-ht1' },
-          { name: 'VQ', badge: 'HT1+', class: 'tier-ht1' },
-          { name: 'Creativity', badge: 'HT1+', class: 'tier-ht1' }
-        ], 'grad-gireen')">
-          <div class="grid grid-cols-1 md:grid-cols-12 items-center gap-3">
-            <div class="md:col-span-1 text-center font-bold text-lime-400">1</div>
-            <div class="md:col-span-4 flex items-center gap-3">
-              <img src="gireen.jpg" alt="Gireen" class="w-10 h-10 rounded-lg object-cover" />
-              <div>
-                <h3 class="font-bold text-sm grad-gireen">Gireen</h3>
-                <p class="text-xs text-slate-400">5000 pts</p>
-              </div>
-            </div>
-            <div class="md:col-span-2 text-left md:text-center text-xs text-slate-300">India</div>
-            <div class="md:col-span-5 flex items-center justify-end gap-3 text-xs">
-              <span>Sync: <strong class="tier-ht1">HT1+</strong></span>
-              <span>Effect: <strong class="tier-ht1">HT1+</strong></span>
-              <span>Motion: <strong class="tier-ht1">HT1+</strong></span>
-              <span>VQ: <strong class="tier-ht1">HT1+</strong></span>
-              <a href="https://youtube.com/@notgireen" target="_blank" onclick="event.stopPropagation()" class="px-2 py-0.5 rounded bg-white/10 hover:bg-slate-700 transition-colors">YT ↗</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- RANK #2 -->
-        <div class="mctiers-card p-4 rounded-xl border-l-4 border-l-red-500 cursor-pointer reveal" onclick="openProfile('Denial', 'Ht1 Rank', 'Unknown', '2.', '4950', 'denial.jpg', 'https://www.youtube.com/@In_Denial_', [
-          { name: 'Sync', badge: 'HT1+', class: 'tier-ht1' },
-          { name: 'Effect', badge: 'HT1+', class: 'tier-ht1' },
-          { name: 'Motion', badge: 'HT1', class: 'tier-ht1' },
-          { name: 'VQ', badge: 'HT1+', class: 'tier-ht1' },
-          { name: 'Creativity', badge: 'HT1', class: 'tier-ht1' }
-        ], 'grad-denial')">
-          <div class="grid grid-cols-1 md:grid-cols-12 items-center gap-3">
-            <div class="md:col-span-1 text-center font-bold text-red-500">2</div>
-            <div class="md:col-span-4 flex items-center gap-3">
-              <img src="denial.jpg" alt="Denial" class="w-10 h-10 rounded-lg object-cover" />
-              <div>
-                <h3 class="font-bold text-sm grad-denial">Denial</h3>
-                <p class="text-xs text-slate-400">4950 pts</p>
-              </div>
-            </div>
-            <div class="md:col-span-2 text-left md:text-center text-xs text-slate-300">Unknown</div>
-            <div class="md:col-span-5 flex items-center justify-end gap-3 text-xs">
-              <span>Sync: <strong class="tier-ht1">HT1+</strong></span>
-              <span>Effect: <strong class="tier-ht1">HT1+</strong></span>
-              <span>Motion: <strong class="tier-ht1">HT1</strong></span>
-              <span>VQ: <strong class="tier-ht1">HT1+</strong></span>
-              <a href="https://www.youtube.com/@In_Denial_" target="_blank" onclick="event.stopPropagation()" class="px-2 py-0.5 rounded bg-white/10 hover:bg-slate-700 transition-colors">YT ↗</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- RANK #3 -->
-        <div class="mctiers-card p-4 rounded-xl border-l-4 border-l-lime-400 cursor-pointer reveal" onclick="openProfile('Carrot', 'Ht1 Rank', 'Unknown', '3.', '4900', 'carrot.jpeg', 'https://tiktok.com/@carrotz.ae', [
-          { name: 'Sync', badge: 'HT1+', class: 'tier-ht1' },
-          { name: 'Effect', badge: 'HT1', class: 'tier-ht1' },
-          { name: 'Motion', badge: 'HT1+', class: 'tier-ht1' },
-          { name: 'VQ', badge: 'HT1', class: 'tier-ht1' },
-          { name: 'Creativity', badge: 'HT1', class: 'tier-ht1' }
-        ], 'grad-carrot')">
-          <div class="grid grid-cols-1 md:grid-cols-12 items-center gap-3">
-            <div class="md:col-span-1 text-center font-bold text-lime-400">3</div>
-            <div class="md:col-span-4 flex items-center gap-3">
-              <img src="carrot.jpeg" alt="Carrot" class="w-10 h-10 rounded-lg object-cover" />
-              <div>
-                <h3 class="font-bold text-sm grad-carrot">Carrot</h3>
-                <p class="text-xs text-slate-400">4900 pts</p>
-              </div>
-            </div>
-            <div class="md:col-span-2 text-left md:text-center text-xs text-slate-300">Unknown</div>
-            <div class="md:col-span-5 flex items-center justify-end gap-3 text-xs">
-              <span>Sync: <strong class="tier-ht1">HT1+</strong></span>
-              <span>Effect: <strong class="tier-ht1">HT1</strong></span>
-              <span>Motion: <strong class="tier-ht1">HT1+</strong></span>
-              <span>VQ: <strong class="tier-ht1">HT1</strong></span>
-              <a href="https://tiktok.com/@carrotz.ae" target="_blank" onclick="event.stopPropagation()" class="px-2 py-0.5 rounded bg-white/10 hover:bg-slate-700 transition-colors">Tiktok ↗</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- RANK #4 -->
-        <div class="mctiers-card p-4 rounded-xl border-l-4 border-l-green-400 cursor-pointer reveal" onclick="openProfile('TW Cuberz', 'Ht1 Rank', 'Pakistan', '4.', '4800', 'twcuber.png', 'https://youtube.com/@twcuber', [
-          { name: 'Sync', badge: 'HT1', class: 'tier-ht1' },
-          { name: 'Effect', badge: 'HT1', class: 'tier-ht1' },
-          { name: 'Motion', badge: 'HT1', class: 'tier-ht1' },
-          { name: 'VQ', badge: 'HT1', class: 'tier-ht1' },
-          { name: 'Creativity', badge: 'HT1', class: 'tier-ht1' }
-        ], 'grad-twcuber')">
-          <div class="grid grid-cols-1 md:grid-cols-12 items-center gap-3">
-            <div class="md:col-span-1 text-center font-bold text-green-400">4</div>
-            <div class="md:col-span-4 flex items-center gap-3">
-              <img src="twcuber.png" alt="TW Cuberz" class="w-10 h-10 rounded-lg object-cover" />
-              <div>
-                <h3 class="font-bold text-sm grad-twcuber">TW Cuberz</h3>
-                <p class="text-xs text-slate-400">4800 pts</p>
-              </div>
-            </div>
-            <div class="md:col-span-2 text-left md:text-center text-xs text-slate-300">Pakistan</div>
-            <div class="md:col-span-5 flex items-center justify-end gap-3 text-xs">
-              <span>Sync: <strong class="tier-ht1">HT1</strong></span>
-              <span>Effect: <strong class="tier-ht1">HT1</strong></span>
-              <span>Motion: <strong class="tier-ht1">HT1</strong></span>
-              <span>VQ: <strong class="tier-ht1">HT1</strong></span>
-              <a href="https://youtube.com/@twcuber" target="_blank" onclick="event.stopPropagation()" class="px-2 py-0.5 rounded bg-white/10 hover:bg-slate-700 transition-colors">YT ↗</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- RANK #5 -->
-        <div class="mctiers-card p-4 rounded-xl border-l-4 border-l-orange-400 cursor-pointer reveal" onclick="openProfile('Jettstream', 'Ht1 Rank', 'Europe', '5.', '4800', 'jetstream.png', 'https://youtube.com/@jettstream', [
-          { name: 'Sync', badge: 'HT1', class: 'tier-ht1' },
-          { name: 'Effect', badge: 'HT1', class: 'tier-ht1' },
-          { name: 'Motion', badge: 'HT1', class: 'tier-ht1' },
-          { name: 'VQ', badge: 'HT1', class: 'tier-ht1' },
-          { name: 'Creativity', badge: 'HT1', class: 'tier-ht1' }
-        ], 'grad-jettstream')">
-          <div class="grid grid-cols-1 md:grid-cols-12 items-center gap-3">
-            <div class="md:col-span-1 text-center font-bold text-green-400">5</div>
-            <div class="md:col-span-4 flex items-center gap-3">
-              <img src="jetstream.png" alt="Jettstream" class="w-10 h-10 rounded-lg object-cover" />
-              <div>
-                <h3 class="font-bold text-sm grad-jettstream">Jettstream</h3>
-                <p class="text-xs text-slate-400">4800 pts</p>
-              </div>
-            </div>
-            <div class="md:col-span-2 text-left md:text-center text-xs text-slate-300">Europe</div>
-            <div class="md:col-span-5 flex items-center justify-end gap-3 text-xs">
-              <span>Sync: <strong class="tier-ht1">HT1</strong></span>
-              <span>Effect: <strong class="tier-ht1">HT1</strong></span>
-              <span>Motion: <strong class="tier-ht1">HT1</strong></span>
-              <span>VQ: <strong class="tier-ht1">HT1</strong></span>
-              <a href="https://youtube.com/@jettstream" target="_blank" onclick="event.stopPropagation()" class="px-2 py-0.5 rounded bg-white/10 hover:bg-slate-700 transition-colors">YT ↗</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- RANK #6 -->
-        <div class="mctiers-card p-4 rounded-xl border-l-4 border-l-slate-300 cursor-pointer reveal" onclick="openProfile('Syncraft', 'Ht1 Rank', 'Nepal', '6.', '4300', 'sync.png', 'https://youtube.com/@syncraft', [
-          { name: 'Sync', badge: 'HT1', class: 'tier-ht1' },
-          { name: 'Effect', badge: 'HT1', class: 'tier-ht1' },
-          { name: 'Motion', badge: 'HT1', class: 'tier-ht1' },
-          { name: 'VQ', badge: 'HT1', class: 'tier-ht1' },
-          { name: 'Creativity', badge: 'HT2', class: 'tier-ht2' }
-        ], 'grad-syncraft')">
-          <div class="grid grid-cols-1 md:grid-cols-12 items-center gap-3">
-            <div class="md:col-span-1 text-center font-bold text-slate-300">6</div>
-            <div class="md:col-span-4 flex items-center gap-3">
-              <img src="sync.png" alt="Syncraft" class="w-10 h-10 rounded-lg object-cover" />
-              <div>
-                <h3 class="font-bold text-sm grad-syncraft">Syncraft</h3>
-                <p class="text-xs text-slate-400">4300 pts</p>
-              </div>
-            </div>
-            <div class="md:col-span-2 text-left md:text-center text-xs text-slate-300">Nepal</div>
-            <div class="md:col-span-5 flex items-center justify-end gap-3 text-xs">
-              <span>Sync: <strong class="tier-ht1">HT1</strong></span>
-              <span>Effect: <strong class="tier-ht1">HT1</strong></span>
-              <span>Motion: <strong class="tier-ht1">HT1</strong></span>
-              <span>Creativity: <strong class="tier-ht2">HT2</strong></span>
-              <a href="https://youtube.com/@syncraft" target="_blank" onclick="event.stopPropagation()" class="px-2 py-0.5 rounded bg-white/10 hover:bg-slate-700 transition-colors">YT ↗</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- RANK #7 -->
-        <div class="mctiers-card p-4 rounded-xl border-l-4 border-l-amber-600 cursor-pointer reveal" onclick="openProfile('Flayxor', 'Ht2 Rank', 'India', '7.', '4200', 'flayxor.webp', 'https://youtube.com/@flayxor', [
-          { name: 'Sync', badge: 'HT1', class: 'tier-ht1' },
-          { name: 'Effect', badge: 'HT1', class: 'tier-ht1' },
-          { name: 'Motion', badge: 'HT2', class: 'tier-ht2' },
-          { name: 'VQ', badge: 'HT2', class: 'tier-ht2' }
-        ], 'grad-flayxor')">
-          <div class="grid grid-cols-1 md:grid-cols-12 items-center gap-3">
-            <div class="md:col-span-1 text-center font-bold text-amber-600">7</div>
-            <div class="md:col-span-4 flex items-center gap-3">
-              <img src="flayxor.webp" alt="Flayxor" class="w-10 h-10 rounded-lg object-cover" />
-              <div>
-                <h3 class="font-bold text-sm grad-flayxor">Flayxor</h3>
-                <p class="text-xs text-slate-400">4200 pts</p>
-              </div>
-            </div>
-            <div class="md:col-span-2 text-left md:text-center text-xs text-slate-300">India</div>
-            <div class="md:col-span-5 flex items-center justify-end gap-3 text-xs">
-              <span>Sync: <strong class="tier-ht1">HT1</strong></span>
-              <span>Effect: <strong class="tier-ht1">HT1</strong></span>
-              <span>Motion: <strong class="tier-ht2">HT2</strong></span>
-              <span>VQ: <strong class="tier-ht2">HT2</strong></span>
-              <a href="https://youtube.com/@flayxor" target="_blank" onclick="event.stopPropagation()" class="px-2 py-0.5 rounded bg-white/10 hover:bg-slate-700 transition-colors">YT ↗</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- RANK #8 -->
-        <div class="mctiers-card p-4 rounded-xl border-l-4 border-l-yellow-500 cursor-pointer reveal" onclick="openProfile('Maceility', 'Ht2 Rank', 'USA', '8.', '4100', 'macelity.png', 'https://youtube.com/@maceility', [
-          { name: 'Sync', badge: 'HT3', class: 'tier-ht3' },
-          { name: 'Effect', badge: 'HT1', class: 'tier-ht1' },
-          { name: 'Motion', badge: 'HT1', class: 'tier-ht1' },
-          { name: 'VQ', badge: 'HT1', class: 'tier-ht1' }
-        ], 'grad-macelity')">
-          <div class="grid grid-cols-1 md:grid-cols-12 items-center gap-3">
-            <div class="md:col-span-1 text-center font-bold text-yellow-500">8</div>
-            <div class="md:col-span-4 flex items-center gap-3">
-              <img src="macelity.png" alt="Maceility" class="w-10 h-10 rounded-lg object-cover" />
-              <div>
-                <h3 class="font-bold text-sm grad-macelity">Maceility</h3>
-                <p class="text-xs text-slate-400">4100 pts</p>
-              </div>
-            </div>
-            <div class="md:col-span-2 text-left md:text-center text-xs text-slate-300">USA</div>
-            <div class="md:col-span-5 flex items-center justify-end gap-3 text-xs">
-              <span>Sync: <strong class="tier-ht3">HT3</strong></span>
-              <span>Effect: <strong class="tier-ht1">HT1</strong></span>
-              <span>Motion: <strong class="tier-ht1">HT1</strong></span>
-              <a href="https://youtube.com/@maceility" target="_blank" onclick="event.stopPropagation()" class="px-2 py-0.5 rounded bg-white/10 hover:bg-slate-700 transition-colors">YT ↗</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- RANK #9 -->
-        <div class="mctiers-card p-4 rounded-xl cursor-pointer reveal" onclick="openProfile('Azur Mc', 'Ht2 Rank', 'N/A', '9.', '4100', 'azur.png', 'https://youtube.com/@azur_mc', [
-          { name: 'Sync', badge: 'HT2', class: 'tier-ht2' },
-          { name: 'Effect', badge: 'HT1', class: 'tier-ht1' },
-          { name: 'Motion', badge: 'HT2', class: 'tier-ht2' },
-          { name: 'VQ', badge: 'HT1', class: 'tier-ht1' }
-        ])">
-          <div class="grid grid-cols-1 md:grid-cols-12 items-center gap-3">
-            <div class="md:col-span-1 text-center font-bold text-slate-400">9</div>
-            <div class="md:col-span-4 flex items-center gap-3">
-              <img src="azur.png" alt="Azur Mc" class="w-10 h-10 rounded-lg object-cover" />
-              <div>
-                <h3 class="font-bold text-white text-sm">Azur Mc</h3>
-                <p class="text-xs text-slate-400">4100 pts</p>
-              </div>
-            </div>
-            <div class="md:col-span-2 text-left md:text-center text-xs text-slate-300">N/A</div>
-            <div class="md:col-span-5 flex items-center justify-end gap-3 text-xs">
-              <span>Sync: <strong class="tier-ht2">HT2</strong></span>
-              <span>Effect: <strong class="tier-ht1">HT1</strong></span>
-              <span>Motion: <strong class="tier-ht2">HT2</strong></span>
-              <a href="https://youtube.com/@azur_mc" target="_blank" onclick="event.stopPropagation()" class="px-2 py-0.5 rounded bg-white/10 hover:bg-slate-700 transition-colors">YT ↗</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- RANK #10 -->
-        <div class="mctiers-card p-4 rounded-xl cursor-pointer reveal" onclick="openProfile('Voidishere', 'Ht2 Rank', 'USA', '10.', '3800', 'voidishere.png', 'https://youtube.com/@voidishere7', [
-          { name: 'Sync', badge: 'HT1', class: 'tier-ht1' },
-          { name: 'Effect', badge: 'HT1', class: 'tier-ht1' },
-          { name: 'Motion', badge: 'HT2', class: 'tier-ht2' },
-          { name: 'VQ', badge: 'HT1', class: 'tier-ht1' }
-        ])">
-          <div class="grid grid-cols-1 md:grid-cols-12 items-center gap-3">
-            <div class="md:col-span-1 text-center font-bold text-slate-400">10</div>
-            <div class="md:col-span-4 flex items-center gap-3">
-              <img src="voidishere.png" alt="Voidishere" class="w-10 h-10 rounded-lg object-cover" />
-              <div>
-                <h3 class="font-bold text-white text-sm">Voidishere</h3>
-                <p class="text-xs text-slate-400">3800 pts</p>
-              </div>
-            </div>
-            <div class="md:col-span-2 text-left md:text-center text-xs text-slate-300">USA</div>
-            <div class="md:col-span-5 flex items-center justify-end gap-3 text-xs">
-              <span>Sync: <strong class="tier-ht1">HT1</strong></span>
-              <span>Effect: <strong class="tier-ht1">HT1</strong></span>
-              <span>Motion: <strong class="tier-ht2">HT2</strong></span>
-              <a href="https://youtube.com/@voidishere7" target="_blank" onclick="event.stopPropagation()" class="px-2 py-0.5 rounded bg-white/10 hover:bg-slate-700 transition-colors">YT ↗</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- RANK #11 -->
-        <div class="mctiers-card p-4 rounded-xl cursor-pointer reveal" onclick="openProfile('Inferno', 'Ht2 Rank', 'Vietnam', '11.', '3700', 'inferno.png', 'https://youtube.com/@infernoeditz_am', [
-          { name: 'Sync', badge: 'HT2', class: 'tier-ht2' },
-          { name: 'Effect', badge: 'HT1', class: 'tier-ht1' },
-          { name: 'Motion', badge: 'HT2', class: 'tier-ht2' },
-          { name: 'VQ', badge: 'HT2', class: 'tier-ht2' }
-        ])">
-          <div class="grid grid-cols-1 md:grid-cols-12 items-center gap-3">
-            <div class="md:col-span-1 text-center font-bold text-slate-400">11</div>
-            <div class="md:col-span-4 flex items-center gap-3">
-              <img src="inferno.png" alt="Inferno" class="w-10 h-10 rounded-lg object-cover" />
-              <div>
-                <h3 class="font-bold text-white text-sm">Inferno</h3>
-                <p class="text-xs text-slate-400">3700 pts</p>
-              </div>
-            </div>
-            <div class="md:col-span-2 text-left md:text-center text-xs text-slate-300">Vietnam</div>
-            <div class="md:col-span-5 flex items-center justify-end gap-3 text-xs">
-              <span>Sync: <strong class="tier-ht2">HT2</strong></span>
-              <span>Effect: <strong class="tier-ht1">HT1</strong></span>
-              <span>Motion: <strong class="tier-ht2">HT2</strong></span>
-              <a href="https://youtube.com/@infernoeditz_am" target="_blank" onclick="event.stopPropagation()" class="px-2 py-0.5 rounded bg-white/10 hover:bg-slate-700 transition-colors">YT ↗</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- RANK #12 -->
-        <div class="mctiers-card p-4 rounded-xl cursor-pointer reveal" onclick="openProfile('Static', 'Ht3 Rank', 'India', '12.', '3400', 'static.png', 'https://youtube.com/@notstaticyt', [
-          { name: 'Sync', badge: 'HT2', class: 'tier-ht2' },
-          { name: 'Effect', badge: 'HT2', class: 'tier-ht2' },
-          { name: 'Motion', badge: 'HT3', class: 'tier-ht3' },
-          { name: 'VQ', badge: 'HT2', class: 'tier-ht2' }
-        ])">
-          <div class="grid grid-cols-1 md:grid-cols-12 items-center gap-3">
-            <div class="md:col-span-1 text-center font-bold text-slate-400">12</div>
-            <div class="md:col-span-4 flex items-center gap-3">
-              <img src="static.png" alt="Static" class="w-10 h-10 rounded-lg object-cover" />
-              <div>
-                <h3 class="font-bold text-white text-sm">Static</h3>
-                <p class="text-xs text-slate-400">3400 pts</p>
-              </div>
-            </div>
-            <div class="md:col-span-2 text-left md:text-center text-xs text-slate-300">India</div>
-            <div class="md:col-span-5 flex items-center justify-end gap-3 text-xs">
-              <span>Sync: <strong class="tier-ht2">HT2</strong></span>
-              <span>Effect: <strong class="tier-ht2">HT2</strong></span>
-              <span>Motion: <strong class="tier-ht3">HT3</strong></span>
-              <a href="https://youtube.com/@notstaticyt" target="_blank" onclick="event.stopPropagation()" class="px-2 py-0.5 rounded bg-white/10 hover:bg-slate-700 transition-colors">YT ↗</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- RANK #13 -->
-        <div class="mctiers-card p-4 rounded-xl cursor-pointer reveal" onclick="openProfile('Ahmad', 'Ht2 Rank', 'Pakistan', '13.', '3400', 'ahmad.png', '', [
-          { name: 'Sync', badge: 'HT1', class: 'tier-ht1' },
-          { name: 'Effect', badge: 'HT2', class: 'tier-ht2' },
-          { name: 'Motion', badge: 'HT2', class: 'tier-ht2' },
-          { name: 'VQ', badge: 'HT3', class: 'tier-ht3' }
-        ])">
-          <div class="grid grid-cols-1 md:grid-cols-12 items-center gap-3">
-            <div class="md:col-span-1 text-center font-bold text-slate-400">13</div>
-            <div class="md:col-span-4 flex items-center gap-3">
-              <img src="ahmad.png" alt="Ahmad" class="w-10 h-10 rounded-lg object-cover" />
-              <div>
-                <h3 class="font-bold text-white text-sm">Ahmad</h3>
-                <p class="text-xs text-slate-400">3400 pts</p>
-              </div>
-            </div>
-            <div class="md:col-span-2 text-left md:text-center text-xs text-slate-300">Pakistan</div>
-            <div class="md:col-span-5 flex items-center justify-end gap-3 text-xs">
-              <span>Sync: <strong class="tier-ht1">HT1</strong></span>
-              <span>Effect: <strong class="tier-ht2">HT2</strong></span>
-              <span>Motion: <strong class="tier-ht2">HT2</strong></span>
-              <span>VQ: <strong class="tier-ht3">HT3</strong></span>
-            </div>
-          </div>
-        </div>
-
-        <!-- RANK #14 -->
-        <div class="mctiers-card p-4 rounded-xl cursor-pointer reveal" onclick="openProfile('1to7 ae', 'Ht2 Rank', 'N/A', '14.', '2300', '1to7.png', '', [
-          { name: 'Sync', badge: 'HT1', class: 'tier-ht1' },
-          { name: 'Effect', badge: 'HT2', class: 'tier-ht2' },
-          { name: 'Motion', badge: 'HT2', class: 'tier-ht2' },
-          { name: 'VQ', badge: 'HT2', class: 'tier-ht2' },
-          { name: 'Creativity', badge: 'HT3', class: 'tier-ht3' },
-          { name: 'Cleanliness', badge: 'HT1', class: 'tier-ht1' },
-          { name: 'Texts', badge: 'HT1', class: 'tier-ht1' },
-          { name: 'Transition', badge: 'HT2', class: 'tier-ht2' }
-        ])">
-          <div class="grid grid-cols-1 md:grid-cols-12 items-center gap-3">
-            <div class="md:col-span-1 text-center font-bold text-slate-400">14</div>
-            <div class="md:col-span-4 flex items-center gap-3">
-              <img src="1to7.png" alt="1to7 ae" class="w-10 h-10 rounded-lg object-cover" />
-              <div>
-                <h3 class="font-bold text-white text-sm">1to7 ae</h3>
-                <p class="text-xs text-slate-400">2300 pts</p>
-              </div>
-            </div>
-            <div class="md:col-span-2 text-left md:text-center text-xs text-slate-300">N/A</div>
-            <div class="md:col-span-5 flex items-center justify-end gap-3 text-xs">
-              <span>Sync: <strong class="tier-ht1">HT1</strong></span>
-              <span>Effect: <strong class="tier-ht2">HT2</strong></span>
-              <span>Motion: <strong class="tier-ht2">HT2</strong></span>
-              <span>VQ: <strong class="tier-ht2">HT2</strong></span>
-            </div>
-          </div>
-        </div>
-
-        <!-- RANK #15 -->
-        <div class="mctiers-card p-4 rounded-xl cursor-pointer reveal" onclick="openProfile('Levander', 'Ht3 Rank', 'Pakistan', '15.', '2800', 'levander.jpg', 'https://youtube.com/@levanderop', [
-          { name: 'Sync', badge: 'HT2', class: 'tier-ht2' },
-          { name: 'Effect', badge: 'HT3', class: 'tier-ht3' },
-          { name: 'Motion', badge: 'HT3', class: 'tier-ht3' },
-          { name: 'VQ', badge: 'HT2', class: 'tier-ht2' }
-        ])">
-          <div class="grid grid-cols-1 md:grid-cols-12 items-center gap-3">
-            <div class="md:col-span-1 text-center font-bold text-slate-400">15</div>
-            <div class="md:col-span-4 flex items-center gap-3">
-              <img src="levander.jpg" alt="Levander" class="w-10 h-10 rounded-lg object-cover" />
-              <div>
-                <h3 class="font-bold text-white text-sm">Levander</h3>
-                <p class="text-xs text-slate-400">2800 pts</p>
-              </div>
-            </div>
-            <div class="md:col-span-2 text-left md:text-center text-xs text-slate-300">Pakistan</div>
-            <div class="md:col-span-5 flex items-center justify-end gap-3 text-xs">
-              <span>Sync: <strong class="tier-ht2">HT2</strong></span>
-              <span>Effect: <strong class="tier-ht3">HT3</strong></span>
-              <span>Motion: <strong class="tier-ht3">HT3</strong></span>
-              <a href="https://youtube.com/@levanderop" target="_blank" onclick="event.stopPropagation()" class="px-2 py-0.5 rounded bg-white/10 hover:bg-slate-700 transition-colors">YT ↗</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- RANK #16 -->
-        <div class="mctiers-card p-4 rounded-xl cursor-pointer reveal" onclick="openProfile('Max', 'Ht3 Rank', 'India', '16.', '2700', 'maxedit.jpg', 'https://youtube.com/@maxeditz-999', [
-          { name: 'Sync', badge: 'HT3', class: 'tier-ht3' },
-          { name: 'Effect', badge: 'HT3', class: 'tier-ht3' },
-          { name: 'Motion', badge: 'HT4', class: 'tier-ht4' },
-          { name: 'VQ', badge: 'HT2', class: 'tier-ht2' }
-        ])">
-          <div class="grid grid-cols-1 md:grid-cols-12 items-center gap-3">
-            <div class="md:col-span-1 text-center font-bold text-slate-400">16</div>
-            <div class="md:col-span-4 flex items-center gap-3">
-              <img src="maxedit.jpg" alt="Max" class="w-10 h-10 rounded-lg object-cover" />
-              <div>
-                <h3 class="font-bold text-white text-sm">Max</h3>
-                <p class="text-xs text-slate-400">2700 pts</p>
-              </div>
-            </div>
-            <div class="md:col-span-2 text-left md:text-center text-xs text-slate-300">India</div>
-            <div class="md:col-span-5 flex items-center justify-end gap-3 text-xs">
-              <span>Sync: <strong class="tier-ht3">HT3</strong></span>
-              <span>Effect: <strong class="tier-ht3">HT3</strong></span>
-              <span>Motion: <strong class="tier-ht4">HT4</strong></span>
-              <a href="https://youtube.com/@maxeditz-999" target="_blank" onclick="event.stopPropagation()" class="px-2 py-0.5 rounded bg-white/10 hover:bg-slate-700 transition-colors">YT ↗</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- RANK #17 -->
-        <div class="mctiers-card p-4 rounded-xl cursor-pointer reveal" onclick="openProfile('flycorpio', 'Lt1 Rank', 'N/A', '17.', '1200', 'fly.png', 'https://youtube.com/@flycorpio7?si=FfRIvYhcYeY1IjNZ', [
-          { name: 'Sync', badge: 'LT1', class: 'tier-lt1' },
-          { name: 'Effect', badge: 'LT1', class: 'tier-lt1' },
-          { name: 'Motion', badge: 'LT3', class: 'tier-lt3' },
-          { name: 'VQ', badge: 'LT3', class: 'tier-lt3' },
-          { name: 'Creativity', badge: 'LT5', class: 'tier-lt5' },
-          { name: 'Cleanliness', badge: 'LT3', class: 'tier-lt3' },
-          { name: 'Texts', badge: 'LT3', class: 'tier-lt3' },
-          { name: 'Transition', badge: 'LT3', class: 'tier-lt3' }
-        ])">
-          <div class="grid grid-cols-1 md:grid-cols-12 items-center gap-3">
-            <div class="md:col-span-1 text-center font-bold text-slate-400">17</div>
-            <div class="md:col-span-4 flex items-center gap-3">
-              <img src="fly.png" alt="flycorpio" class="w-10 h-10 rounded-lg object-cover" />
-              <div>
-                <h3 class="font-bold text-white text-sm">flycorpio</h3>
-                <p class="text-xs text-slate-400">1200 pts</p>
-              </div>
-            </div>
-            <div class="md:col-span-2 text-left md:text-center text-xs text-slate-300">N/A</div>
-            <div class="md:col-span-5 flex items-center justify-end gap-3 text-xs">
-              <span>Sync: <strong class="tier-lt1">LT1</strong></span>
-              <span>Effect: <strong class="tier-lt1">LT1</strong></span>
-              <span>Motion: <strong class="tier-lt3">LT3</strong></span>
-              <span>VQ: <strong class="tier-lt3">LT3</strong></span>
-              <a href="https://youtube.com/@flycorpio7?si=FfRIvYhcYeY1IjNZ" target="_blank" onclick="event.stopPropagation()" class="px-2 py-0.5 rounded bg-white/10 hover:bg-slate-700 transition-colors">YT ↗</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- RANK #18 -->
-        <div class="mctiers-card p-4 rounded-xl cursor-pointer reveal" onclick="openProfile('Sidharth', 'Lt4 Rank', 'N/A', '18.', '1050', 'siddz.jpg', 'https://youtube.com/@siddz_edits?si=kMH48RSOixb8hWMn', [
-          { name: 'Sync', badge: 'LT3', class: 'tier-lt3' },
-          { name: 'Effect', badge: 'LT5', class: 'tier-lt5' },
-          { name: 'Motion', badge: 'LT5', class: 'tier-lt5' },
-          { name: 'VQ', badge: 'LT5', class: 'tier-lt5' },
-          { name: 'Creativity', badge: 'LT1', class: 'tier-lt1' },
-          { name: 'Cleanliness', badge: 'LT4', class: 'tier-lt4' },
-          { name: 'Texts', badge: 'LT3', class: 'tier-lt3' },
-          { name: 'Transition', badge: 'LT4', class: 'tier-lt4' }
-        ])">
-          <div class="grid grid-cols-1 md:grid-cols-12 items-center gap-3">
-            <div class="md:col-span-1 text-center font-bold text-slate-400">18</div>
-            <div class="md:col-span-4 flex items-center gap-3">
-              <img src="siddz.jpg" alt="Sidharth" class="w-10 h-10 rounded-lg object-cover" />
-              <div>
-                <h3 class="font-bold text-white text-sm">Sidharth</h3>
-                <p class="text-xs text-slate-400">1050 pts</p>
-              </div>
-            </div>
-            <div class="md:col-span-2 text-left md:text-center text-xs text-slate-300">N/A</div>
-            <div class="md:col-span-5 flex items-center justify-end gap-3 text-xs">
-              <span>Sync: <strong class="tier-lt3">LT3</strong></span>
-              <span>Effect: <strong class="tier-lt5">LT5</strong></span>
-              <span>Motion: <strong class="tier-lt5">LT5</strong></span>
-              <span>VQ: <strong class="tier-lt5">LT5</strong></span>
-              <a href="https://youtube.com/@siddz_edits?si=kMH48RSOixb8hWMn" target="_blank" onclick="event.stopPropagation()" class="px-2 py-0.5 rounded bg-white/10 hover:bg-slate-700 transition-colors">YT ↗</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- RANK #19 -->
-        <div class="mctiers-card p-4 rounded-xl cursor-pointer reveal" onclick="openProfile('Eliya', 'Lt2 Rank', 'N/A', '19.', '650', 'eliyx.png', 'https://www.youtube.com/@Eliyx_Edits', [
-          { name: 'Sync', badge: 'LT1', class: 'tier-lt1' },
-          { name: 'Effect', badge: 'LT3', class: 'tier-lt3' },
-          { name: 'Motion', badge: 'LT3', class: 'tier-lt3' },
-          { name: 'VQ', badge: 'LT4', class: 'tier-lt4' },
-          { name: 'Creativity', badge: 'LT1', class: 'tier-lt1' },
-          { name: 'Cleanliness', badge: 'LT3', class: 'tier-lt3' },
-          { name: 'Texts', badge: 'LT1', class: 'tier-lt1' },
-          { name: 'Transition', badge: 'LT2', class: 'tier-lt2' }
-        ])">
-          <div class="grid grid-cols-1 md:grid-cols-12 items-center gap-3">
-            <div class="md:col-span-1 text-center font-bold text-slate-400">19</div>
-            <div class="md:col-span-4 flex items-center gap-3">
-              <img src="eliyx.png" alt="Eliya" class="w-10 h-10 rounded-lg object-cover" />
-              <div>
-                <h3 class="font-bold text-white text-sm">Eliya</h3>
-                <p class="text-xs text-slate-400">650 pts</p>
-              </div>
-            </div>
-            <div class="md:col-span-2 text-left md:text-center text-xs text-slate-300">N/A</div>
-            <div class="md:col-span-5 flex items-center justify-end gap-3 text-xs">
-              <span>Sync: <strong class="tier-lt1">LT1</strong></span>
-              <span>Effect: <strong class="tier-lt3">LT3</strong></span>
-              <span>Motion: <strong class="tier-lt3">LT3</strong></span>
-              <span>VQ: <strong class="tier-lt4">LT4</strong></span>
-              <a href="https://www.youtube.com/@Eliyx_Edits" target="_blank" onclick="event.stopPropagation()" class="px-2 py-0.5 rounded bg-white/10 hover:bg-slate-700 transition-colors">YT ↗</a>
-            </div>
-          </div>
-        </div>
-
+        <!-- Populated automatically via JS sorted by points -->
       </div>
     </section>
 
@@ -874,7 +336,7 @@
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
         <div class="mctiers-card p-5 rounded-xl reveal">
-          <div class="tier-ht1 text-sm mb-2">HT1 / LT1</div>
+          <div class="tier-badge tier-ht1 text-sm mb-2">HT1 / LT1</div>
           <h3 class="text-lg font-bold text-white mb-1">Tier 1</h3>
           <p class="text-xs text-slate-400 leading-relaxed">
             Highest tier. Requires frame-perfect sync, immaculate effects, and pristine visual fidelity.
@@ -882,7 +344,7 @@
         </div>
 
         <div class="mctiers-card p-5 rounded-xl reveal">
-          <div class="tier-ht2 text-sm mb-2">HT2 / LT2</div>
+          <div class="tier-badge tier-ht2 text-sm mb-2">HT2 / LT2</div>
           <h3 class="text-lg font-bold text-white mb-1">Tier 2</h3>
           <p class="text-xs text-slate-400 leading-relaxed">
             High tier. Strong velocity, smooth transitions, and solid overall composition.
@@ -890,7 +352,7 @@
         </div>
 
         <div class="mctiers-card p-5 rounded-xl reveal">
-          <div class="tier-ht3 text-sm mb-2">HT3 / LT3</div>
+          <div class="tier-badge tier-ht3 text-sm mb-2">HT3 / LT3</div>
           <h3 class="text-lg font-bold text-white mb-1">Tier 3</h3>
           <p class="text-xs text-slate-400 leading-relaxed">
             Competitive tier. Demonstrates proper keyframing, clean flow, and good beat alignment.
@@ -908,7 +370,7 @@
             Submit your edits for evaluation, download raw footage, and participate in tournaments.
           </p>
         </div>
-        <a href="https://dc.gg/editorsempire" target="_blank" class="px-6 py-3 rounded-xl text-xs font-bold text-white bg-slate-800 border border-slate-600 hover:bg-slate-700 transition-all whitespace-nowrap">
+        <a href="https://dc.gg/editorsempire" target="_blank" rel="noopener noreferrer" class="px-6 py-3 rounded-xl text-xs font-bold text-white bg-slate-800 border border-slate-600 hover:bg-slate-700 transition-all whitespace-nowrap">
           Join Discord
         </a>
       </div>
@@ -917,7 +379,7 @@
     <!-- FOOTER -->
     <footer id="newsroom" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400 reveal">
       <div class="flex items-center gap-3">
-        <img src="standard.gif" alt="PhaseAE" class="w-8 h-8 rounded-full object-cover" />
+        <img src="standard.gif" onerror="this.src='https://placehold.co/32x32/1e293b/f8fafc?text=P'" alt="PhaseAE" class="w-8 h-8 rounded-full object-cover" />
         <span>Created by <strong>PhaseAE</strong></span>
       </div>
       <div>© EE Tiers</div>
@@ -928,26 +390,26 @@
   <!-- PROFILE MODAL POPUP -->
   <div class="modal-backdrop" id="profileModal" onclick="closeProfileOnBackdrop(event)">
     <div class="profile-modal text-center relative">
-      <button class="absolute top-4 right-4 text-slate-400 hover:text-white" onclick="closeProfile()">✕</button>
+      <button class="absolute top-4 right-4 text-slate-400 hover:text-white p-1" onclick="closeProfile()" aria-label="Close modal">✕</button>
 
-      <img id="modalAvatar" src="" alt="Avatar" class="w-16 h-16 rounded-xl object-cover mx-auto mb-3" />
-      <h2 id="modalName" class="text-xl font-bold font-display text-white">TW Cuberz</h2>
+      <img id="modalAvatar" src="" alt="Avatar" class="w-16 h-16 rounded-xl object-cover mx-auto mb-3 ring-2 ring-white/10" />
+      <h2 id="modalName" class="text-xl font-bold font-display text-white">Editor Name</h2>
 
-      <div class="inline-block bg-white/10 border border-white/15 text-slate-200 text-xs font-bold px-3 py-1 rounded-full my-2">
-        <span id="modalBadge">Ht1 Rank</span>
+      <div id="modalBadgeContainer" class="inline-block bg-white/10 border border-white/15 text-xs font-bold px-3 py-1 rounded-full my-2">
+        <span id="modalBadge">Rank</span>
       </div>
 
-      <div id="modalRegion" class="text-slate-400 text-xs mb-4">Pakistan</div>
+      <div id="modalRegion" class="text-slate-400 text-xs mb-4">Region</div>
 
-      <a id="modalEditLink" href="#" target="_blank" class="hidden text-xs bg-white/10 hover:bg-slate-700 text-white px-3 py-1.5 rounded-md inline-block mb-4 transition-colors">
-        Watch Edit ↗
+      <a id="modalEditLink" href="#" target="_blank" rel="noopener noreferrer" class="hidden text-xs bg-white/10 hover:bg-slate-700 text-white px-3 py-1.5 rounded-md inline-block mb-4 transition-colors">
+        Watch Channel ↗
       </a>
 
       <div class="text-left text-[10px] font-bold text-slate-400 tracking-wider mb-1 uppercase">POSITION</div>
       <div class="bg-black/60 border border-white/10 rounded-lg p-2.5 flex items-center justify-between mb-4 text-sm font-bold text-white">
         <span>OVERALL</span>
-        <span id="modalRank" class="text-amber-400">1.</span>
-        <span id="modalPoints" class="text-slate-400 text-xs">(4800 points)</span>
+        <span id="modalRank" class="font-display">1.</span>
+        <span id="modalPoints" class="text-slate-400 text-xs">(0 pts)</span>
       </div>
 
       <div class="text-left text-[10px] font-bold text-slate-400 tracking-wider mb-1 uppercase">CATEGORY TIERS</div>
@@ -956,35 +418,570 @@
     </div>
   </div>
 
-  <!-- INTERACTIVITY & SCROLL REVEAL SCRIPT -->
+  <!-- ==========================================================================
+       VARIABLE-DRIVEN RANKING ENGINE & DATA CONFIGURATION
+       ========================================================================== -->
   <script>
-    // Modal Functions
-    function openProfile(name, badge, region, rank, points, avatarSrc, editUrl, tiers, customGradClass) {
+    /**
+     * 1. TIER & RANK CONFIGURATION VARIABLES
+     * Maps tier labels to CSS classes, numeric weights (for category sorting), and colors.
+     */
+    const TIER_CONFIG = {
+      'HT1+': { class: 'tier-ht1', colorVar: 'var(--color-ht1)', weight: 100 },
+      'HT1':  { class: 'tier-ht1', colorVar: 'var(--color-ht1)', weight: 90 },
+      'HT2':  { class: 'tier-ht2', colorVar: 'var(--color-ht2)', weight: 80 },
+      'HT3':  { class: 'tier-ht3', colorVar: 'var(--color-ht3)', weight: 70 },
+      'HT4':  { class: 'tier-ht4', colorVar: 'var(--color-ht4)', weight: 60 },
+      'HT5':  { class: 'tier-ht5', colorVar: 'var(--color-ht5)', weight: 55 },
+      'LT1':  { class: 'tier-lt1', colorVar: 'var(--color-lt1)', weight: 50 },
+      'LT2':  { class: 'tier-lt2', colorVar: 'var(--color-lt2)', weight: 40 },
+      'LT3':  { class: 'tier-lt3', colorVar: 'var(--color-lt3)', weight: 30 },
+      'LT4':  { class: 'tier-lt4', colorVar: 'var(--color-lt4)', weight: 20 },
+      'LT5':  { class: 'tier-lt5', colorVar: 'var(--color-lt5)', weight: 10 }
+    };
+
+    /**
+     * Derives Rank Position styling (accent border color & rank number color) dynamically.
+     * Can be overridden per editor via `accentColor` if desired.
+     */
+    function getRankPositionStyle(rank, customAccent) {
+      if (rank === 1) {
+        return {
+          color: customAccent || 'var(--rank-1-color)',
+          borderColor: customAccent || 'var(--rank-1-color)'
+        };
+      }
+      if (rank === 2) {
+        return {
+          color: customAccent || 'var(--rank-2-color)',
+          borderColor: customAccent || 'var(--rank-2-color)'
+        };
+      }
+      if (rank === 3) {
+        return {
+          color: customAccent || 'var(--rank-3-color)',
+          borderColor: customAccent || 'var(--rank-3-color)'
+        };
+      }
+      if (rank <= 8) {
+        return {
+          color: customAccent || 'var(--rank-top-color)',
+          borderColor: customAccent || 'var(--rank-top-color)'
+        };
+      }
+      return {
+        color: customAccent || 'var(--rank-default-color)',
+        borderColor: customAccent || 'transparent'
+      };
+    }
+
+    /**
+     * Automatically derives the overall rank title & tier badge style from points or explicit overallTier.
+     */
+    function getOverallTierInfo(editor) {
+      let tierCode = editor.overallTier;
+      if (!tierCode) {
+        if (editor.points >= 5000) tierCode = 'HT1+';
+        else if (editor.points >= 4300) tierCode = 'HT1';
+        else if (editor.points >= 3400) tierCode = 'HT2';
+        else if (editor.points >= 2300) tierCode = 'HT3';
+        else if (editor.points >= 1200) tierCode = 'LT1';
+        else if (editor.points >= 1000) tierCode = 'LT2';
+        else tierCode = 'LT3';
+      }
+      const config = TIER_CONFIG[tierCode.toUpperCase()] || TIER_CONFIG['LT5'];
+      // Format display badge nicely (e.g., "HT1+ Rank", "HT2 Rank")
+      return {
+        code: tierCode,
+        label: `${tierCode} Rank`,
+        class: config.class,
+        colorVar: config.colorVar
+      };
+    }
+
+    /**
+     * 2. CATEGORY DEFINITIONS
+     */
+    const CATEGORIES = [
+      { id: 'overall', label: 'Overall' },
+      { id: 'sync', label: 'Sync' },
+      { id: 'effect', label: 'Effect' },
+      { id: 'motion', label: 'Motion' },
+      { id: 'vq', label: 'Visual Quality' },
+      { id: 'creativity', label: 'Creativity' },
+      { id: 'cleanliness', label: 'Cleanliness' },
+      { id: 'texts', label: 'Texts' },
+      { id: 'transition', label: 'Transition' }
+    ];
+
+    /**
+     * 3. CENTRALIZED EDITORS DATA ARRAY
+     * Simply edit points, tiers, or add new editors here — sorting, rank numbers,
+     * hero card, stats, and colors all update automatically!
+     */
+    const editorsData = [
+      {
+        name: 'Gireen',
+        points: 5000,
+        overallTier: 'HT1+',
+        region: 'India',
+        avatar: 'gireen.jpg',
+        url: 'https://youtube.com/@notgireen',
+        urlLabel: 'YT',
+        nameGrad: 'grad-gireen',
+        accentColor: '#a3e635',
+        tiers: { sync: 'HT1+', effect: 'HT1+', motion: 'HT1+', vq: 'HT1+', creativity: 'HT1+' }
+      },
+      {
+        name: 'Denial',
+        points: 4950,
+        overallTier: 'HT1',
+        region: 'Unknown',
+        avatar: 'denial.jpg',
+        url: 'https://www.youtube.com/@In_Denial_',
+        urlLabel: 'YT',
+        nameGrad: 'grad-denial',
+        accentColor: '#ef4444',
+        tiers: { sync: 'HT1+', effect: 'HT1+', motion: 'HT1', vq: 'HT1+', creativity: 'HT1' }
+      },
+      {
+        name: 'Carrot',
+        points: 4900,
+        overallTier: 'HT1',
+        region: 'Unknown',
+        avatar: 'carrot.jpeg',
+        url: 'https://tiktok.com/@carrotz.ae',
+        urlLabel: 'Tiktok',
+        nameGrad: 'grad-carrot',
+        accentColor: '#a3e635',
+        tiers: { sync: 'HT1+', effect: 'HT1', motion: 'HT1+', vq: 'HT1', creativity: 'HT1' }
+      },
+      {
+        name: 'TW Cuberz',
+        points: 4800,
+        overallTier: 'HT1',
+        region: 'Pakistan',
+        avatar: 'twcuber.png',
+        url: 'https://youtube.com/@twcuber',
+        urlLabel: 'YT',
+        nameGrad: 'grad-twcuber',
+        accentColor: '#4ade80',
+        tiers: { sync: 'HT1', effect: 'HT1', motion: 'HT1', vq: 'HT1', creativity: 'HT1' }
+      },
+      {
+        name: 'Jettstream',
+        points: 4800,
+        overallTier: 'HT1',
+        region: 'Europe',
+        avatar: 'jetstream.png',
+        url: 'https://youtube.com/@jettstream',
+        urlLabel: 'YT',
+        nameGrad: 'grad-jettstream',
+        accentColor: '#fb923c',
+        tiers: { sync: 'HT1', effect: 'HT1', motion: 'HT1', vq: 'HT1', creativity: 'HT1' }
+      },
+      {
+        name: 'Syncraft',
+        points: 4300,
+        overallTier: 'HT1',
+        region: 'Nepal',
+        avatar: 'sync.png',
+        url: 'https://youtube.com/@syncraft',
+        urlLabel: 'YT',
+        nameGrad: 'grad-syncraft',
+        accentColor: '#cbd5e1',
+        tiers: { sync: 'HT1', effect: 'HT1', motion: 'HT1', vq: 'HT1', creativity: 'HT2' }
+      },
+      {
+        name: 'Flayxor',
+        points: 4200,
+        overallTier: 'HT2',
+        region: 'India',
+        avatar: 'flayxor.webp',
+        url: 'https://youtube.com/@flayxor',
+        urlLabel: 'YT',
+        nameGrad: 'grad-flayxor',
+        accentColor: '#d97706',
+        tiers: { sync: 'HT1', effect: 'HT1', motion: 'HT2', vq: 'HT2' }
+      },
+      {
+        name: 'Maceility',
+        points: 4100,
+        overallTier: 'HT2',
+        region: 'USA',
+        avatar: 'macelity.png',
+        url: 'https://youtube.com/@maceility',
+        urlLabel: 'YT',
+        nameGrad: 'grad-macelity',
+        accentColor: '#eab308',
+        tiers: { sync: 'HT3', effect: 'HT1', motion: 'HT1', vq: 'HT1' }
+      },
+      {
+        name: 'Azur Mc',
+        points: 4100,
+        overallTier: 'HT2',
+        region: 'N/A',
+        avatar: 'azur.png',
+        url: 'https://youtube.com/@azur_mc',
+        urlLabel: 'YT',
+        tiers: { sync: 'HT2', effect: 'HT1', motion: 'HT2', vq: 'HT1' }
+      },
+      {
+        name: 'Voidishere',
+        points: 3800,
+        overallTier: 'HT2',
+        region: 'USA',
+        avatar: 'voidishere.png',
+        url: 'https://youtube.com/@voidishere7',
+        urlLabel: 'YT',
+        tiers: { sync: 'HT1', effect: 'HT1', motion: 'HT2', vq: 'HT1' }
+      },
+      {
+        name: 'Inferno',
+        points: 3700,
+        overallTier: 'HT2',
+        region: 'Vietnam',
+        avatar: 'inferno.png',
+        url: 'https://youtube.com/@infernoeditz_am',
+        urlLabel: 'YT',
+        tiers: { sync: 'HT2', effect: 'HT1', motion: 'HT2', vq: 'HT2' }
+      },
+      {
+        name: 'Static',
+        points: 3400,
+        overallTier: 'HT3',
+        region: 'India',
+        avatar: 'static.png',
+        url: 'https://youtube.com/@notstaticyt',
+        urlLabel: 'YT',
+        tiers: { sync: 'HT2', effect: 'HT2', motion: 'HT3', vq: 'HT2' }
+      },
+      {
+        name: 'Ahmad',
+        points: 3400,
+        overallTier: 'HT2',
+        region: 'Pakistan',
+        avatar: 'ahmad.png',
+        url: '',
+        tiers: { sync: 'HT1', effect: 'HT2', motion: 'HT2', vq: 'HT3' }
+      },
+      {
+        name: '1to7 ae',
+        points: 2300,
+        overallTier: 'HT2',
+        region: 'N/A',
+        avatar: '1to7.png',
+        url: '',
+        tiers: { sync: 'HT1', effect: 'HT2', motion: 'HT2', vq: 'HT2', creativity: 'HT3', cleanliness: 'HT1', texts: 'HT1', transition: 'HT2' }
+      },
+      {
+        name: 'Levander',
+        points: 2800,
+        overallTier: 'HT3',
+        region: 'Pakistan',
+        avatar: 'levander.jpg',
+        url: 'https://youtube.com/@levanderop',
+        urlLabel: 'YT',
+        tiers: { sync: 'HT2', effect: 'HT3', motion: 'HT3', vq: 'HT2' }
+      },
+      {
+        name: 'Max',
+        points: 2700,
+        overallTier: 'HT3',
+        region: 'India',
+        avatar: 'maxedit.jpg',
+        url: 'https://youtube.com/@maxeditz-999',
+        urlLabel: 'YT',
+        tiers: { sync: 'HT3', effect: 'HT3', motion: 'HT4', vq: 'HT2' }
+      },
+      {
+        name: 'flycorpio',
+        points: 1200,
+        overallTier: 'LT1',
+        region: 'N/A',
+        avatar: 'fly.png',
+        url: 'https://youtube.com/@flycorpio7?si=FfRIvYhcYeY1IjNZ',
+        urlLabel: 'YT',
+        tiers: { sync: 'LT1', effect: 'LT1', motion: 'LT3', vq: 'LT3', creativity: 'LT5', cleanliness: 'LT3', texts: 'LT3', transition: 'LT3' }
+      },
+      {
+        name: 'Sidharth',
+        points: 1050,
+        overallTier: 'LT4',
+        region: 'N/A',
+        avatar: 'siddz.jpg',
+        url: 'https://youtube.com/@siddz_edits?si=kMH48RSOixb8hWMn',
+        urlLabel: 'YT',
+        tiers: { sync: 'LT3', effect: 'LT5', motion: 'LT5', vq: 'LT5', creativity: 'LT1', cleanliness: 'LT4', texts: 'LT3', transition: 'LT4' }
+      },
+      {
+        name: 'Eliya',
+        points: 650,
+        overallTier: 'LT2',
+        region: 'N/A',
+        avatar: 'eliyx.png',
+        url: 'https://www.youtube.com/@Eliyx_Edits',
+        urlLabel: 'YT',
+        tiers: { sync: 'LT1', effect: 'LT3', motion: 'LT3', vq: 'LT4', creativity: 'LT1', cleanliness: 'LT3', texts: 'LT1', transition: 'LT2' }
+      }
+    ];
+
+    // Application State
+    let activeCategory = 'overall';
+    let searchQuery = '';
+
+    // Helper: Get tier badge HTML with automatic CSS variable styling
+    function renderTierBadge(tierCode) {
+      if (!tierCode) return `<span class="text-slate-600 font-semibold">—</span>`;
+      const cfg = TIER_CONFIG[tierCode.toUpperCase()] || { class: 'tier-lt5' };
+      return `<strong class="tier-badge ${cfg.class}">${tierCode}</strong>`;
+    }
+
+    // Helper: Format category key to readable display name
+    function formatCategoryName(key) {
+      const map = {
+        sync: 'Sync',
+        effect: 'Effect',
+        motion: 'Motion',
+        vq: 'VQ',
+        creativity: 'Creativity',
+        cleanliness: 'Cleanliness',
+        texts: 'Texts',
+        transition: 'Transition'
+      };
+      return map[key] || key.charAt(0).toUpperCase() + key.slice(1);
+    }
+
+    // Compute auto-sorted editors list (highest points first, preserving original order on ties)
+    function getSortedEditors() {
+      return editorsData
+        .map((editor, idx) => ({ ...editor, _originalIdx: idx }))
+        .sort((a, b) => {
+          if (b.points !== a.points) return b.points - a.points;
+          return a._originalIdx - b._originalIdx;
+        })
+        .map((editor, index) => ({
+          ...editor,
+          rank: index + 1
+        }));
+    }
+
+    // Render Hero Stats & #1 Ranked Card automatically
+    function renderHeroAndStats(sortedEditors) {
+      if (!sortedEditors.length) return;
+      const topEditor = sortedEditors[0];
+      const topOverall = getOverallTierInfo(topEditor);
+      const topStyle = getRankPositionStyle(1, topEditor.accentColor);
+
+      // Update Hero Metrics
+      document.getElementById('stat-top-tier').innerText = topOverall.code;
+      document.getElementById('stat-top-tier').className = `tier-badge ${topOverall.class} text-xl`;
+      document.getElementById('stat-peak-points').innerText = topEditor.points;
+      document.getElementById('stat-ranked-count').innerText = sortedEditors.length;
+
+      // Render Top 5 Tier Pills for Hero Card
+      const previewKeys = ['sync', 'effect', 'motion', 'vq', 'creativity'];
+      const previewHtml = previewKeys.map(key => {
+        const val = topEditor.tiers[key] || '—';
+        return `
+          <div class="text-center">
+            <span class="block text-[10px] text-slate-400">${formatCategoryName(key)}</span>
+            ${renderTierBadge(val)}
+          </div>
+        `;
+      }).join('');
+
+      const heroContainer = document.getElementById('hero-rank1-container');
+      heroContainer.innerHTML = `
+        <div class="mctiers-card p-6 rounded-2xl cursor-pointer" style="border-color: ${topStyle.borderColor}4D;" onclick="openProfileByName('${topEditor.name.replace(/'/g, "\\'")}')">
+          <div class="flex items-center justify-between mb-4">
+            <span class="text-xs uppercase tracking-wider text-slate-400">Ranked #1</span>
+            <span class="text-xs font-bold" style="color: ${topStyle.color};">👑 #1 Overall</span>
+          </div>
+
+          <div class="flex items-center gap-4 my-2">
+            <img src="${topEditor.avatar}" onerror="this.src='https://placehold.co/64x64/1e293b/f8fafc?text=${encodeURIComponent(topEditor.name[0])}'" alt="${topEditor.name}" class="w-16 h-16 rounded-xl object-cover" style="box-shadow: 0 0 0 2px ${topStyle.color}99;" />
+            <div>
+              <h2 class="text-2xl font-bold font-display ${topEditor.nameGrad || 'text-white'}">${topEditor.name}</h2>
+              <p class="text-xs text-slate-400 mt-0.5">${topEditor.points} Points • ${topEditor.region}</p>
+            </div>
+          </div>
+
+          <div class="bg-black/60 p-3 rounded-xl border border-white/5 my-4 flex justify-between text-xs">
+            ${previewHtml}
+          </div>
+
+          <div class="w-full py-2.5 bg-slate-800 hover:bg-slate-700 border border-slate-600 text-white font-bold text-xs rounded-lg text-center transition-colors">
+            View Profile
+          </div>
+        </div>
+      `;
+    }
+
+    // Render Category Tabs
+    function renderCategoryTabs() {
+      const container = document.getElementById('category-tabs');
+      container.innerHTML = CATEGORIES.map(cat => {
+        const isActive = activeCategory === cat.id;
+        return `
+          <button 
+            onclick="filterCategory('${cat.id}')" 
+            id="cat-${cat.id}" 
+            class="cat-btn ${isActive ? 'active' : 'text-slate-400 hover:text-slate-200'} px-3.5 py-1.5 rounded-lg text-xs font-bold border border-white/10"
+          >
+            ${cat.label}
+          </button>
+        `;
+      }).join('');
+    }
+
+    // Render Main Leaderboard List
+    function renderRankingsList() {
+      const sortedEditors = getSortedEditors();
+      renderHeroAndStats(sortedEditors);
+
+      // Filter by search query
+      let displayList = sortedEditors.filter(ed => {
+        if (!searchQuery) return true;
+        const q = searchQuery.toLowerCase();
+        return ed.name.toLowerCase().includes(q) || ed.region.toLowerCase().includes(q);
+      });
+
+      // If a specific category tab is selected, sort by that category's tier weight first, then points
+      if (activeCategory !== 'overall') {
+        displayList = [...displayList].sort((a, b) => {
+          const tierA = a.tiers[activeCategory] ? (TIER_CONFIG[a.tiers[activeCategory].toUpperCase()]?.weight || 0) : -1;
+          const tierB = b.tiers[activeCategory] ? (TIER_CONFIG[b.tiers[activeCategory].toUpperCase()]?.weight || 0) : -1;
+          if (tierB !== tierA) return tierB - tierA;
+          return b.points - a.points;
+        });
+      }
+
+      const listEl = document.getElementById('rankings-list');
+      const headerEl = document.getElementById('table-tiers-header');
+      headerEl.innerText = activeCategory === 'overall' ? 'Tiers' : `${formatCategoryName(activeCategory)} Rating & Breakdown`;
+
+      if (displayList.length === 0) {
+        listEl.innerHTML = `
+          <div class="mctiers-card p-8 rounded-xl text-center text-sm text-slate-400">
+            No editors found matching "<span class="text-white font-semibold">${searchQuery}</span>".
+          </div>
+        `;
+        return;
+      }
+
+      listEl.innerHTML = displayList.map((editor, idx) => {
+        // Use overall rank when on Overall tab, or category rank when filtering by category
+        const displayRank = activeCategory === 'overall' ? editor.rank : idx + 1;
+        const rankStyle = getRankPositionStyle(displayRank, activeCategory === 'overall' ? editor.accentColor : null);
+        const hasAccent = rankStyle.borderColor && rankStyle.borderColor !== 'transparent';
+
+        // Determine which tier pills to display on the row
+        let rowTiersHtml = '';
+        if (activeCategory === 'overall') {
+          const defaultKeys = ['sync', 'effect', 'motion', 'vq'];
+          rowTiersHtml = defaultKeys.map(k => `
+            <span>${formatCategoryName(k)}: ${renderTierBadge(editor.tiers[k])}</span>
+          `).join('');
+        } else {
+          // Highlight the selected category prominently alongside core stats
+          const selectedVal = editor.tiers[activeCategory];
+          const otherKeys = ['sync', 'effect', 'motion', 'vq'].filter(k => k !== activeCategory).slice(0, 3);
+          rowTiersHtml = `
+            <span class="px-2 py-0.5 rounded bg-white/10 border border-white/15">
+              ${formatCategoryName(activeCategory)}: ${renderTierBadge(selectedVal)}
+            </span>
+            ${otherKeys.map(k => `<span class="hidden sm:inline">${formatCategoryName(k)}: ${renderTierBadge(editor.tiers[k])}</span>`).join('')}
+          `;
+        }
+
+        const linkHtml = editor.url ? `
+          <a href="${editor.url}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()" class="px-2 py-0.5 rounded bg-white/10 hover:bg-slate-700 transition-colors">
+            ${editor.urlLabel || 'YT'} ↗
+          </a>
+        ` : '';
+
+        return `
+          <div 
+            class="mctiers-card ${hasAccent ? 'rank-card-accent' : ''} p-4 rounded-xl cursor-pointer" 
+            style="${hasAccent ? `--accent-color: ${rankStyle.borderColor};` : ''}"
+            onclick="openProfileByName('${editor.name.replace(/'/g, "\\'")}')"
+          >
+            <div class="grid grid-cols-1 md:grid-cols-12 items-center gap-3">
+              <div class="md:col-span-1 flex items-center md:justify-center gap-2">
+                <span class="font-bold font-display text-sm" style="color: ${rankStyle.color};">${displayRank}</span>
+                ${activeCategory !== 'overall' ? `<span class="text-[10px] text-slate-500">(#${editor.rank})</span>` : ''}
+              </div>
+              <div class="md:col-span-4 flex items-center gap-3">
+                <img 
+                  src="${editor.avatar}" 
+                  onerror="this.src='https://placehold.co/40x40/1e293b/f8fafc?text=${encodeURIComponent(editor.name[0])}'" 
+                  alt="${editor.name}" 
+                  class="w-10 h-10 rounded-lg object-cover bg-slate-900" 
+                />
+                <div>
+                  <h3 class="font-bold text-sm ${editor.nameGrad || 'text-white'}">${editor.name}</h3>
+                  <p class="text-xs text-slate-400">${editor.points} pts</p>
+                </div>
+              </div>
+              <div class="md:col-span-2 text-left md:text-center text-xs text-slate-300">${editor.region}</div>
+              <div class="md:col-span-5 flex flex-wrap items-center justify-start md:justify-end gap-3 text-xs">
+                ${rowTiersHtml}
+                ${linkHtml}
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    // Open Profile Modal using the auto-computed Editor Object
+    function openProfileByName(editorName) {
+      const sortedEditors = getSortedEditors();
+      const editor = sortedEditors.find(e => e.name === editorName);
+      if (!editor) return;
+
+      const overallInfo = getOverallTierInfo(editor);
+      const rankStyle = getRankPositionStyle(editor.rank, editor.accentColor);
+
       const nameEl = document.getElementById('modalName');
-      nameEl.innerText = name;
-      nameEl.className = 'text-xl font-bold font-display ' + (customGradClass || 'text-white');
-      
-      document.getElementById('modalBadge').innerText = badge;
-      document.getElementById('modalRegion').innerText = region;
-      document.getElementById('modalRank').innerText = rank;
-      document.getElementById('modalPoints').innerText = `(${points} pts)`;
-      document.getElementById('modalAvatar').src = avatarSrc;
+      nameEl.innerText = editor.name;
+      nameEl.className = 'text-xl font-bold font-display ' + (editor.nameGrad || 'text-white');
+
+      const badgeEl = document.getElementById('modalBadge');
+      badgeEl.innerText = overallInfo.label;
+      badgeEl.className = `tier-badge ${overallInfo.class}`;
+
+      document.getElementById('modalRegion').innerText = editor.region;
+
+      const modalRankEl = document.getElementById('modalRank');
+      modalRankEl.innerText = `#${editor.rank}`;
+      modalRankEl.style.color = rankStyle.color;
+
+      document.getElementById('modalPoints').innerText = `(${editor.points} pts)`;
+
+      const avatarEl = document.getElementById('modalAvatar');
+      avatarEl.src = editor.avatar;
+      avatarEl.onerror = function() {
+        this.src = `https://placehold.co/64x64/1e293b/f8fafc?text=${encodeURIComponent(editor.name[0])}`;
+      };
 
       const linkBtn = document.getElementById('modalEditLink');
-      if (editUrl) {
-        linkBtn.href = editUrl;
+      if (editor.url) {
+        linkBtn.href = editor.url;
+        linkBtn.innerText = `Visit ${editor.urlLabel || 'Channel'} ↗`;
         linkBtn.classList.remove('hidden');
       } else {
         linkBtn.classList.add('hidden');
       }
 
+      // Render all recorded category tiers for this editor
       const tiersBox = document.getElementById('modalTiers');
-      tiersBox.innerHTML = '';
-      tiers.forEach(t => {
-        const badgeSpan = document.createElement('span');
-        badgeSpan.innerHTML = `${t.name}: <strong class="${t.class}">${t.badge}</strong>`;
-        tiersBox.appendChild(badgeSpan);
-      });
+      tiersBox.innerHTML = Object.entries(editor.tiers).map(([key, badge]) => `
+        <span class="px-2 py-1 rounded bg-white/5 border border-white/5">
+          ${formatCategoryName(key)}: ${renderTierBadge(badge)}
+        </span>
+      `).join('');
 
       document.getElementById('profileModal').classList.add('active');
     }
@@ -1000,31 +997,38 @@
     }
 
     function filterCategory(cat) {
-      document.querySelectorAll('.cat-btn').forEach(btn => {
-        btn.classList.remove('active');
-        btn.classList.add('text-slate-400');
-      });
-
-      const activeBtn = document.getElementById(`cat-${cat}`);
-      if (activeBtn) {
-        activeBtn.classList.add('active');
-        activeBtn.classList.remove('text-slate-400');
-      }
+      activeCategory = cat;
+      renderCategoryTabs();
+      renderRankingsList();
     }
 
-    // Scroll Reveal Observer
-    const revealObserver = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('active');
-        }
+    function handleSearch(val) {
+      searchQuery = val.trim();
+      renderRankingsList();
+    }
+
+    // Initialize Page
+    document.addEventListener('DOMContentLoaded', () => {
+      renderCategoryTabs();
+      renderRankingsList();
+
+      // Scroll Reveal Observer
+      const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+          }
+        });
+      }, { threshold: 0.1 });
+
+      document.querySelectorAll('.reveal').forEach((element) => {
+        revealObserver.observe(element);
       });
-    }, {
-      threshold: 0.1
     });
 
-    document.querySelectorAll('.reveal').forEach((element) => {
-      revealObserver.observe(element);
+    // Close modal with Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeProfile();
     });
   </script>
 
