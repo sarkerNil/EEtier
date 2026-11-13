@@ -31,81 +31,47 @@
   </script>
 
   <style>
-    :root,
-    body.ee {
-      --bg-gradient: linear-gradient(135deg, #050507 0%, #190b23 50%, #030304 100%);
-      --header-gradient: linear-gradient(135deg, #e2e8f0 0%, #7c3aed 100%);
-      --theme-accent: #a855f7;
-      --theme-accent-soft: rgba(168, 85, 247, 0.16);
-      --theme-border-glow: rgba(168, 85, 247, 0.35);
-    }
-
-    body.royal {
-      --bg-gradient: linear-gradient(135deg, #070604 0%, #261b05 50%, #050402 100%);
-      --header-gradient: linear-gradient(135deg, #fef08a 0%, #eab308 55%, #b45309 100%);
-      --theme-accent: #eab308;
-      --theme-accent-soft: rgba(234, 179, 8, 0.16);
-      --theme-border-glow: rgba(234, 179, 8, 0.4);
-    }
-
-    body.crimson {
-      --bg-gradient: linear-gradient(135deg, #070405 0%, #26080d 50%, #050203 100%);
-      --header-gradient: linear-gradient(135deg, #fecaca 0%, #ef4444 60%, #991b1b 100%);
-      --theme-accent: #ef4444;
-      --theme-accent-soft: rgba(239, 68, 68, 0.16);
-      --theme-border-glow: rgba(239, 68, 68, 0.4);
-    }
-
-    body.cyber {
-      --bg-gradient: linear-gradient(135deg, #03070a 0%, #071f2c 50%, #020508 100%);
-      --header-gradient: linear-gradient(135deg, #cffafe 0%, #06b6d4 60%, #0284c7 100%);
-      --theme-accent: #06b6d4;
-      --theme-accent-soft: rgba(6, 182, 212, 0.16);
-      --theme-border-glow: rgba(6, 182, 212, 0.4);
-    }
-
-    body.emerald {
-      --bg-gradient: linear-gradient(135deg, #030705 0%, #062417 50%, #020504 100%);
-      --header-gradient: linear-gradient(135deg, #d1fae5 0%, #10b981 60%, #047857 100%);
-      --theme-accent: #10b981;
-      --theme-accent-soft: rgba(16, 185, 129, 0.16);
-      --theme-border-glow: rgba(16, 185, 129, 0.4);
-    }
-
-    body.obsidian {
-      --bg-gradient: linear-gradient(135deg, #050505 0%, #161618 50%, #020202 100%);
-      --header-gradient: linear-gradient(135deg, #ffffff 0%, #94a3b8 100%);
-      --theme-accent: #e2e8f0;
-      --theme-accent-soft: rgba(226, 232, 240, 0.14);
-      --theme-border-glow: rgba(226, 232, 240, 0.35);
-    }
-
+    /* ==========================================================================
+       CSS CUSTOM PROPERTIES (DESIGN & TIER TOKENS)
+       ========================================================================== */
     :root {
+      --bg-gradient: linear-gradient(135deg, #050507 0%, #190b23 50%, #030304 100%);
       --card-bg: linear-gradient(145deg, rgba(18, 18, 22, 0.9) 0%, rgba(8, 8, 10, 0.95) 100%);
       --card-border: rgba(255, 255, 255, 0.08);
       --card-border-hover: rgba(255, 255, 255, 0.2);
 
+      /* Tier Color Tokens */
       --color-ht1: #ef4444;
       --glow-ht1: rgba(255, 70, 85, 0.8);
+
       --color-ht2: #eab308;
       --glow-ht2: rgba(234, 179, 8, 0.8);
+
       --color-ht3: #3b82f6;
       --glow-ht3: rgba(59, 130, 246, 0.8);
+
       --color-ht4: #06b6d4;
       --glow-ht4: rgba(6, 182, 212, 0.8);
+
       --color-ht5: #8b5cf6;
       --glow-ht5: rgba(139, 92, 246, 0.8);
+
       --color-lt1: #f97316;
       --glow-lt1: rgba(249, 115, 22, 0.8);
+
       --color-lt2: #a855f7;
       --glow-lt2: rgba(168, 85, 247, 0.8);
+
       --color-lt3: #10b981;
       --glow-lt3: rgba(16, 185, 129, 0.8);
+
       --color-lt4: #38bdf8;
       --glow-lt4: rgba(56, 189, 248, 0.8);
+
       --color-lt5: #64748b;
       --glow-lt5: rgba(100, 116, 139, 0.8);
 
+      /* Rank Accent Tokens */
       --rank-1-color: #a3e635;
       --rank-2-color: #ef4444;
       --rank-3-color: #f97316;
@@ -117,9 +83,9 @@
       background: var(--bg-gradient);
       background-attachment: fixed;
       color: #f1f5f9;
-      transition: background 0.35s ease;
     }
 
+    /* Black/Dark Gradient Cards */
     .mctiers-card {
       background: var(--card-bg);
       backdrop-filter: blur(12px);
@@ -132,33 +98,64 @@
       box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.7);
     }
 
+    /* Dynamic Rank Card Accent Border */
     .rank-card-accent {
       border-left-width: 4px;
       border-left-color: var(--accent-color, transparent);
     }
 
+    /* Custom Name Text Gradients */
     .grad-header {
-      background: var(--header-gradient);
+      background: linear-gradient(135deg, #e2e8f0 0%, #3a1753 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .grad-gireen {
+      background: linear-gradient(135deg, #3bc522 0%, #ffffff 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .grad-denial {
+      background: linear-gradient(135deg, #ef4444 0%, #ffffff 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .grad-carrot {
+      background: linear-gradient(135deg, rgb(200, 255, 0) 0%, #ffffff 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .grad-twcuber {
+      background: linear-gradient(135deg, #22c55e 0%, #ffffff 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .grad-jettstream {
+      background: linear-gradient(135deg, #d2b48c 0%, #c3a048 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .grad-syncraft {
+      background: linear-gradient(135deg, #ffffff 0%, #64748b 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .grad-flayxor {
+      background: linear-gradient(135deg, #ef4444 0%, #f97316 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .grad-macelity {
+      background: linear-gradient(135deg, #dbbd63 0%, #db7dac 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
 
-    .theme-pill {
-      background: var(--theme-accent-soft);
-      border-color: var(--theme-border-glow);
-      color: var(--theme-accent);
+    /* Variable-Driven Glow Typographic Tier Styles */
+    .tier-badge {
+      font-weight: 800;
+      font-family: 'Outfit', sans-serif;
     }
-
-    .grad-gireen { background: linear-gradient(135deg, #3bc522 0%, #ffffff 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-    .grad-denial { background: linear-gradient(135deg, #ef4444 0%, #ffffff 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-    .grad-carrot { background: linear-gradient(135deg, rgb(200, 255, 0) 0%, #ffffff 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-    .grad-twcuber { background: linear-gradient(135deg, #22c55e 0%, #ffffff 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-    .grad-jettstream { background: linear-gradient(135deg, #d2b48c 0%, #c3a048 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-    .grad-syncraft { background: linear-gradient(135deg, #ffffff 0%, #64748b 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-    .grad-flayxor { background: linear-gradient(135deg, #ef4444 0%, #f97316 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-    .grad-macelity { background: linear-gradient(135deg, #dbbd63 0%, #db7dac 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-
-    .tier-badge { font-weight: 800; font-family: 'Outfit', sans-serif; }
     .tier-ht1 { color: var(--color-ht1); filter: drop-shadow(0 0 8px var(--glow-ht1)); }
     .tier-ht2 { color: var(--color-ht2); filter: drop-shadow(0 0 8px var(--glow-ht2)); }
     .tier-ht3 { color: var(--color-ht3); filter: drop-shadow(0 0 8px var(--glow-ht3)); }
@@ -170,31 +167,18 @@
     .tier-lt4 { color: var(--color-lt4); filter: drop-shadow(0 0 8px var(--glow-lt4)); }
     .tier-lt5 { color: var(--color-lt5); filter: drop-shadow(0 0 8px var(--glow-lt5)); }
 
-    .cat-btn { transition: all 0.2s; background: rgba(255, 255, 255, 0.04); }
-    .cat-btn.active { background: var(--theme-accent-soft); color: #ffffff; border-color: var(--theme-border-glow); }
-
-    .period-slider-track {
-      position: relative;
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      background: rgba(0, 0, 0, 0.55);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 12px;
-      padding: 4px;
+    /* Category Buttons */
+    .cat-btn {
+      transition: all 0.2s;
+      background: rgba(255, 255, 255, 0.04);
     }
-    .period-slider-thumb {
-      position: absolute;
-      top: 4px;
-      bottom: 4px;
-      left: 4px;
-      width: calc((100% - 8px) / 3);
-      border-radius: 8px;
-      background: var(--theme-accent-soft);
-      border: 1px solid var(--theme-border-glow);
-      transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
-      pointer-events: none;
+    .cat-btn.active {
+      background: #1e293b;
+      color: #ffffff;
+      border-color: rgba(255, 255, 255, 0.3);
     }
 
+    /* Modal Styling */
     .modal-backdrop {
       position: fixed;
       inset: 0;
@@ -209,7 +193,10 @@
       z-index: 1000;
       padding: 16px;
     }
-    .modal-backdrop.active { opacity: 1; pointer-events: auto; }
+    .modal-backdrop.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
     .profile-modal {
       background: linear-gradient(160deg, #121215 0%, #08080a 100%);
       border: 1px solid rgba(255, 255, 255, 0.12);
@@ -220,15 +207,21 @@
       transform: translateY(15px);
       transition: transform 0.2s ease;
     }
-    .modal-backdrop.active .profile-modal { transform: translateY(0); }
+    .modal-backdrop.active .profile-modal {
+      transform: translateY(0);
+    }
 
+    /* Scroll Reveal Animation Styling */
     .reveal {
       opacity: 0;
       transform: translateY(20px);
       transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
       will-change: opacity, transform;
     }
-    .reveal.active { opacity: 1; transform: translateY(0); }
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
 
     ::-webkit-scrollbar { width: 6px; height: 6px; }
     ::-webkit-scrollbar-track { background: #050507; }
@@ -236,171 +229,78 @@
     ::-webkit-scrollbar-thumb:hover { background: #475569; }
   </style>
 </head>
+<body class="selection:bg-slate-700 selection:text-white font-sans antialiased text-slate-100">
 
-<body class="ee selection:bg-slate-700 selection:text-white font-sans antialiased text-slate-100 overflow-x-hidden">
-
-  <header class="fixed top-0 left-0 right-0 z-50 border-b border-white/10 bg-[#050507]/85 backdrop-blur-md">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-2">
-      <a href="#home" class="flex items-center gap-2.5 shrink-0">
+  <!-- TOP HEADER -->
+  <header class="fixed top-0 left-0 right-0 z-50 border-b border-white/10 bg-[#050507]/90 backdrop-blur-md">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <a href="#home" class="flex items-center gap-3">
         <img src="EE.png" onerror="this.src='https://placehold.co/32x32/1e293b/f8fafc?text=EE'" alt="EE Logo" class="h-8 w-auto rounded" />
-        <span class="font-display font-black text-base sm:text-lg tracking-wide grad-header">EE Tiers</span>
+        <span class="font-display font-black text-lg tracking-wide grad-header">EE Tiers</span>
       </a>
       
       <nav class="hidden md:flex items-center gap-2">
         <a href="#home" class="px-3 py-1.5 text-xs font-semibold text-slate-300 hover:text-white transition-colors">Overview</a>
-        <a href="#featured-edits" class="px-3 py-1.5 text-xs font-semibold text-slate-300 hover:text-white transition-colors">Best Edits</a>
         <a href="#rankings" class="px-3 py-1.5 text-xs font-semibold text-slate-300 hover:text-white transition-colors">Rankings</a>
         <a href="#tierlist" class="px-3 py-1.5 text-xs font-semibold text-slate-300 hover:text-white transition-colors">Tier Breakdown</a>
         <a href="#seasons" class="px-3 py-1.5 text-xs font-semibold text-slate-300 hover:text-white transition-colors">Community</a>
       </nav>
 
-      <div class="flex items-center gap-2.5">
-        <!-- Theme Selector Slider Dropdown in Nav -->
-        <div class="relative">
-          <select id="nav-theme-select" onchange="changeThemeFromNav(this.value)" class="bg-black/60 border border-white/15 rounded-lg px-2.5 py-1.5 text-xs font-bold text-white focus:outline-none focus:border-white/40 cursor-pointer">
-            <option value="ee">🎨 EE Purple</option>
-            <option value="royal">👑 Royal Gold</option>
-            <option value="crimson">🩸 Crimson Red</option>
-            <option value="cyber">⚡ Cyber Cyan</option>
-            <option value="emerald">💎 Emerald Venom</option>
-            <option value="obsidian">🖤 Obsidian Silver</option>
-          </select>
-        </div>
-
-        <a href="https://dc.gg/editorsempire" target="_blank" rel="noopener noreferrer" class="hidden sm:inline-block px-4 py-1.5 rounded-lg text-xs font-bold text-white bg-slate-800 border border-slate-600 hover:bg-slate-700 transition-all">
-          Discord
-        </a>
-      </div>
+      <a href="https://dc.gg/editorsempire" target="_blank" rel="noopener noreferrer" class="px-4 py-2 rounded-lg text-xs font-bold text-white bg-slate-800 border border-slate-600 hover:bg-slate-700 transition-all">
+        Discord
+      </a>
     </div>
   </header>
 
-  <main class="relative z-10 pt-20 sm:pt-24">
+  <main class="relative z-10 pt-24">
 
-    <section id="home" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-10 reveal">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-center">
-        <div class="lg:col-span-7 space-y-3 sm:space-y-4">
-          <span class="inline-block px-3 py-1 rounded-md text-xs font-bold tracking-wide uppercase border theme-pill">
+    <!-- HERO SECTION -->
+    <section id="home" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 reveal">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        <div class="lg:col-span-7 space-y-4">
+          <span class="inline-block px-3 py-1 rounded-md bg-white/5 text-slate-300 text-xs font-bold tracking-wide uppercase border border-white/10">
             EE Tiers
           </span>
-          <h1 class="text-3xl sm:text-5xl font-extrabold font-display leading-tight">
+          <h1 class="text-4xl sm:text-5xl font-extrabold font-display leading-tight">
             <span class="grad-header">EE Tiers</span> Rankings
           </h1>
-          <p class="text-xs sm:text-base text-slate-400 max-w-xl">
+          <p class="text-sm sm:text-base text-slate-400 max-w-xl">
             Official leaderboard tracking Minecraft video editor tiers, evaluations, and overall competitive scores.
           </p>
 
-          <div class="grid grid-cols-3 gap-2.5 sm:gap-3 pt-2 sm:pt-4">
-            <div class="mctiers-card p-3 sm:p-4 rounded-xl">
-              <div id="stat-top-tier" class="tier-badge tier-ht1 text-lg sm:text-xl">HT1+</div>
-              <div class="text-[11px] sm:text-xs text-slate-400 mt-1">Top Tier</div>
+          <!-- Dynamic Stats Grid -->
+          <div class="grid grid-cols-3 gap-3 pt-4">
+            <div class="mctiers-card p-4 rounded-xl">
+              <div id="stat-top-tier" class="tier-badge tier-ht1 text-xl">HT1+</div>
+              <div class="text-xs text-slate-400 mt-1">Top Tier</div>
             </div>
-            <div class="mctiers-card p-3 sm:p-4 rounded-xl">
-              <div id="stat-peak-points" class="text-xl sm:text-2xl font-bold text-white font-display">0</div>
-              <div class="text-[11px] sm:text-xs text-slate-400 mt-1">Peak Points</div>
+            <div class="mctiers-card p-4 rounded-xl">
+              <div id="stat-peak-points" class="text-2xl font-bold text-white font-display">0</div>
+              <div class="text-xs text-slate-400 mt-1">Peak Points</div>
             </div>
-            <div class="mctiers-card p-3 sm:p-4 rounded-xl">
-              <div id="stat-ranked-count" class="text-xl sm:text-2xl font-bold text-white font-display">0</div>
-              <div class="text-[11px] sm:text-xs text-slate-400 mt-1">Ranked Editors</div>
+            <div class="mctiers-card p-4 rounded-xl">
+              <div id="stat-ranked-count" class="text-2xl font-bold text-white font-display">0</div>
+              <div class="text-xs text-slate-400 mt-1">Ranked Editors</div>
             </div>
           </div>
         </div>
 
-        <div id="hero-rank1-container" class="lg:col-span-5 reveal"></div>
-      </div>
-    </section>
-
-    <section id="featured-edits" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 reveal">
-      <div class="mctiers-card p-4 sm:p-7 rounded-2xl border border-white/10">
-        
-        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-5 mb-5 border-b border-white/10">
-          <div>
-            <div class="flex items-center gap-2 mb-1">
-              <span class="inline-block w-2 h-2 rounded-full animate-pulse" style="background: var(--theme-accent);"></span>
-              <span class="text-[10px] sm:text-[11px] font-bold uppercase tracking-widest text-slate-400">Featured Showcase</span>
-            </div>
-            <h2 id="featured-section-title" class="text-xl sm:text-3xl font-extrabold font-display grad-header">
-              Today's Best Edit
-            </h2>
-          </div>
-
-          <div class="period-slider-track w-full md:w-auto md:min-w-[310px]" role="tablist" aria-label="Best Edit Period">
-            <div id="period-slider-thumb" class="period-slider-thumb"></div>
-            <button
-              type="button"
-              onclick="switchEditPeriod('daily', 0)"
-              id="tab-daily"
-              class="relative z-10 px-2 sm:px-3 py-2 text-[11px] sm:text-xs font-bold text-white transition-colors text-center truncate"
-            >
-              Today's Best
-            </button>
-            <button
-              type="button"
-              onclick="switchEditPeriod('weekly', 1)"
-              id="tab-weekly"
-              class="relative z-10 px-2 sm:px-3 py-2 text-[11px] sm:text-xs font-bold text-slate-400 hover:text-white transition-colors text-center truncate"
-            >
-              This Week's
-            </button>
-            <button
-              type="button"
-              onclick="switchEditPeriod('monthly', 2)"
-              id="tab-monthly"
-              class="relative z-10 px-2 sm:px-3 py-2 text-[11px] sm:text-xs font-bold text-slate-400 hover:text-white transition-colors text-center truncate"
-            >
-              This Month's
-            </button>
-          </div>
-        </div>
-
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-6 items-stretch">
-          
-          <div id="featured-podium-list" class="lg:col-span-6 flex flex-col justify-between gap-3 order-1"></div>
-
-          <div class="lg:col-span-6 flex flex-col order-2">
-            <div class="relative rounded-xl overflow-hidden bg-black border border-white/10 flex-1 flex flex-col justify-between">
-              <div class="relative w-full aspect-video bg-black overflow-hidden">
-                <video
-                  id="featured-video-player"
-                  src="x.mp4"
-                  poster="EE.png"
-                  controls
-                  autoplay
-                  muted
-                  loop
-                  playsinline
-                  preload="auto"
-                  class="w-full h-full object-cover"
-                ></video>
-
-                <div id="unmute-overlay" class="absolute inset-0 bg-black/40 backdrop-blur-[2px] flex items-center justify-center cursor-pointer transition-opacity z-20">
-                  <div class="px-4 py-2 rounded-xl bg-black/80 border border-white/20 text-xs font-bold text-white shadow-2xl flex items-center gap-2 animate-bounce">
-                    <span>🔊 Click anywhere to Unmute</span>
-                  </div>
-                </div>
-              </div>
-
-              <div class="bg-black/90 backdrop-blur-md border-t border-white/10 px-3.5 sm:px-4 py-3 flex items-center justify-between gap-3">
-                <div class="min-w-0">
-                  <div class="flex items-center gap-2">
-                    <span id="video-rank-badge" class="text-[10px] sm:text-[11px] font-extrabold uppercase px-2 py-0.5 rounded theme-pill shrink-0">#1 Pick</span>
-                    <span id="video-editor-title" class="text-xs sm:text-sm font-bold text-white truncate">Editor</span>
-                  </div>
-                  <p id="video-editor-meta" class="text-[11px] text-slate-400 truncate mt-0.5">Featured Edit</p>
-                </div>
-                <span class="text-[11px] font-mono text-slate-400 shrink-0" id="video-file-label">x.mp4</span>
-              </div>
-            </div>
-          </div>
-
+        <!-- DYNAMIC #1 RANKED EDITOR HERO CARD -->
+        <div id="hero-rank1-container" class="lg:col-span-5 reveal">
+          <!-- Populated dynamically from the #1 sorted editor -->
         </div>
       </div>
     </section>
 
-    <section id="rankings" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
+    <!-- EE RANKINGS TABLE SECTION -->
+    <section id="rankings" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
       
+      <!-- Category Tabs & Search Filter -->
       <div class="mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-white/10 pb-3 reveal">
         <div class="overflow-x-auto pb-1">
-          <div id="category-tabs" class="flex items-center gap-2 min-w-max"></div>
+          <div id="category-tabs" class="flex items-center gap-2 min-w-max">
+            <!-- Category buttons injected dynamically -->
+          </div>
         </div>
 
         <div class="relative w-full sm:w-64">
@@ -414,6 +314,7 @@
         </div>
       </div>
 
+      <!-- Table Header -->
       <div class="hidden md:grid grid-cols-12 px-5 py-2 text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">
         <div class="col-span-1 text-center">#</div>
         <div class="col-span-4">Editor</div>
@@ -421,10 +322,14 @@
         <div id="table-tiers-header" class="col-span-5 text-right">Tiers</div>
       </div>
 
-      <div class="space-y-3" id="rankings-list"></div>
+      <!-- DYNAMIC RANKING CARDS LIST -->
+      <div class="space-y-3" id="rankings-list">
+        <!-- Populated automatically via JS sorted by points -->
+      </div>
     </section>
 
-    <section id="tierlist" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-12 border-t border-white/10">
+    <!-- TIER DEFINITIONS -->
+    <section id="tierlist" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 border-t border-white/10">
       <div class="mb-6 reveal">
         <h2 class="text-2xl sm:text-3xl font-extrabold text-white font-display">Tier Breakdown</h2>
       </div>
@@ -456,9 +361,10 @@
       </div>
     </section>
 
-    <section id="seasons" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-12 border-t border-white/10">
+    <!-- COMMUNITY & DISCORD -->
+    <section id="seasons" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 border-t border-white/10">
       <div class="mctiers-card p-6 sm:p-8 rounded-2xl flex flex-col md:flex-row items-center justify-between gap-6 reveal">
-        <div class="space-y-2 text-center md:text-left">
+        <div class="space-y-2">
           <h2 class="text-2xl sm:text-3xl font-bold text-white font-display">Join Editors Empire</h2>
           <p class="text-slate-400 text-sm max-w-lg">
             Submit your edits for evaluation, download raw footage, and participate in tournaments.
@@ -470,6 +376,7 @@
       </div>
     </section>
 
+    <!-- FOOTER -->
     <footer id="newsroom" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400 reveal">
       <div class="flex items-center gap-3">
         <img src="standard.gif" onerror="this.src='https://placehold.co/32x32/1e293b/f8fafc?text=P'" alt="PhaseAE" class="w-8 h-8 rounded-full object-cover" />
@@ -480,6 +387,7 @@
 
   </main>
 
+  <!-- PROFILE MODAL POPUP -->
   <div class="modal-backdrop" id="profileModal" onclick="closeProfileOnBackdrop(event)">
     <div class="profile-modal text-center relative">
       <button class="absolute top-4 right-4 text-slate-400 hover:text-white p-1" onclick="closeProfile()" aria-label="Close modal">✕</button>
@@ -505,233 +413,19 @@
       </div>
 
       <div class="text-left text-[10px] font-bold text-slate-400 tracking-wider mb-1 uppercase">CATEGORY TIERS</div>
-      <div id="modalTiers" class="bg-black/60 border border-white/10 rounded-lg p-3 flex flex-wrap gap-3 justify-center text-xs"></div>
+      <div id="modalTiers" class="bg-black/60 border border-white/10 rounded-lg p-3 flex flex-wrap gap-3 justify-center text-xs">
+      </div>
     </div>
   </div>
 
+  <!-- ==========================================================================
+       VARIABLE-DRIVEN RANKING ENGINE & DATA CONFIGURATION
+       ========================================================================== -->
   <script>
-    const THEME_METADATA = {
-      ee:       { label: 'EE Purple',       metaColor: '#190b23' },
-      royal:    { label: 'Royal Gold',      metaColor: '#261b05' },
-      crimson:  { label: 'Crimson Red',     metaColor: '#26080d' },
-      cyber:    { label: 'Cyber Cyan',      metaColor: '#071f2c' },
-      emerald:  { label: 'Emerald Venom',   metaColor: '#062417' },
-      obsidian: { label: 'Obsidian Silver', metaColor: '#161618' }
-    };
-
-    function applyTheme(themeName) {
-      const validTheme = THEME_METADATA[themeName] ? themeName : 'ee';
-      Object.keys(THEME_METADATA).forEach(t => document.body.classList.remove(t));
-      document.body.classList.add(validTheme);
-      
-      const metaTheme = document.querySelector('meta[name="theme-color"]');
-      if (metaTheme) {
-        metaTheme.setAttribute('content', THEME_METADATA[validTheme].metaColor);
-      }
-
-      const selectEl = document.getElementById('nav-theme-select');
-      if (selectEl) {
-        selectEl.value = validTheme;
-      }
-      
-      localStorage.setItem('ee_selected_theme', validTheme);
-    }
-
-    function initThemeSystem() {
-      const sourceClass = Array.from(document.body.classList).find(cls => THEME_METADATA[cls]);
-      if (sourceClass) {
-        applyTheme(sourceClass);
-        return;
-      }
-
-      const cachedTheme = localStorage.getItem('ee_selected_theme');
-      if (cachedTheme && THEME_METADATA[cachedTheme]) {
-        applyTheme(cachedTheme);
-      } else {
-        applyTheme('ee');
-      }
-    }
-
-    function changeThemeFromNav(newTheme) {
-      applyTheme(newTheme);
-    }
-
-    const BEST_EDITS_DATA = {
-      daily: {
-        title: "Today's Best Edit",
-        video: 'x.mp4',
-        top3: ['TW Cuberz', 'Jettstream', 'Denial']
-      },
-      weekly: {
-        title: "This Week's Best Edit",
-        video: 'x.mp4',
-        top3: ['TW Cuberz', 'Jettstream', 'Denial']
-      },
-      monthly: {
-        title: "This Month's Best Edit",
-        video: 'x.mp4',
-        top3: ['TW Cuberz', 'Jettstream', 'Denial']
-      }
-    };
-
-    let activeEditPeriod = 'daily';
-    let selectedFeaturedIndex = 0;
-
-    function resolveEditorByName(inputName) {
-      const normalized = inputName.toLowerCase().replace(/\s+/g, '');
-      const sorted = getSortedEditors();
-      const found = sorted.find(e => e.name.toLowerCase().replace(/\s+/g, '') === normalized);
-      if (found) return found;
-      return {
-        name: inputName,
-        points: 0,
-        overallTier: 'HT1',
-        region: 'Unknown',
-        avatar: 'EE.png',
-        tiers: {},
-        rank: '-'
-      };
-    }
-
-    function setupGlobalUnmuteListener() {
-      const videoEl = document.getElementById('featured-video-player');
-      const overlay = document.getElementById('unmute-overlay');
-      if (!videoEl) return;
-
-      videoEl.muted = true;
-      videoEl.play().catch(() => {});
-
-      const unlockAudio = () => {
-        videoEl.muted = false;
-        videoEl.play().catch(() => {});
-        if (overlay) {
-          overlay.style.opacity = '0';
-          setTimeout(() => { overlay.style.display = 'none'; }, 300);
-        }
-        document.removeEventListener('click', unlockAudio);
-        document.removeEventListener('touchstart', unlockAudio);
-      };
-
-      document.addEventListener('click', unlockAudio, { once: true });
-      document.addEventListener('touchstart', unlockAudio, { once: true });
-      if (overlay) {
-        overlay.addEventListener('click', unlockAudio, { once: true });
-      }
-    }
-
-    function switchEditPeriod(periodKey, tabIndex) {
-      activeEditPeriod = periodKey;
-      selectedFeaturedIndex = 0;
-
-      const thumb = document.getElementById('period-slider-thumb');
-      if (thumb) {
-        thumb.style.transform = `translateX(${tabIndex * 100}%)`;
-      }
-
-      ['daily', 'weekly', 'monthly'].forEach((key) => {
-        const btn = document.getElementById(`tab-${key}`);
-        if (btn) {
-          btn.className = key === periodKey
-            ? 'relative z-10 px-2 sm:px-3 py-2 text-[11px] sm:text-xs font-bold text-white transition-colors text-center truncate'
-            : 'relative z-10 px-2 sm:px-3 py-2 text-[11px] sm:text-xs font-bold text-slate-400 hover:text-white transition-colors text-center truncate';
-        }
-      });
-
-      renderFeaturedEdits();
-    }
-
-    function selectFeaturedEntry(index) {
-      selectedFeaturedIndex = index;
-      renderFeaturedEdits();
-    }
-
-    function renderFeaturedEdits() {
-      const periodData = BEST_EDITS_DATA[activeEditPeriod];
-      if (!periodData) return;
-
-      document.getElementById('featured-section-title').innerText = periodData.title;
-
-      const entries = periodData.top3.slice(0, 3).map((item, idx) => {
-        const isObj = typeof item === 'object' && item !== null;
-        const name = isObj ? item.name : item;
-        const video = (isObj && item.video) ? item.video : (periodData.video || 'x.mp4');
-        const profile = resolveEditorByName(name);
-        return {
-          rank: idx + 1,
-          name: profile.name,
-          video,
-          profile
-        };
-      });
-
-      const podiumContainer = document.getElementById('featured-podium-list');
-      podiumContainer.innerHTML = entries.map((entry, idx) => {
-        const { profile } = entry;
-        const overallInfo = getOverallTierInfo(profile);
-        const rankStyle = getRankPositionStyle(entry.rank, profile.accentColor);
-        const isSelected = idx === selectedFeaturedIndex;
-        const isFirst = entry.rank === 1;
-        const medalLabel = entry.rank === 1 ? '👑 #1' : entry.rank === 2 ? '🥈 #2' : '🥉 #3';
-
-        return `
-          <div
-            onclick="selectFeaturedEntry(${idx})"
-            class="rounded-xl transition-all cursor-pointer border ${isFirst ? 'p-4 sm:p-5 bg-black/70' : 'p-3.5 bg-black/45'} ${isSelected ? 'ring-1 ring-white/30 border-white/25' : 'border-white/10 hover:border-white/20'}"
-            style="border-left-width: 4px; border-left-color: ${rankStyle.borderColor};"
-          >
-            <div class="flex items-center justify-between gap-3">
-              <div class="flex items-center gap-3 min-w-0">
-                <img
-                  src="${profile.avatar || 'EE.png'}"
-                  onerror="this.src='https://placehold.co/48x48/1e293b/f8fafc?text=${encodeURIComponent(entry.name[0])}'"
-                  alt="${entry.name}"
-                  class="${isFirst ? 'w-12 h-12 sm:w-14 sm:h-14' : 'w-10 h-10 sm:w-11 sm:h-11'} rounded-lg object-cover shrink-0 bg-slate-900"
-                />
-                <div class="min-w-0">
-                  <div class="flex items-center gap-2">
-                    <span class="text-xs font-extrabold font-display tracking-wide" style="color: ${rankStyle.color};">
-                      ${medalLabel}
-                    </span>
-                    <span class="text-[11px] tier-badge ${overallInfo.class}">${overallInfo.code}</span>
-                    ${isFirst ? `<span class="text-[10px] px-1.5 py-0.5 rounded theme-pill font-bold">${entry.video}</span>` : ''}
-                  </div>
-                  <h3 class="${isFirst ? 'text-base sm:text-xl' : 'text-sm sm:text-base'} font-extrabold font-display truncate ${profile.nameGrad || 'text-white'}">
-                    ${entry.name}
-                  </h3>
-                  <p class="text-[11px] sm:text-xs text-slate-400 truncate">
-                    ${profile.points} pts • ${profile.region}
-                  </p>
-                </div>
-              </div>
-
-              <button
-                type="button"
-                onclick="event.stopPropagation(); openProfileByName('${entry.name.replace(/'/g, "\\'")}')"
-                class="px-2.5 py-1.5 rounded-md bg-white/5 hover:bg-white/15 border border-white/10 text-[11px] font-semibold text-slate-300 transition-colors shrink-0"
-              >
-                Profile
-              </button>
-            </div>
-          </div>
-        `;
-      }).join('');
-
-      const activeEntry = entries[selectedFeaturedIndex] || entries[0];
-      const videoEl = document.getElementById('featured-video-player');
-      const targetSrc = activeEntry.video || 'x.mp4';
-
-      if (videoEl.getAttribute('src') !== targetSrc) {
-        videoEl.setAttribute('src', targetSrc);
-        videoEl.load();
-        videoEl.play().catch(() => {});
-      }
-
-      document.getElementById('video-rank-badge').innerText = `#${activeEntry.rank} Pick`;
-      document.getElementById('video-editor-title').innerText = activeEntry.name;
-      document.getElementById('video-editor-meta').innerText = `${periodData.title} • ${activeEntry.profile.points} pts`;
-      document.getElementById('video-file-label').innerText = targetSrc;
-    }
-
+    /**
+     * 1. TIER & RANK CONFIGURATION VARIABLES
+     * Maps tier labels to CSS classes, numeric weights (for category sorting), and colors.
+     */
     const TIER_CONFIG = {
       'HT1+': { class: 'tier-ht1', colorVar: 'var(--color-ht1)', weight: 100 },
       'HT1':  { class: 'tier-ht1', colorVar: 'var(--color-ht1)', weight: 90 },
@@ -746,14 +440,44 @@
       'LT5':  { class: 'tier-lt5', colorVar: 'var(--color-lt5)', weight: 10 }
     };
 
+    /**
+     * Derives Rank Position styling (accent border color & rank number color) dynamically.
+     * Can be overridden per editor via `accentColor` if desired.
+     */
     function getRankPositionStyle(rank, customAccent) {
-      if (rank === 1) return { color: customAccent || 'var(--rank-1-color)', borderColor: customAccent || 'var(--rank-1-color)' };
-      if (rank === 2) return { color: customAccent || 'var(--rank-2-color)', borderColor: customAccent || 'var(--rank-2-color)' };
-      if (rank === 3) return { color: customAccent || 'var(--rank-3-color)', borderColor: customAccent || 'var(--rank-3-color)' };
-      if (rank <= 8) return { color: customAccent || 'var(--rank-top-color)', borderColor: customAccent || 'var(--rank-top-color)' };
-      return { color: customAccent || 'var(--rank-default-color)', borderColor: customAccent || 'transparent' };
+      if (rank === 1) {
+        return {
+          color: customAccent || 'var(--rank-1-color)',
+          borderColor: customAccent || 'var(--rank-1-color)'
+        };
+      }
+      if (rank === 2) {
+        return {
+          color: customAccent || 'var(--rank-2-color)',
+          borderColor: customAccent || 'var(--rank-2-color)'
+        };
+      }
+      if (rank === 3) {
+        return {
+          color: customAccent || 'var(--rank-3-color)',
+          borderColor: customAccent || 'var(--rank-3-color)'
+        };
+      }
+      if (rank <= 8) {
+        return {
+          color: customAccent || 'var(--rank-top-color)',
+          borderColor: customAccent || 'var(--rank-top-color)'
+        };
+      }
+      return {
+        color: customAccent || 'var(--rank-default-color)',
+        borderColor: customAccent || 'transparent'
+      };
     }
 
+    /**
+     * Automatically derives the overall rank title & tier badge style from points or explicit overallTier.
+     */
     function getOverallTierInfo(editor) {
       let tierCode = editor.overallTier;
       if (!tierCode) {
@@ -766,9 +490,18 @@
         else tierCode = 'LT3';
       }
       const config = TIER_CONFIG[tierCode.toUpperCase()] || TIER_CONFIG['LT5'];
-      return { code: tierCode, label: `${tierCode} Rank`, class: config.class, colorVar: config.colorVar };
+      // Format display badge nicely (e.g., "HT1+ Rank", "HT2 Rank")
+      return {
+        code: tierCode,
+        label: `${tierCode} Rank`,
+        class: config.class,
+        colorVar: config.colorVar
+      };
     }
 
+    /**
+     * 2. CATEGORY DEFINITIONS
+     */
     const CATEGORIES = [
       { id: 'overall', label: 'Overall' },
       { id: 'sync', label: 'Sync' },
@@ -781,6 +514,11 @@
       { id: 'transition', label: 'Transition' }
     ];
 
+    /**
+     * 3. CENTRALIZED EDITORS DATA ARRAY
+     * Simply edit points, tiers, or add new editors here — sorting, rank numbers,
+     * hero card, stats, and colors all update automatically!
+     */
     const editorsData = [
       {
         name: 'Gireen',
@@ -988,15 +726,18 @@
       }
     ];
 
+    // Application State
     let activeCategory = 'overall';
     let searchQuery = '';
 
+    // Helper: Get tier badge HTML with automatic CSS variable styling
     function renderTierBadge(tierCode) {
       if (!tierCode) return `<span class="text-slate-600 font-semibold">—</span>`;
       const cfg = TIER_CONFIG[tierCode.toUpperCase()] || { class: 'tier-lt5' };
       return `<strong class="tier-badge ${cfg.class}">${tierCode}</strong>`;
     }
 
+    // Helper: Format category key to readable display name
     function formatCategoryName(key) {
       const map = {
         sync: 'Sync',
@@ -1011,6 +752,7 @@
       return map[key] || key.charAt(0).toUpperCase() + key.slice(1);
     }
 
+    // Compute auto-sorted editors list (highest points first, preserving original order on ties)
     function getSortedEditors() {
       return editorsData
         .map((editor, idx) => ({ ...editor, _originalIdx: idx }))
@@ -1024,17 +766,20 @@
         }));
     }
 
+    // Render Hero Stats & #1 Ranked Card automatically
     function renderHeroAndStats(sortedEditors) {
       if (!sortedEditors.length) return;
       const topEditor = sortedEditors[0];
       const topOverall = getOverallTierInfo(topEditor);
       const topStyle = getRankPositionStyle(1, topEditor.accentColor);
 
+      // Update Hero Metrics
       document.getElementById('stat-top-tier').innerText = topOverall.code;
-      document.getElementById('stat-top-tier').className = `tier-badge ${topOverall.class} text-lg sm:text-xl`;
+      document.getElementById('stat-top-tier').className = `tier-badge ${topOverall.class} text-xl`;
       document.getElementById('stat-peak-points').innerText = topEditor.points;
       document.getElementById('stat-ranked-count').innerText = sortedEditors.length;
 
+      // Render Top 5 Tier Pills for Hero Card
       const previewKeys = ['sync', 'effect', 'motion', 'vq', 'creativity'];
       const previewHtml = previewKeys.map(key => {
         const val = topEditor.tiers[key] || '—';
@@ -1048,16 +793,16 @@
 
       const heroContainer = document.getElementById('hero-rank1-container');
       heroContainer.innerHTML = `
-        <div class="mctiers-card p-5 sm:p-6 rounded-2xl cursor-pointer" style="border-color: ${topStyle.borderColor}4D;" onclick="openProfileByName('${topEditor.name.replace(/'/g, "\\'")}')">
+        <div class="mctiers-card p-6 rounded-2xl cursor-pointer" style="border-color: ${topStyle.borderColor}4D;" onclick="openProfileByName('${topEditor.name.replace(/'/g, "\\'")}')">
           <div class="flex items-center justify-between mb-4">
             <span class="text-xs uppercase tracking-wider text-slate-400">Ranked #1</span>
             <span class="text-xs font-bold" style="color: ${topStyle.color};">👑 #1 Overall</span>
           </div>
 
           <div class="flex items-center gap-4 my-2">
-            <img src="${topEditor.avatar}" onerror="this.src='https://placehold.co/64x64/1e293b/f8fafc?text=${encodeURIComponent(topEditor.name[0])}'" alt="${topEditor.name}" class="w-14 h-14 sm:w-16 sm:h-16 rounded-xl object-cover" style="box-shadow: 0 0 0 2px ${topStyle.color}99;" />
+            <img src="${topEditor.avatar}" onerror="this.src='https://placehold.co/64x64/1e293b/f8fafc?text=${encodeURIComponent(topEditor.name[0])}'" alt="${topEditor.name}" class="w-16 h-16 rounded-xl object-cover" style="box-shadow: 0 0 0 2px ${topStyle.color}99;" />
             <div>
-              <h2 class="text-xl sm:text-2xl font-bold font-display ${topEditor.nameGrad || 'text-white'}">${topEditor.name}</h2>
+              <h2 class="text-2xl font-bold font-display ${topEditor.nameGrad || 'text-white'}">${topEditor.name}</h2>
               <p class="text-xs text-slate-400 mt-0.5">${topEditor.points} Points • ${topEditor.region}</p>
             </div>
           </div>
@@ -1073,6 +818,7 @@
       `;
     }
 
+    // Render Category Tabs
     function renderCategoryTabs() {
       const container = document.getElementById('category-tabs');
       container.innerHTML = CATEGORIES.map(cat => {
@@ -1089,16 +835,19 @@
       }).join('');
     }
 
+    // Render Main Leaderboard List
     function renderRankingsList() {
       const sortedEditors = getSortedEditors();
       renderHeroAndStats(sortedEditors);
 
+      // Filter by search query
       let displayList = sortedEditors.filter(ed => {
         if (!searchQuery) return true;
         const q = searchQuery.toLowerCase();
         return ed.name.toLowerCase().includes(q) || ed.region.toLowerCase().includes(q);
       });
 
+      // If a specific category tab is selected, sort by that category's tier weight first, then points
       if (activeCategory !== 'overall') {
         displayList = [...displayList].sort((a, b) => {
           const tierA = a.tiers[activeCategory] ? (TIER_CONFIG[a.tiers[activeCategory].toUpperCase()]?.weight || 0) : -1;
@@ -1122,10 +871,12 @@
       }
 
       listEl.innerHTML = displayList.map((editor, idx) => {
+        // Use overall rank when on Overall tab, or category rank when filtering by category
         const displayRank = activeCategory === 'overall' ? editor.rank : idx + 1;
         const rankStyle = getRankPositionStyle(displayRank, activeCategory === 'overall' ? editor.accentColor : null);
         const hasAccent = rankStyle.borderColor && rankStyle.borderColor !== 'transparent';
 
+        // Determine which tier pills to display on the row
         let rowTiersHtml = '';
         if (activeCategory === 'overall') {
           const defaultKeys = ['sync', 'effect', 'motion', 'vq'];
@@ -1133,6 +884,7 @@
             <span>${formatCategoryName(k)}: ${renderTierBadge(editor.tiers[k])}</span>
           `).join('');
         } else {
+          // Highlight the selected category prominently alongside core stats
           const selectedVal = editor.tiers[activeCategory];
           const otherKeys = ['sync', 'effect', 'motion', 'vq'].filter(k => k !== activeCategory).slice(0, 3);
           rowTiersHtml = `
@@ -1151,30 +903,29 @@
 
         return `
           <div 
-            class="mctiers-card ${hasAccent ? 'rank-card-accent' : ''} p-3.5 sm:p-4 rounded-xl cursor-pointer" 
+            class="mctiers-card ${hasAccent ? 'rank-card-accent' : ''} p-4 rounded-xl cursor-pointer" 
             style="${hasAccent ? `--accent-color: ${rankStyle.borderColor};` : ''}"
             onclick="openProfileByName('${editor.name.replace(/'/g, "\\'")}')"
           >
-            <div class="grid grid-cols-1 md:grid-cols-12 items-center gap-2.5 sm:gap-3">
+            <div class="grid grid-cols-1 md:grid-cols-12 items-center gap-3">
               <div class="md:col-span-1 flex items-center md:justify-center gap-2">
                 <span class="font-bold font-display text-sm" style="color: ${rankStyle.color};">${displayRank}</span>
                 ${activeCategory !== 'overall' ? `<span class="text-[10px] text-slate-500">(#${editor.rank})</span>` : ''}
-                <span class="md:hidden text-[11px] text-slate-400 ml-auto">${editor.region}</span>
               </div>
               <div class="md:col-span-4 flex items-center gap-3">
                 <img 
                   src="${editor.avatar}" 
                   onerror="this.src='https://placehold.co/40x40/1e293b/f8fafc?text=${encodeURIComponent(editor.name[0])}'" 
                   alt="${editor.name}" 
-                  class="w-10 h-10 rounded-lg object-cover bg-slate-900 shrink-0" 
+                  class="w-10 h-10 rounded-lg object-cover bg-slate-900" 
                 />
-                <div class="min-w-0">
-                  <h3 class="font-bold text-sm truncate ${editor.nameGrad || 'text-white'}">${editor.name}</h3>
+                <div>
+                  <h3 class="font-bold text-sm ${editor.nameGrad || 'text-white'}">${editor.name}</h3>
                   <p class="text-xs text-slate-400">${editor.points} pts</p>
                 </div>
               </div>
-              <div class="hidden md:block md:col-span-2 text-center text-xs text-slate-300">${editor.region}</div>
-              <div class="md:col-span-5 flex flex-wrap items-center justify-start md:justify-end gap-2.5 sm:gap-3 text-xs pt-1 md:pt-0 border-t border-white/5 md:border-none">
+              <div class="md:col-span-2 text-left md:text-center text-xs text-slate-300">${editor.region}</div>
+              <div class="md:col-span-5 flex flex-wrap items-center justify-start md:justify-end gap-3 text-xs">
                 ${rowTiersHtml}
                 ${linkHtml}
               </div>
@@ -1184,6 +935,7 @@
       }).join('');
     }
 
+    // Open Profile Modal using the auto-computed Editor Object
     function openProfileByName(editorName) {
       const sortedEditors = getSortedEditors();
       const editor = sortedEditors.find(e => e.name === editorName);
@@ -1223,8 +975,9 @@
         linkBtn.classList.add('hidden');
       }
 
+      // Render all recorded category tiers for this editor
       const tiersBox = document.getElementById('modalTiers');
-      tiersBox.innerHTML = Object.entries(editor.tiers).map(([key, badge] ) => `
+      tiersBox.innerHTML = Object.entries(editor.tiers).map(([key, badge]) => `
         <span class="px-2 py-1 rounded bg-white/5 border border-white/5">
           ${formatCategoryName(key)}: ${renderTierBadge(badge)}
         </span>
@@ -1254,13 +1007,12 @@
       renderRankingsList();
     }
 
+    // Initialize Page
     document.addEventListener('DOMContentLoaded', () => {
-      initThemeSystem();
-      setupGlobalUnmuteListener();
-      renderFeaturedEdits();
       renderCategoryTabs();
       renderRankingsList();
 
+      // Scroll Reveal Observer
       const revealObserver = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
@@ -1274,6 +1026,7 @@
       });
     });
 
+    // Close modal with Escape key
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') closeProfile();
     });
