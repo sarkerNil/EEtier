@@ -237,7 +237,6 @@
   </style>
 </head>
 
-<!-- Change the theme class here (e.g. "ee", "royal", "crimson", "cyber", "emerald", "obsidian") to push a new site default -->
 <body class="ee selection:bg-slate-700 selection:text-white font-sans antialiased text-slate-100 overflow-x-hidden">
 
   <header class="fixed top-0 left-0 right-0 z-50 border-b border-white/10 bg-[#050507]/85 backdrop-blur-md">
@@ -352,11 +351,11 @@
           </div>
         </div>
 
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-6 items-stretch">
+        <div id="featured-content-grid" class="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-6 items-stretch">
           
           <div id="featured-podium-list" class="lg:col-span-6 flex flex-col justify-between gap-3 order-1"></div>
 
-          <div class="lg:col-span-6 flex flex-col order-2">
+          <div id="featured-video-wrapper" class="lg:col-span-6 flex flex-col order-2">
             <div class="relative rounded-xl overflow-hidden bg-black border border-white/10 flex-1 flex flex-col justify-between">
               <div class="relative w-full aspect-video bg-black overflow-hidden">
                 <video
@@ -388,6 +387,18 @@
                 </div>
                 <span class="text-[11px] font-mono text-slate-400 shrink-0" id="video-file-label">x.mp4</span>
               </div>
+            </div>
+          </div>
+
+          <div id="featured-unannounced-box" class="hidden lg:col-span-12 order-1">
+            <div class="rounded-xl bg-black/60 border border-white/10 p-8 sm:p-12 text-center space-y-2">
+              <div class="inline-block px-3 py-1 rounded-md text-[11px] font-bold uppercase tracking-wider border theme-pill mb-1">
+                Monthly Showcase
+              </div>
+              <h3 class="text-xl sm:text-2xl font-extrabold font-display text-white">Unannounced</h3>
+              <p class="text-xs sm:text-sm text-slate-400 max-w-md mx-auto">
+                This month's best edit rankings have not been announced yet. Check back soon!
+              </p>
             </div>
           </div>
 
@@ -499,7 +510,7 @@
       <div class="text-left text-[10px] font-bold text-slate-400 tracking-wider mb-1 uppercase">POSITION</div>
       <div class="bg-black/60 border border-white/10 rounded-lg p-2.5 flex items-center justify-between mb-4 text-sm font-bold text-white">
         <span>OVERALL</span>
-        <span id="modalRank" class="font-display">1.</span>
+        <span id="modalRank" class="font-display">Not ranked yet</span>
         <span id="modalPoints" class="text-slate-400 text-xs">(0 pts)</span>
       </div>
 
@@ -540,21 +551,16 @@
     }
 
     function initThemeSystem() {
-      // Detect the default theme set in the HTML <body> tag
       const htmlDefaultTheme = Array.from(document.body.classList).find(cls => THEME_METADATA[cls]) || 'ee';
       const savedDefaultVersion = localStorage.getItem(STORAGE_KEY_DEFAULT_VER);
       const cachedUserTheme = localStorage.getItem(STORAGE_KEY_THEME);
 
-      // If you changed the default theme on the site (e.g. from "ee" to "royal"),
-      // reset the user's cached theme to the new site default so they see it immediately,
-      // and update the stored default version so future choices they make will persist again.
       if (savedDefaultVersion !== htmlDefaultTheme) {
         localStorage.setItem(STORAGE_KEY_DEFAULT_VER, htmlDefaultTheme);
         applyTheme(htmlDefaultTheme);
         return;
       }
 
-      // Otherwise, respect the user's saved theme preference if valid
       if (cachedUserTheme && THEME_METADATA[cachedUserTheme]) {
         applyTheme(cachedUserTheme);
       } else {
@@ -570,17 +576,18 @@
       daily: {
         title: "Today's Best Edit",
         video: 'x.mp4',
-        top3: ['TW Cuberz', 'Jettstream', 'Denial']
+        top3: ['Density', 'Syncraft', 'Jetstream']
       },
       weekly: {
         title: "This Week's Best Edit",
-        video: 'x.mp4',
-        top3: ['TW Cuberz', 'Jettstream', 'Denial']
+        video: 'y.mp4',
+        top3: ['Paceglint', 'akplayzmc', 'TW Cuberz']
       },
       monthly: {
         title: "This Month's Best Edit",
-        video: 'x.mp4',
-        top3: ['TW Cuberz', 'Jettstream', 'Denial']
+        unannounced: true,
+        video: '',
+        top3: []
       }
     };
 
@@ -595,11 +602,12 @@
       return {
         name: inputName,
         points: 0,
-        overallTier: 'HT1',
+        overallTier: 'LT5',
         region: 'Unknown',
         avatar: 'EE.png',
         tiers: {},
-        rank: '-'
+        rank: null,
+        unranked: true
       };
     }
 
@@ -635,19 +643,15 @@
         });
       };
 
-      // 1. Attempt immediate unmuted autoplay (succeeds if browser MEI / gesture permits)
       videoEl.muted = false;
       videoEl.volume = 1.0;
       const playPromise = videoEl.play();
 
       if (playPromise !== undefined) {
         playPromise.then(() => {
-          // Unmuted autoplay succeeded immediately!
           audioUnlocked = true;
           hideOverlay();
         }).catch(() => {
-          // 2. Browser blocked unmuted autoplay: start muted immediately so video plays smoothly,
-          // and listen anywhere on the page to enable sound on the user's very first interaction.
           videoEl.muted = true;
           videoEl.play().catch(() => {});
           showOverlay();
@@ -691,6 +695,25 @@
 
       document.getElementById('featured-section-title').innerText = periodData.title;
 
+      const podiumContainer = document.getElementById('featured-podium-list');
+      const videoWrapper = document.getElementById('featured-video-wrapper');
+      const unannouncedBox = document.getElementById('featured-unannounced-box');
+      const videoEl = document.getElementById('featured-video-player');
+
+      if (periodData.unannounced) {
+        podiumContainer.classList.add('hidden');
+        videoWrapper.classList.add('hidden');
+        unannouncedBox.classList.remove('hidden');
+        if (videoEl) {
+          videoEl.pause();
+        }
+        return;
+      }
+
+      podiumContainer.classList.remove('hidden');
+      videoWrapper.classList.remove('hidden');
+      unannouncedBox.classList.add('hidden');
+
       const entries = periodData.top3.slice(0, 3).map((item, idx) => {
         const isObj = typeof item === 'object' && item !== null;
         const name = isObj ? item.name : item;
@@ -704,7 +727,6 @@
         };
       });
 
-      const podiumContainer = document.getElementById('featured-podium-list');
       podiumContainer.innerHTML = entries.map((entry, idx) => {
         const { profile } = entry;
         const overallInfo = getOverallTierInfo(profile);
@@ -712,6 +734,8 @@
         const isSelected = idx === selectedFeaturedIndex;
         const isFirst = entry.rank === 1;
         const medalLabel = entry.rank === 1 ? '👑 #1' : entry.rank === 2 ? '🥈 #2' : '🥉 #3';
+        const avatarSrc = profile.unranked ? 'EE.png' : (profile.avatar || 'EE.png');
+        const rankText = profile.unranked ? 'Not ranked yet' : `${profile.points} pts • ${profile.region}`;
 
         return `
           <div
@@ -722,8 +746,8 @@
             <div class="flex items-center justify-between gap-3">
               <div class="flex items-center gap-3 min-w-0">
                 <img
-                  src="${profile.avatar || 'EE.png'}"
-                  onerror="this.src='https://placehold.co/48x48/1e293b/f8fafc?text=${encodeURIComponent(entry.name[0])}'"
+                  src="${avatarSrc}"
+                  onerror="this.src='EE.png'"
                   alt="${entry.name}"
                   class="${isFirst ? 'w-12 h-12 sm:w-14 sm:h-14' : 'w-10 h-10 sm:w-11 sm:h-11'} rounded-lg object-cover shrink-0 bg-slate-900"
                 />
@@ -739,7 +763,7 @@
                     ${entry.name}
                   </h3>
                   <p class="text-[11px] sm:text-xs text-slate-400 truncate">
-                    ${profile.points} pts • ${profile.region}
+                    ${rankText}
                   </p>
                 </div>
               </div>
@@ -757,7 +781,6 @@
       }).join('');
 
       const activeEntry = entries[selectedFeaturedIndex] || entries[0];
-      const videoEl = document.getElementById('featured-video-player');
       const targetSrc = activeEntry.video || 'x.mp4';
 
       if (videoEl.getAttribute('src') !== targetSrc) {
@@ -768,7 +791,9 @@
 
       document.getElementById('video-rank-badge').innerText = `#${activeEntry.rank} Pick`;
       document.getElementById('video-editor-title').innerText = activeEntry.name;
-      document.getElementById('video-editor-meta').innerText = `${periodData.title} • ${activeEntry.profile.points} pts`;
+      document.getElementById('video-editor-meta').innerText = activeEntry.profile.unranked
+        ? `${periodData.title} • Not ranked yet`
+        : `${periodData.title} • ${activeEntry.profile.points} pts`;
       document.getElementById('video-file-label').innerText = targetSrc;
     }
 
@@ -1095,7 +1120,7 @@
           </div>
 
           <div class="flex items-center gap-4 my-2">
-            <img src="${topEditor.avatar}" onerror="this.src='https://placehold.co/64x64/1e293b/f8fafc?text=${encodeURIComponent(topEditor.name[0])}'" alt="${topEditor.name}" class="w-14 h-14 sm:w-16 sm:h-16 rounded-xl object-cover" style="box-shadow: 0 0 0 2px ${topStyle.color}99;" />
+            <img src="${topEditor.avatar}" onerror="this.src='EE.png'" alt="${topEditor.name}" class="w-14 h-14 sm:w-16 sm:h-16 rounded-xl object-cover" style="box-shadow: 0 0 0 2px ${topStyle.color}99;" />
             <div>
               <h2 class="text-xl sm:text-2xl font-bold font-display ${topEditor.nameGrad || 'text-white'}">${topEditor.name}</h2>
               <p class="text-xs text-slate-400 mt-0.5">${topEditor.points} Points • ${topEditor.region}</p>
@@ -1206,8 +1231,8 @@
               </div>
               <div class="md:col-span-4 flex items-center gap-3">
                 <img 
-                  src="${editor.avatar}" 
-                  onerror="this.src='https://placehold.co/40x40/1e293b/f8fafc?text=${encodeURIComponent(editor.name[0])}'" 
+                  src="${editor.avatar || 'EE.png'}" 
+                  onerror="this.src='EE.png'" 
                   alt="${editor.name}" 
                   class="w-10 h-10 rounded-lg object-cover bg-slate-900 shrink-0" 
                 />
@@ -1228,33 +1253,30 @@
     }
 
     function openProfileByName(editorName) {
-      const sortedEditors = getSortedEditors();
-      const editor = sortedEditors.find(e => e.name === editorName);
-      if (!editor) return;
-
+      const editor = resolveEditorByName(editorName);
       const overallInfo = getOverallTierInfo(editor);
-      const rankStyle = getRankPositionStyle(editor.rank, editor.accentColor);
+      const rankStyle = getRankPositionStyle(editor.rank || 99, editor.accentColor);
 
       const nameEl = document.getElementById('modalName');
       nameEl.innerText = editor.name;
       nameEl.className = 'text-xl font-bold font-display ' + (editor.nameGrad || 'text-white');
 
       const badgeEl = document.getElementById('modalBadge');
-      badgeEl.innerText = overallInfo.label;
+      badgeEl.innerText = editor.unranked ? 'Not ranked yet' : overallInfo.label;
       badgeEl.className = `tier-badge ${overallInfo.class}`;
 
-      document.getElementById('modalRegion').innerText = editor.region;
+      document.getElementById('modalRegion').innerText = editor.region || 'Unknown';
 
       const modalRankEl = document.getElementById('modalRank');
-      modalRankEl.innerText = `#${editor.rank}`;
-      modalRankEl.style.color = rankStyle.color;
+      modalRankEl.innerText = editor.unranked ? 'Not ranked yet' : `#${editor.rank}`;
+      modalRankEl.style.color = editor.unranked ? '#94a3b8' : rankStyle.color;
 
-      document.getElementById('modalPoints').innerText = `(${editor.points} pts)`;
+      document.getElementById('modalPoints').innerText = editor.unranked ? '(Not ranked yet)' : `(${editor.points} pts)`;
 
       const avatarEl = document.getElementById('modalAvatar');
-      avatarEl.src = editor.avatar;
+      avatarEl.src = editor.unranked ? 'EE.png' : (editor.avatar || 'EE.png');
       avatarEl.onerror = function() {
-        this.src = `https://placehold.co/64x64/1e293b/f8fafc?text=${encodeURIComponent(editor.name[0])}`;
+        this.src = 'EE.png';
       };
 
       const linkBtn = document.getElementById('modalEditLink');
@@ -1267,11 +1289,16 @@
       }
 
       const tiersBox = document.getElementById('modalTiers');
-      tiersBox.innerHTML = Object.entries(editor.tiers).map(([key, badge]) => `
-        <span class="px-2 py-1 rounded bg-white/5 border border-white/5">
-          ${formatCategoryName(key)}: ${renderTierBadge(badge)}
-        </span>
-      `).join('');
+      const tierEntries = Object.entries(editor.tiers || {});
+      if (tierEntries.length > 0) {
+        tiersBox.innerHTML = tierEntries.map(([key, badge]) => `
+          <span class="px-2 py-1 rounded bg-white/5 border border-white/5">
+            ${formatCategoryName(key)}: ${renderTierBadge(badge)}
+          </span>
+        `).join('');
+      } else {
+        tiersBox.innerHTML = `<span class="text-slate-400">Not ranked yet</span>`;
+      }
 
       document.getElementById('profileModal').classList.add('active');
     }
